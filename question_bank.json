@@ -1,0 +1,1602 @@
+{
+  "exam_config": {
+    "question_allocation": {
+      "通用基础": 5,
+      "Agent岗位": 3,
+      "安全常识": 2,
+      "专业方向": 5
+    },
+    "pass_score": 60,
+    "full_score": 100,
+    "time_limit_minutes": 30,
+    "difficulty_weights": {
+      "简单": 1.0,
+      "中等": 1.5,
+      "困难": 2.0
+    }
+  },
+  "specialties": {
+    "前端开发": {
+      "label": "前端开发",
+      "desc": "HTML/CSS/JS、Vue、React 等",
+      "icon": "🎨"
+    },
+    "后端开发": {
+      "label": "后端开发",
+      "desc": "API、数据库、服务端架构等",
+      "icon": "⚙️"
+    },
+    "测试": {
+      "label": "测试 / QA",
+      "desc": "自动化测试、测试方法论等",
+      "icon": "🔍"
+    },
+    "运维": {
+      "label": "运维 / DevOps",
+      "desc": "Linux、Docker、CI/CD 等",
+      "icon": "🖥️"
+    },
+    "算法数据": {
+      "label": "算法与数据分析",
+      "desc": "数据结构、算法、SQL 等",
+      "icon": "📊"
+    }
+  },
+  "questions": [
+    {
+      "id": 1001,
+      "module": "通用基础",
+      "category": "计算机网络",
+      "type": "single_choice",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "HTTP 协议的默认端口号是多少？",
+      "options": [
+        "21",
+        "25",
+        "80",
+        "443"
+      ],
+      "answer": "80",
+      "explanation": "HTTP 默认端口 80，HTTPS 默认端口 443。21 是 FTP，25 是 SMTP。"
+    },
+    {
+      "id": 1002,
+      "module": "通用基础",
+      "category": "计算机网络",
+      "type": "true_false",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "HTTPS 比 HTTP 更安全，因为它对传输数据进行了加密。",
+      "answer": "正确",
+      "explanation": "HTTPS 通过 SSL/TLS 协议加密数据传输，防止中间人攻击和数据泄露。"
+    },
+    {
+      "id": 1003,
+      "module": "通用基础",
+      "category": "计算机网络",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "用户在浏览器中输入网址后，首先进行的是什么操作？",
+      "options": [
+        "渲染网页",
+        "DNS 解析",
+        "发送 HTTP 请求",
+        "建立 TCP 连接"
+      ],
+      "answer": "DNS 解析",
+      "explanation": "浏览器首先需要将域名解析为 IP 地址（DNS 解析），然后才能建立 TCP 连接和发送请求。"
+    },
+    {
+      "id": 1004,
+      "module": "通用基础",
+      "category": "计算机网络",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "TCP 三次握手中，客户端最后发送的是什么报文？",
+      "options": [
+        "客户端发送 SYN 报文请求连接",
+        "服务器回复 SYN-ACK 确认请求",
+        "客户端发送 ACK 报文确认应答",
+        "客户端发送 FIN 报文断开连接"
+      ],
+      "answer": "客户端发送 ACK 报文确认应答",
+      "explanation": "三次握手：客户端发 SYN → 服务器回 SYN-ACK → 客户端最后发 ACK 确认，连接建立成功。"
+    },
+    {
+      "id": 1005,
+      "module": "通用基础",
+      "category": "计算机网络",
+      "type": "multi_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "以下哪些属于 HTTP 请求方法？（多选）",
+      "options": [
+        "GET",
+        "POST",
+        "SEND",
+        "DELETE"
+      ],
+      "answer": [
+        "GET",
+        "POST",
+        "DELETE"
+      ],
+      "explanation": "GET、POST、DELETE 都是 HTTP 标准请求方法。SEND 不是标准 HTTP 方法。常见方法还包括 PUT、PATCH、HEAD 等。"
+    },
+    {
+      "id": 1006,
+      "module": "通用基础",
+      "category": "计算机网络",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "关于 TCP 和 UDP 的区别，以下哪项描述是正确的？",
+      "options": [
+        "UDP 是面向连接的，TCP 是无连接的",
+        "TCP 保证数据可靠传输，UDP 不保证",
+        "TCP 比 UDP 的传输速度更快",
+        "UDP 会自动重传丢失的数据包"
+      ],
+      "answer": "TCP 保证数据可靠传输，UDP 不保证",
+      "explanation": "TCP 通过确认机制、重传、流量控制等保证可靠传输。UDP 是无连接的，不保证可靠性但延迟更低，适合视频直播等场景。"
+    },
+    {
+      "id": 1007,
+      "module": "通用基础",
+      "category": "计算机网络",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "OSI 七层模型中，从下到上第三层是什么？",
+      "options": [
+        "传输层",
+        "网络层",
+        "会话层",
+        "数据链路层"
+      ],
+      "answer": "网络层",
+      "explanation": "OSI七层从下到上：物理层→数据链路层→网络层→传输层→会话层→表示层→应用层。网络层负责IP寻址和路由。"
+    },
+    {
+      "id": 1008,
+      "module": "通用基础",
+      "category": "计算机网络",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "HTTP 状态码中，4xx 通常代表什么？",
+      "options": [
+        "服务器错误",
+        "客户端错误",
+        "重定向",
+        "请求成功"
+      ],
+      "answer": "客户端错误",
+      "explanation": "2xx成功、3xx重定向、4xx客户端错误（如404未找到、400请求错误）、5xx服务器错误。"
+    },
+    {
+      "id": 1009,
+      "module": "通用基础",
+      "category": "操作系统",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "关于进程（Process）和线程（Thread）的说法，以下哪项是正确的？",
+      "options": [
+        "一个进程只能拥有一个线程执行",
+        "线程是系统分配资源的独立单位",
+        "同一进程内的线程共享内存空间",
+        "进程与线程在功能上没有实质差别"
+      ],
+      "answer": "同一进程内的线程共享内存空间",
+      "explanation": "进程是资源分配的最小单位，线程是 CPU 调度的最小单位。同一进程内的线程共享内存空间，这使得线程间通信更高效。"
+    },
+    {
+      "id": 1010,
+      "module": "通用基础",
+      "category": "操作系统",
+      "type": "multi_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "死锁（Deadlock）的四个必要条件包括哪些？（多选）",
+      "options": [
+        "互斥条件",
+        "请求与保持",
+        "不可剥夺",
+        "循环等待",
+        "优先级反转"
+      ],
+      "answer": [
+        "互斥条件",
+        "请求与保持",
+        "不可剥夺",
+        "循环等待"
+      ],
+      "explanation": "死锁四条件：互斥（资源独占）、请求与保持（已持有又申请）、不可剥夺（不能强行抢）、循环等待（形成环路）。破坏任一条件即可预防死锁。"
+    },
+    {
+      "id": 1011,
+      "module": "通用基础",
+      "category": "数据结构与算法",
+      "type": "single_choice",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "栈（Stack）的特点是？",
+      "options": [
+        "先进先出",
+        "先进后出",
+        "随机访问",
+        "按优先级出队"
+      ],
+      "answer": "先进后出",
+      "explanation": "栈是先进后出（LIFO）的数据结构。队列（Queue）才是先进先出（FIFO）。"
+    },
+    {
+      "id": 1012,
+      "module": "通用基础",
+      "category": "数据结构与算法",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "二分查找的前提条件是什么？",
+      "options": [
+        "数据必须存储在链表中",
+        "数据必须是有序的",
+        "数据量必须大于 1000",
+        "数据必须是整数"
+      ],
+      "answer": "数据必须是有序的",
+      "explanation": "二分查找每次将搜索范围减半，要求数据有序才能正确判断目标在左半还是右半部分。"
+    },
+    {
+      "id": 1013,
+      "module": "通用基础",
+      "category": "数据结构与算法",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "快速排序在平均情况下的时间复杂度是？",
+      "options": [
+        "O(n)",
+        "O(n log n)",
+        "O(n²)",
+        "O(log n)"
+      ],
+      "answer": "O(n log n)",
+      "explanation": "快速排序平均时间复杂度为 O(n log n)，最坏情况（每次选到最值作为 pivot）退化为 O(n²)。"
+    },
+    {
+      "id": 1014,
+      "module": "通用基础",
+      "category": "数据结构与算法",
+      "type": "true_false",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "哈希表（Hash Table）的查找操作在理想情况下时间复杂度为 O(1)。",
+      "answer": "正确",
+      "explanation": "在哈希函数分布均匀、冲突较少的情况下，哈希表查找、插入、删除的平均时间复杂度均为 O(1)。"
+    },
+    {
+      "id": 1015,
+      "module": "通用基础",
+      "category": "数据结构与算法",
+      "type": "multi_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "以下哪些是常见的数据结构？（多选）",
+      "options": [
+        "链表",
+        "二叉树",
+        "路由器",
+        "堆"
+      ],
+      "answer": [
+        "链表",
+        "二叉树",
+        "堆"
+      ],
+      "explanation": "链表、二叉树、堆都是常见数据结构。路由器是网络设备，不是数据结构。"
+    },
+    {
+      "id": 1016,
+      "module": "通用基础",
+      "category": "数据结构与算法",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "关于数组和链表的区别，以下哪项描述是正确的？",
+      "options": [
+        "数组的插入和删除操作比链表更快",
+        "数组支持随机访问，链表插入删除更快",
+        "数组和链表在内存中均为连续存储",
+        "链表通常比数组更节省内存空间"
+      ],
+      "answer": "数组支持随机访问，链表插入删除更快",
+      "explanation": "数组连续存储，O(1)随机访问但插入删除需移动元素；链表非连续存储，不支持随机访问但插入删除只需改指针。"
+    },
+    {
+      "id": 1017,
+      "module": "通用基础",
+      "category": "编程基础",
+      "type": "multi_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "以下哪些是版本控制工具？（多选）",
+      "options": [
+        "Git",
+        "SVN",
+        "Docker",
+        "Mercurial"
+      ],
+      "answer": [
+        "Git",
+        "SVN",
+        "Mercurial"
+      ],
+      "explanation": "Git、SVN、Mercurial 都是版本控制工具。Docker 是容器化平台。"
+    },
+    {
+      "id": 1018,
+      "module": "通用基础",
+      "category": "数据结构与算法",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "哈希冲突的常见解决方法不包括以下哪项？",
+      "options": [
+        "链地址法：用链表存储冲突元素",
+        "开放地址法：寻找下一个空闲位置",
+        "再哈希法：换哈希函数重新计算",
+        "二叉查找法：用二叉树定位数据"
+      ],
+      "answer": "二叉查找法：用二叉树定位数据",
+      "explanation": "哈希冲突常见解决：链地址法（链表存储冲突元素）、开放地址法（找下一个空位）、再哈希法（换哈希函数重算）。不存在'栈溢出法'这种方案。"
+    },
+    {
+      "id": 1019,
+      "module": "通用基础",
+      "category": "编程基础",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "RESTful API 中，通常使用哪个 HTTP 方法来创建资源？",
+      "options": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH"
+      ],
+      "answer": "POST",
+      "explanation": "RESTful 规范中：GET 读取、POST 创建、PUT 全量更新、PATCH 部分更新、DELETE 删除。"
+    },
+    {
+      "id": 1020,
+      "module": "通用基础",
+      "category": "编程基础",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "以下哪项正确描述了 API 的含义？",
+      "options": [
+        "一种编译型通用程序设计语言",
+        "应用程序之间的通信交互接口",
+        "一种分布式关系型数据库系统",
+        "用于网页数据传输的网络协议"
+      ],
+      "answer": "应用程序之间的通信交互接口",
+      "explanation": "API（Application Programming Interface）是软件间通信和数据交换的桥梁。"
+    },
+    {
+      "id": 1021,
+      "module": "通用基础",
+      "category": "计算机网络",
+      "type": "subjective",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "请简要解释 DNS 的作用和工作原理。（80字以内）",
+      "answer": "DNS（域名系统）将域名解析为IP地址。用户输入域名后，浏览器向DNS服务器发起查询，DNS服务器逐级查找（递归/迭代），最终返回对应的IP地址，从而建立连接。",
+      "explanation": "评分要点：1) 域名→IP的映射；2) 查询过程（递归或迭代）；3) 使网络访问更便捷。"
+    },
+    {
+      "id": 1022,
+      "module": "通用基础",
+      "category": "操作系统",
+      "type": "subjective",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "请简述进程（Process）和线程（Thread）的区别。（80字以内）",
+      "answer": "进程是资源分配的最小单位，拥有独立内存空间；线程是CPU调度的最小单位。一个进程可包含多个线程，同一进程内的线程共享内存，切换开销比进程小。",
+      "explanation": "评分要点：1) 进程是资源分配单位/线程是调度单位；2) 线程共享进程内存；3) 线程切换开销更小。"
+    },
+    {
+      "id": 1023,
+      "module": "通用基础",
+      "category": "编程基础",
+      "type": "subjective",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "代码中出现了一段重复逻辑，你会选择复制粘贴还是抽取成函数？请说明理由。（80字以内）",
+      "answer": "应抽取为函数。复制粘贴会导致代码冗余，修改时需多处改动、容易遗漏；抽取为函数遵循DRY原则，提高可维护性和可测试性。",
+      "explanation": "评分要点：1) 提到DRY原则或代码复用；2) 提到维护成本；3) 提到可读性或可测试性。"
+    },
+    {
+      "id": 2001,
+      "module": "前端开发",
+      "category": "HTML/CSS",
+      "type": "single_choice",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "HTML 中，哪个标签用于定义段落？",
+      "options": [
+        "<div>",
+        "<span>",
+        "<p>",
+        "<br>"
+      ],
+      "answer": "<p>",
+      "explanation": "<p>（paragraph）标签用于定义段落。<div>是块级容器，<span>是行内容器，<br>是换行。"
+    },
+    {
+      "id": 2002,
+      "module": "前端开发",
+      "category": "HTML/CSS",
+      "type": "single_choice",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "CSS 中，如何让一个元素水平居中？（假设是块级元素）",
+      "options": [
+        "text-align: center",
+        "margin: 0 auto",
+        "vertical-align: middle",
+        "float: center"
+      ],
+      "answer": "margin: 0 auto",
+      "explanation": "对于有宽度的块级元素，margin: 0 auto 是最常用的水平居中方式。text-align: center 用于行内元素。"
+    },
+    {
+      "id": 2003,
+      "module": "前端开发",
+      "category": "JavaScript",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "JavaScript 中，=== 和 == 的主要区别是什么？",
+      "options": [
+        "两者完全等价，没有任何功能差异",
+        "=== 严格比较类型，== 会做类型转换",
+        "=== 专用于对象比较，== 用于基本类型",
+        "=== 是 ES6 新增语法，== 是旧版语法"
+      ],
+      "answer": "=== 严格比较类型，== 会做类型转换",
+      "explanation": "=== 是严格相等，不进行类型转换。== 在比较前会进行类型强制转换，例如 '5' == 5 返回 true，但 '5' === 5 返回 false。"
+    },
+    {
+      "id": 2004,
+      "module": "前端开发",
+      "category": "JavaScript",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "以下哪种方式可以在 JavaScript 中发起 HTTP 请求？",
+      "options": [
+        "console.log()",
+        "fetch()",
+        "alert()",
+        "setTimeout()"
+      ],
+      "answer": "fetch()",
+      "explanation": "fetch() 是现代浏览器内置的 HTTP 请求 API。还有 XMLHttpRequest 等老旧方式，但 fetch 是目前推荐的做法。"
+    },
+    {
+      "id": 2005,
+      "module": "前端开发",
+      "category": "框架",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "Vue.js 中，v-if 和 v-show 的区别是什么？",
+      "options": [
+        "两者效果完全一致，可以互换使用",
+        "v-if 增删 DOM 元素，v-show 仅切换显示",
+        "v-show 调度优先级高于 v-if 指令",
+        "v-if 只能写在 template 根节点上"
+      ],
+      "answer": "v-if 增删 DOM 元素，v-show 仅切换显示",
+      "explanation": "v-if 会真正地销毁和重建 DOM 元素，切换开销大；v-show 只是切换 CSS display 属性，初始渲染开销大。频繁切换用 v-show，运行时条件变化少用 v-if。"
+    },
+    {
+      "id": 2006,
+      "module": "前端开发",
+      "category": "浏览器",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "浏览器的同源策略（Same-Origin Policy）限制了什么？",
+      "options": [
+        "不同源的页面间 DOM 访问和网络请求",
+        "所有内联和外部 JavaScript 代码的执行",
+        "浏览器下载静态资源的最大并发数",
+        "页面引入的外部 CSS 样式表加载"
+      ],
+      "answer": "不同源的页面间 DOM 访问和网络请求",
+      "explanation": "同源策略是浏览器核心安全机制，限制不同源（协议+域名+端口）之间的 DOM 访问和 AJAX 请求。跨域需要 CORS 或 JSONP 等方案解决。"
+    },
+    {
+      "id": 2007,
+      "module": "前端开发",
+      "category": "HTML/CSS",
+      "type": "multi_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "以下哪些是 HTML5 新增的语义化标签？（多选）",
+      "options": [
+        "<header>",
+        "<section>",
+        "<frame>",
+        "<article>"
+      ],
+      "answer": [
+        "<header>",
+        "<section>",
+        "<article>"
+      ],
+      "explanation": "<header>、<section>、<article> 都是 HTML5 新增的语义化标签。<frame> 是旧 HTML 标签，已废弃。"
+    },
+    {
+      "id": 2008,
+      "module": "前端开发",
+      "category": "JavaScript",
+      "type": "true_false",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "JavaScript 是一种编译型语言。",
+      "answer": "错误",
+      "explanation": "JavaScript 是解释型（或 JIT 编译）的脚本语言，代码由浏览器引擎在运行时解析执行，不需要预先编译。"
+    },
+    {
+      "id": 2009,
+      "module": "前端开发",
+      "category": "CSS",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "CSS Flexbox 中，justify-content: center 的作用是？",
+      "options": [
+        "控制交叉轴上的子元素对齐方式",
+        "控制主轴上的子元素水平居中对齐",
+        "控制当前元素在父容器中居中",
+        "控制所有子元素为统一高度值"
+      ],
+      "answer": "控制主轴上的子元素水平居中对齐",
+      "explanation": "justify-content 控制主轴（水平方向，默认）上的对齐方式。align-items 控制交叉轴（垂直方向）。"
+    },
+    {
+      "id": 2010,
+      "module": "前端开发",
+      "category": "综合",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "关于前端性能优化，以下哪项做法是不合理的？",
+      "options": [
+        "将多个 CSS/JS 文件压缩合并加载",
+        "对页面中的图片采用懒加载策略",
+        "将 CSS 全部写入内联 style 属性",
+        "通过 CDN 分发加速静态资源加载"
+      ],
+      "answer": "将 CSS 全部写入内联 style 属性",
+      "explanation": "内联样式不利于浏览器缓存、代码维护和分离关注点。应该使用外部 CSS 文件并使用缓存策略。"
+    },
+    {
+      "id": 2011,
+      "module": "前端开发",
+      "category": "JavaScript",
+      "type": "subjective",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "请解释什么是闭包（Closure），并举一个简单例子。（80字以内）",
+      "answer": "闭包是函数能访问其外部作用域变量的能力，即使外部函数已执行完毕。例如函数内返回一个函数，返回的函数仍可访问外部函数的变量。常用于数据封装、回调等场景。",
+      "explanation": "评分要点：1) 函数访问外部作用域变量；2) 外部函数执行完毕后仍可访问；3) 提到实际用途（封装/回调）。"
+    },
+    {
+      "id": 2012,
+      "module": "前端开发",
+      "category": "浏览器",
+      "type": "subjective",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "请简述浏览器事件循环（Event Loop）的机制。（80字以内）",
+      "answer": "JS是单线程的，通过事件循环实现异步。同步任务先执行，异步任务（如setTimeout、网络请求）放入任务队列，主线程空闲时从队列中取出回调执行。微任务优先于宏任务。",
+      "explanation": "评分要点：1) 单线程+异步；2) 任务队列/回调；3) 微任务优先于宏任务。"
+    },
+    {
+      "id": 3001,
+      "module": "后端开发",
+      "category": "数据库",
+      "type": "single_choice",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "关系型数据库中，主键（Primary Key）的作用是？",
+      "options": [
+        "加速查询速度（索引的作用）",
+        "唯一标识表中的每一行记录",
+        "建立表与表之间的关系",
+        "存储大文本数据"
+      ],
+      "answer": "唯一标识表中的每一行记录",
+      "explanation": "主键用于唯一标识表中的每条记录。外键用于建立表间关系，索引用于加速查询。"
+    },
+    {
+      "id": 3002,
+      "module": "后端开发",
+      "category": "数据库",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "SQL 中，JOIN 操作的作用是什么？",
+      "options": [
+        "从结果集中移除重复的数据行",
+        "基于关联条件合并多表数据查询",
+        "按照指定列对查询结果进行排序",
+        "修改已存在数据表的字段结构"
+      ],
+      "answer": "基于关联条件合并多表数据查询",
+      "explanation": "JOIN 用于关联查询多个表的数据，常见类型有 INNER JOIN、LEFT JOIN、RIGHT JOIN 等。"
+    },
+    {
+      "id": 3003,
+      "module": "后端开发",
+      "category": "API",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "RESTful API 设计中，以下哪个 URL 最符合规范？",
+      "options": [
+        "/getUserInfo?id=1",
+        "/api/users/1",
+        "/user?action=get&id=1",
+        "/api/getUser/1"
+      ],
+      "answer": "/api/users/1",
+      "explanation": "RESTful 风格使用名词表示资源（users），用 HTTP 方法表示操作（GET/POST/PUT/DELETE），用路径参数表示具体资源 ID。"
+    },
+    {
+      "id": 3004,
+      "module": "后端开发",
+      "category": "服务端",
+      "type": "true_false",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "数据库事务（Transaction）的 ACID 特性包括原子性、一致性、隔离性和持久性。",
+      "answer": "正确",
+      "explanation": "ACID：Atomicity（原子性）、Consistency（一致性）、Isolation（隔离性）、Durability（持久性），是事务的四个基本属性。"
+    },
+    {
+      "id": 3005,
+      "module": "后端开发",
+      "category": "Python",
+      "type": "single_choice",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "Python 中，以下哪种方式可以定义一个字典？",
+      "options": [
+        "[]",
+        "{}",
+        "()",
+        "<>"
+      ],
+      "answer": "{}",
+      "explanation": "Python 中 {} 表示字典（dict），[] 表示列表（list），() 表示元组（tuple）。"
+    },
+    {
+      "id": 3006,
+      "module": "后端开发",
+      "category": "Python",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "Python 中，@app.route('/') 这种语法称为？",
+      "options": [
+        "为函数添加类型标注的语法特性",
+        "不修改原函数为其增加功能的语法",
+        "声明变量可接受数据类型的提示",
+        "惰性求值的生成器缩写表达式"
+      ],
+      "answer": "不修改原函数为其增加功能的语法",
+      "explanation": "@ 语法是 Python 的装饰器，用于在不修改原函数的情况下为其添加额外功能。Flask/FastAPI 等框架大量使用装饰器注册路由。"
+    },
+    {
+      "id": 3007,
+      "module": "后端开发",
+      "category": "数据库",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "SQL 注入攻击的主要防范措施是？",
+      "options": [
+        "对数据库账户启用更强的密码策略",
+        "使用预编译语句分离 SQL 逻辑与数据",
+        "为频繁查询的字段建立数据库索引",
+        "将数据库引擎升级到更安全的版本"
+      ],
+      "answer": "使用预编译语句分离 SQL 逻辑与数据",
+      "explanation": "参数化查询将 SQL 逻辑和数据分离，从根本上防止恶意输入被当作 SQL 代码执行。这是防御 SQL 注入的最有效手段。"
+    },
+    {
+      "id": 3008,
+      "module": "后端开发",
+      "category": "缓存",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "Redis 通常被用作什么？",
+      "options": [
+        "关系型数据库",
+        "内存缓存和键值存储",
+        "前端框架",
+        "版本控制工具"
+      ],
+      "answer": "内存缓存和键值存储",
+      "explanation": "Redis 是高性能的内存键值数据库，常用于缓存、消息队列、会话存储、排行榜等场景。"
+    },
+    {
+      "id": 3009,
+      "module": "后端开发",
+      "category": "架构",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "微服务架构和单体架构相比，主要优势是什么？",
+      "options": [
+        "代码总量比单体架构显著减少",
+        "各服务独立部署扩展，技术栈灵活",
+        "在性能上总是优于单体架构",
+        "可以完全省去数据库的使用"
+      ],
+      "answer": "各服务独立部署扩展，技术栈灵活",
+      "explanation": "微服务将应用拆分为独立的小服务，每个服务可以独立开发、部署和扩展。但也会引入分布式系统的复杂性。"
+    },
+    {
+      "id": 3010,
+      "module": "后端开发",
+      "category": "API",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "HTTP 状态码 401 和 403 的区别是？",
+      "options": [
+        "两者语义相同，实现上没有差别",
+        "401 表示用户身份未认证，403 表示无访问权限",
+        "401 属于服务端内部错误，403 属于客户端错误",
+        "401 仅限 API 接口使用，403 仅限网页使用"
+      ],
+      "answer": "401 表示用户身份未认证，403 表示无访问权限",
+      "explanation": "401 Unauthorized 表示用户未登录或认证失败；403 Forbidden 表示用户已登录但没有访问该资源的权限。"
+    },
+    {
+      "id": 3011,
+      "module": "后端开发",
+      "category": "API",
+      "type": "subjective",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "请简述 RESTful API 的核心设计原则。（80字以内）",
+      "answer": "1) 资源用URL名词表示；2) 用HTTP方法(GET/POST/PUT/DELETE)表达操作；3) 无状态，每个请求独立；4) 统一接口，返回标准格式如JSON。",
+      "explanation": "评分要点：1) 资源用名词/URL；2) HTTP方法与CRUD对应；3) 无状态原则；4) JSON等标准格式。"
+    },
+    {
+      "id": 3012,
+      "module": "后端开发",
+      "category": "数据库",
+      "type": "subjective",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "请解释数据库索引的作用和原理。（80字以内）",
+      "answer": "索引类似书的目录，为数据表建立额外的查找结构（如B+树），加速查询但会增加写入开销。应建在经常用于WHERE/JOIN/ORDER BY的列上，避免过多索引。",
+      "explanation": "评分要点：1) 类比目录/加速查询；2) 底层结构如B+树；3) 写入代价和合理使用。"
+    },
+    {
+      "id": 4001,
+      "module": "测试",
+      "category": "测试基础",
+      "type": "single_choice",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "黑盒测试和白盒测试的主要区别是？",
+      "options": [
+        "黑盒需审查源码，白盒无需审查源码",
+        "黑盒不关注内部实现，白盒基于代码逻辑",
+        "二者的测试方法和分析目标是一致的",
+        "黑盒仅适用前端测试，白盒仅适用后端"
+      ],
+      "answer": "黑盒不关注内部实现，白盒基于代码逻辑",
+      "explanation": "黑盒测试只关注输入和输出，不关心内部实现；白盒测试需要了解代码逻辑，设计覆盖分支的测试用例。"
+    },
+    {
+      "id": 4002,
+      "module": "测试",
+      "category": "测试基础",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "单元测试通常测试的是什么？",
+      "options": [
+        "整个系统",
+        "单个函数或模块",
+        "用户界面",
+        "数据库连接"
+      ],
+      "answer": "单个函数或模块",
+      "explanation": "单元测试针对代码的最小可测试单元（如函数、方法），验证其行为是否符合预期。"
+    },
+    {
+      "id": 4003,
+      "module": "测试",
+      "category": "测试方法",
+      "type": "multi_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "以下哪些属于软件测试的类型？（多选）",
+      "options": [
+        "回归测试",
+        "冒烟测试",
+        "压力测试",
+        "美学测试"
+      ],
+      "answer": [
+        "回归测试",
+        "冒烟测试",
+        "压力测试"
+      ],
+      "explanation": "回归测试验证修改后原有功能不受影响；冒烟测试快速验证基本功能可用；压力测试测试系统在高负载下的表现。'美学测试'不是标准测试类型。"
+    },
+    {
+      "id": 4004,
+      "module": "测试",
+      "category": "Bug管理",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "发现 Bug 后，Bug 报告中最重要的信息是？",
+      "options": [
+        "Bug 的严重程度和标题",
+        "复现步骤、预期结果和实际结果",
+        "Bug 的发现时间",
+        "Bug 的截图"
+      ],
+      "answer": "复现步骤、预期结果和实际结果",
+      "explanation": "复现步骤帮助开发人员重现问题，预期结果和实际结果的对比让问题一目了然。这是最核心的信息。"
+    },
+    {
+      "id": 4005,
+      "module": "测试",
+      "category": "自动化",
+      "type": "true_false",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "自动化测试可以完全替代手工测试。",
+      "answer": "错误",
+      "explanation": "自动化测试适合重复性、回归类测试，但探索性测试、易用性测试、UI 体验等仍需人工判断，两者互补。"
+    },
+    {
+      "id": 4006,
+      "module": "测试",
+      "category": "测试方法",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "关于 TDD（测试驱动开发），正确的流程是？",
+      "options": [
+        "先实现功能代码，再编写对应测试用例",
+        "先编写测试用例，再实现代码并重构优化",
+        "先对代码进行重构，再补写测试覆盖",
+        "在开发过程中同步编写测试和业务代码"
+      ],
+      "answer": "先编写测试用例，再实现代码并重构优化",
+      "explanation": "TDD 遵循'红-绿-重构'循环：先写失败的测试（红），然后写最简代码让测试通过（绿），最后重构优化代码。"
+    },
+    {
+      "id": 4007,
+      "module": "测试",
+      "category": "自动化",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "Selenium 主要用于什么类型的测试？",
+      "options": [
+        "针对单个函数或模块的单元测试",
+        "模拟浏览器操作的 Web 端自动化测试",
+        "评估系统在高并发下的性能测试",
+        "检测代码漏洞和攻击面的安全测试"
+      ],
+      "answer": "模拟浏览器操作的 Web 端自动化测试",
+      "explanation": "Selenium 是最流行的 Web 浏览器自动化框架，用于模拟用户在浏览器上的操作进行自动化测试。"
+    },
+    {
+      "id": 4008,
+      "module": "测试",
+      "category": "测试基础",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "边界值分析是一种什么测试方法？",
+      "options": [
+        "从输入空间中随机选取测试数据",
+        "针对输入范围边界设计用例的测试方法",
+        "仅使用输入域的最大值进行测试",
+        "仅使用输入域的最小值进行测试"
+      ],
+      "answer": "针对输入范围边界设计用例的测试方法",
+      "explanation": "边界值分析关注输入范围的边界（如最小值、最大值、刚好超出范围的值），因为这些位置最容易出现 Bug。"
+    },
+    {
+      "id": 4009,
+      "module": "测试",
+      "category": "测试基础",
+      "type": "subjective",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "请简述黑盒测试和白盒测试的区别。（80字以内）",
+      "answer": "黑盒测试不关注代码内部实现，只测试输入输出是否符合预期；白盒测试需要了解代码逻辑，设计用例覆盖所有分支和路径。两者互补，分别从用户和开发者角度验证质量。",
+      "explanation": "评分要点：1) 黑盒忽略内部/关注输入输出；2) 白盒基于代码逻辑；3) 两者互补关系。"
+    },
+    {
+      "id": 4010,
+      "module": "测试",
+      "category": "测试方法",
+      "type": "subjective",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "请解释什么是回归测试，为什么它很重要？（80字以内）",
+      "answer": "回归测试是在代码修改后重新运行已有测试用例，确保原有功能没有因改动而产生新Bug。它对持续集成至关重要，防止修改引入意外问题，保障软件稳定性。",
+      "explanation": "评分要点：1) 修改后重测已有用例；2) 防止引入新Bug；3) 对CI/CD的重要性。"
+    },
+    {
+      "id": 5001,
+      "module": "运维",
+      "category": "Linux",
+      "type": "single_choice",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "Linux 中，哪个命令用于列出目录内容？",
+      "options": [
+        "dir",
+        "ls",
+        "list",
+        "show"
+      ],
+      "answer": "ls",
+      "explanation": "ls 是 Linux 中最基本的命令之一，用于列出目录中的文件和子目录。"
+    },
+    {
+      "id": 5002,
+      "module": "运维",
+      "category": "Linux",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "Linux 中，chmod 777 file.txt 的含义是？",
+      "options": [
+        "将该文件从系统中永久删除",
+        "赋予所有人读、写、执行的完整权限",
+        "将文件移动到编号 777 的目录中",
+        "在同一目录下创建 777 个文件副本"
+      ],
+      "answer": "赋予所有人读、写、执行的完整权限",
+      "explanation": "chmod 修改文件权限。777 = rwxrwxrwx，即所有者、用户组、其他用户都有读(4)+写(2)+执行(1)权限。"
+    },
+    {
+      "id": 5003,
+      "module": "运维",
+      "category": "Docker",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "Docker 的核心概念中，镜像（Image）和容器（Container）的关系是？",
+      "options": [
+        "镜像是从容器中导出的可执行快照",
+        "镜像是只读模板，容器是镜像的运行实例",
+        "镜像与容器是同一概念的两种叫法",
+        "容器是镜像经压缩打包后的归档文件"
+      ],
+      "answer": "镜像是只读模板，容器是镜像的运行实例",
+      "explanation": "镜像类似于「类」的定义（只读模板），容器是镜像的实例化运行态，可以启动、停止、删除。类似面向对象中的类和对象。"
+    },
+    {
+      "id": 5004,
+      "module": "运维",
+      "category": "CI/CD",
+      "type": "true_false",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "CI/CD 中的 CI 代表持续集成（Continuous Integration）。",
+      "answer": "正确",
+      "explanation": "CI（Continuous Integration）持续集成，CD 可以是持续交付（Continuous Delivery）或持续部署（Continuous Deployment）。"
+    },
+    {
+      "id": 5005,
+      "module": "运维",
+      "category": "监控",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "服务器 CPU 使用率持续 100%，以下哪项是合理的排查思路？",
+      "options": [
+        "登录服务器执行重启，恢复初始状态",
+        "使用监控工具定位高 CPU 进程并分析原因",
+        "评估当前 CPU 型号是否需要硬件升级",
+        "等待一段时间观察负载是否自动下降"
+      ],
+      "answer": "使用监控工具定位高 CPU 进程并分析原因",
+      "explanation": "不要盲目重启。应先用监控工具定位问题进程，分析是代码死循环、内存不足导致频繁GC、还是正常高负载，再对症处理。"
+    },
+    {
+      "id": 5006,
+      "module": "运维",
+      "category": "网络",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "Nginx 作为反向代理的主要作用是？",
+      "options": [
+        "充当高速缓存层持久化热点数据",
+        "作为反向代理转发请求并实现负载均衡",
+        "解释并运行业务代码中的动态逻辑",
+        "替代关系型数据库完成数据存储"
+      ],
+      "answer": "作为反向代理转发请求并实现负载均衡",
+      "explanation": "反向代理隐藏了后端服务器细节，Nginx 可以分发请求到多台服务器（负载均衡）、缓存静态内容、处理 SSL 等。"
+    },
+    {
+      "id": 5007,
+      "module": "运维",
+      "category": "Linux",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "Linux 中，grep 命令的主要功能是？",
+      "options": [
+        "删除文件",
+        "文本搜索",
+        "压缩文件",
+        "创建目录"
+      ],
+      "answer": "文本搜索",
+      "explanation": "grep 是强大的文本搜索工具，使用正则表达式在文件中搜索匹配的行。例如 grep 'error' log.txt。"
+    },
+    {
+      "id": 5008,
+      "module": "运维",
+      "category": "部署",
+      "type": "multi_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "以下哪些做法有助于服务的稳定部署？（多选）",
+      "options": [
+        "灰度发布：小范围先上线验证后全量",
+        "健康检查：异常时自动触发回滚流程",
+        "线上热修：直接在服务器修改代码文件",
+        "蓝绿部署：两套环境切换实现零停机"
+      ],
+      "answer": [
+        "灰度发布：小范围先上线验证后全量",
+        "健康检查：异常时自动触发回滚流程",
+        "蓝绿部署：两套环境切换实现零停机"
+      ],
+      "explanation": "灰度发布逐步放量降低风险；健康检查+自动回滚确保异常时自动恢复；蓝绿部署通过切换流量实现零停机。直接线上改代码是最危险的做法。"
+    },
+    {
+      "id": 5009,
+      "module": "运维",
+      "category": "Docker",
+      "type": "subjective",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "请简述 Docker 和传统虚拟机的区别。（80字以内）",
+      "answer": "Docker共享宿主机内核，启动快、资源占用小；虚拟机需完整Guest OS，隔离性更强但资源开销大。Docker更适合微服务和快速部署场景，VM适合强隔离需求。",
+      "explanation": "评分要点：1) Docker共享内核/VM独立OS；2) Docker启动快/资源少；3) 各自适用场景。"
+    },
+    {
+      "id": 5010,
+      "module": "运维",
+      "category": "部署",
+      "type": "subjective",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "什么是负载均衡？请列举两种常见的负载均衡策略。（80字以内）",
+      "answer": "负载均衡将请求分发到多台服务器，避免单点过载。常见策略：轮询（依次分配）、加权轮询（按服务器能力分配）、最少连接（优先给连接数最少的服务器）、IP哈希（同一IP固定到同一服务器）。",
+      "explanation": "评分要点：1) 请求分发的概念；2) 能说出至少两种策略并解释；3) 提到避免单点故障/过载。"
+    },
+    {
+      "id": 6001,
+      "module": "算法数据",
+      "category": "算法",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "以下哪种排序算法在最坏情况下时间复杂度为 O(n²)？",
+      "options": [
+        "归并排序在任何情况下均为 O(n²)",
+        "快速排序在最坏情况下退化为 O(n²)",
+        "堆排序在最坏情况下时间复杂度 O(n²)",
+        "计数排序在所有情况下的复杂度 O(n²)"
+      ],
+      "answer": "快速排序在最坏情况下退化为 O(n²)",
+      "explanation": "快速排序在每次选到最大或最小值作为 pivot 时退化为 O(n²)。归并排序和堆排序始终为 O(n log n)。"
+    },
+    {
+      "id": 6002,
+      "module": "算法数据",
+      "category": "SQL",
+      "type": "single_choice",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "SQL 中，SELECT COUNT(*) FROM users 的作用是？",
+      "options": [
+        "查询 users 表中所有的列",
+        "统计 users 表中的行数",
+        "删除 users 表",
+        "创建 users 表的副本"
+      ],
+      "answer": "统计 users 表中的行数",
+      "explanation": "COUNT(*) 是聚合函数，用于统计结果集中的行数。"
+    },
+    {
+      "id": 6003,
+      "module": "算法数据",
+      "category": "SQL",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "SQL 中，GROUP BY 子句的作用是什么？",
+      "options": [
+        "对查询返回的结果集进行排序",
+        "按指定列分组后配合聚合函数统计",
+        "从分组结果中筛选出符合条件的行",
+        "限制 SELECT 语句返回的总行数"
+      ],
+      "answer": "按指定列分组后配合聚合函数统计",
+      "explanation": "GROUP BY 将相同值的行归为一组。HAVING 过滤分组后数据，ORDER BY 排序，LIMIT 限制行数。"
+    },
+    {
+      "id": 6004,
+      "module": "算法数据",
+      "category": "数据结构",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "BFS（广度优先搜索）通常使用什么数据结构实现？",
+      "options": [
+        "栈：后进先出，用于深度优先遍历",
+        "队列：先进先出，用于广度优先遍历",
+        "堆：按优先级出队，用于任务调度",
+        "哈希表：键值映射，用于快速查找"
+      ],
+      "answer": "队列：先进先出，用于广度优先遍历",
+      "explanation": "BFS 逐层遍历，使用队列 FIFO 的特性保证按层访问。DFS（深度优先搜索）使用栈或递归。"
+    },
+    {
+      "id": 6005,
+      "module": "算法数据",
+      "category": "数据分析",
+      "type": "true_false",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "数据清洗（Data Cleaning）是数据分析中可有可无的步骤。",
+      "answer": "错误",
+      "explanation": "数据清洗是数据分析的关键步骤。原始数据通常存在缺失值、异常值、重复值等问题，不清理会导致分析结果偏差。"
+    },
+    {
+      "id": 6006,
+      "module": "算法数据",
+      "category": "算法",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "动态规划的核心思想是什么？",
+      "options": [
+        "穷举所有可能的组合并逐一检验",
+        "拆分子问题并缓存结果以避免重复计算",
+        "通过随机猜测不断逼近正确答案",
+        "每一步都选择当前看起来最优的方案"
+      ],
+      "answer": "拆分子问题并缓存结果以避免重复计算",
+      "explanation": "动态规划通过记忆化（存储子问题的解）来解决重叠子问题，核心是「最优子结构」和「重叠子问题」。"
+    },
+    {
+      "id": 6007,
+      "module": "算法数据",
+      "category": "Python",
+      "type": "multi_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "以下哪些是 Python 数据分析常用的库？（多选）",
+      "options": [
+        "pandas",
+        "numpy",
+        "matplotlib",
+        "vue"
+      ],
+      "answer": [
+        "pandas",
+        "numpy",
+        "matplotlib"
+      ],
+      "explanation": "pandas 数据处理、numpy 科学计算、matplotlib 数据可视化。vue 是前端框架，与数据分析无关。"
+    },
+    {
+      "id": 6008,
+      "module": "算法数据",
+      "category": "算法",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "LRU 缓存淘汰策略的含义是？",
+      "options": [
+        "随机删除一个缓存项",
+        "删除最大的一项",
+        "淘汰最久未被使用的缓存项",
+        "删除最早添加的缓存项"
+      ],
+      "answer": "淘汰最久未被使用的缓存项",
+      "explanation": "LRU（Least Recently Used）认为最近使用过的数据将来被使用的概率更高，淘汰最久未访问的数据。常见于缓存设计。"
+    },
+    {
+      "id": 6009,
+      "module": "算法数据",
+      "category": "算法",
+      "type": "subjective",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "请解释 DFS 和 BFS 的区别，并各举一个应用场景。（80字以内）",
+      "answer": "DFS深度优先，用栈/递归，适合路径搜索、拓扑排序；BFS广度优先，用队列，适合最短路径、层级遍历。DFS内存省但可能深度过大，BFS能找到最短路径但空间开销大。",
+      "explanation": "评分要点：1) DFS栈/BFS队列；2) 各举一个应用场景；3) 空间/性能对比。"
+    },
+    {
+      "id": 6010,
+      "module": "算法数据",
+      "category": "SQL",
+      "type": "subjective",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "请解释什么是数据库索引，为什么索引能加速查询？（80字以内）",
+      "answer": "索引是为数据表建立的额外数据结构（通常是B+树），类似书的目录。查询时先查索引快速定位数据位置，避免全表扫描。但索引会占用空间且降低写入速度，应合理建索引。",
+      "explanation": "评分要点：1) 额外数据结构/B+树；2) 避免全表扫描；3) 空间和写入代价。"
+    },
+    {
+      "id": 7001,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "AI Agent 与普通 LLM 调用的本质区别是什么？",
+      "options": [
+        "Agent 使用了参数规模更大的模型",
+        "Agent 能自主规划、调用工具并多步执行",
+        "Agent 只能进行对话而无法实际执行",
+        "Agent 与普通调用只是产品名称不同"
+      ],
+      "answer": "Agent 能自主规划、调用工具并多步执行",
+      "explanation": "普通 LLM 调用是单轮问答，Agent 可以自主规划、调用工具、观察结果、迭代执行，形成一个完整的感知-决策-执行循环。"
+    },
+    {
+      "id": 7002,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "multi_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "AI Agent 的核心组件通常包括哪些？（多选）",
+      "options": [
+        "规划模块：负责分解和编排子任务",
+        "记忆模块：管理会话上下文与历史",
+        "工具模块：调用外部 API 和函数",
+        "推理引擎：驱动决策的大语言模型",
+        "缓存模块：加速数据库查询的组件"
+      ],
+      "answer": [
+        "规划模块：负责分解和编排子任务",
+        "记忆模块：管理会话上下文与历史",
+        "工具模块：调用外部 API 和函数",
+        "推理引擎：驱动决策的大语言模型"
+      ],
+      "explanation": "Agent 通常由 LLM（大脑）、规划模块（任务分解）、记忆模块（上下文管理）、工具调用（执行能力）四部分组成。"
+    },
+    {
+      "id": 7003,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "ReAct 是 Agent 领域的一种经典范式，ReAct 的含义是？",
+      "options": [
+        "React 框架的 AI 版本",
+        "Reasoning + Acting，即推理与行动交替进行",
+        "Reactive Action，被动响应模式",
+        "Re-Activation，模型的二次激活"
+      ],
+      "answer": "Reasoning + Acting，即推理与行动交替进行",
+      "explanation": "ReAct = Reasoning + Acting。Agent 先思考（推理）下一步该做什么，然后执行（行动），观察结果后再继续推理，形成循环。这是区别于普通 LLM 的关键。"
+    },
+    {
+      "id": 7004,
+      "module": "Agent岗位",
+      "category": "工单处理",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "处理工单时，以下哪项做法是错误的？",
+      "options": [
+        "完整记录问题和处理过程",
+        "随便写个「已处理」就关闭工单",
+        "确认问题解决后再关闭工单",
+        "必要时升级给更资深的同事"
+      ],
+      "answer": "随便写个「已处理」就关闭工单",
+      "explanation": "工单记录是团队协作和问题追溯的依据，需要详细记录现象、排查过程、解决方案，方便后续复盘。"
+    },
+    {
+      "id": 7005,
+      "module": "Agent岗位",
+      "category": "客户服务",
+      "type": "subjective",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "假如客户连续问了三个问题你都回答不上来，情绪变得焦躁，你会如何处理？（请简要作答，100字以内）",
+      "answer": "首先向客户表达歉意，承认当前问题超出自己的能力范围。安抚客户情绪，表示会立即升级给资深同事处理，并向客户保证会在 X 分钟内给予回复。同时做好问题记录，确保交接清晰。",
+      "explanation": "评分要点：1) 是否先道歉/安抚情绪；2) 是否主动升级问题而非拖延；3) 是否给出明确的时间承诺；4) 是否做好记录。"
+    },
+    {
+      "id": 7006,
+      "module": "Agent岗位",
+      "category": "沟通技巧",
+      "type": "subjective",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "你发现产品有一个明显的 Bug，但研发团队暂时无法修复。客户反复追问，你会如何沟通？（100字以内）",
+      "answer": "诚实告知客户已知晓此问题并已上报研发团队，说明预计修复时间。同时提供临时替代方案或 workaround，表达对客户理解和支持的感谢，并保持后续进展的同步。",
+      "explanation": "评分要点：1) 诚实不回避问题；2) 提供临时的替代方案；3) 给出时间预期；4) 表达感谢和持续跟进的态度。"
+    },
+    {
+      "id": 7007,
+      "module": "Agent岗位",
+      "category": "情绪管理",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "遇到客户使用侮辱性语言时，作为 Agent 应该？",
+      "options": [
+        "采取对等措辞进行回击以维护个人立场",
+        "保持冷静并提醒对方注意文明沟通规范",
+        "立即结束对话并将对方拉入黑名单",
+        "忽略不当言论继续按正常流程服务"
+      ],
+      "answer": "保持冷静并提醒对方注意文明沟通规范",
+      "explanation": "Agent 应保持专业，不与客户对骂，也不应直接挂断。先尝试平复客户情绪，无效时按公司规定的流程处理。"
+    },
+    {
+      "id": 7008,
+      "module": "Agent岗位",
+      "category": "效率",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "以下哪项最能体现 Agent 的高效工作习惯？",
+      "options": [
+        "同时处理多个工单但每个都敷衍了事",
+        "建立常用回复模板和知识库，提升重复问题的处理速度",
+        "回复速度越快越好，不看内容",
+        "遇到不懂的直接跳过，只回复懂的问题"
+      ],
+      "answer": "建立常用回复模板和知识库，提升重复问题的处理速度",
+      "explanation": "高效不等于快速敷衍。建立知识库和模板既能保证回复质量，又能提升处理速度，是优秀 Agent 的核心工作方法。"
+    },
+    {
+      "id": 7009,
+      "module": "Agent岗位",
+      "category": "技术排查",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "用户说「网络很慢」，以下排查步骤最合理的顺序是？",
+      "options": [
+        "直接重启服务器以清除可能的状态异常",
+        "先明确具体现象，再逐步测速并排查定位",
+        "告知用户其为自身网络问题请自行解决",
+        "建议用户更换另一台设备重新尝试连接"
+      ],
+      "answer": "先明确具体现象，再逐步测速并排查定位",
+      "explanation": "排查问题的标准流程：先明确现象，再逐步排查，最后给出解决方案。不能跳过步骤直接给结论。"
+    },
+    {
+      "id": 7010,
+      "module": "Agent岗位",
+      "category": "RAG",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "RAG（检索增强生成）主要解决大模型的什么问题？",
+      "options": [
+        "提升模型在单次推理中的计算速度",
+        "通过外部知识检索弥补知识时效和幻觉",
+        "降低模型部署上线所需的硬件成本",
+        "扩展模型支持更多自然语言的种类"
+      ],
+      "answer": "通过外部知识检索弥补知识时效和幻觉",
+      "explanation": "RAG 在生成回答前先检索相关文档，将检索结果作为上下文提供给 LLM，有效缓解知识过时和幻觉问题。"
+    },
+    {
+      "id": 7011,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "Agent 的「记忆模块」通常分为哪两种？",
+      "options": [
+        "本地硬盘存储记忆和远程云端记忆",
+        "短期上下文记忆和长期外部持久化记忆",
+        "静态图片识别记忆和动态文字理解记忆",
+        "预训练阶段记忆和推理阶段动态记忆"
+      ],
+      "answer": "短期上下文记忆和长期外部持久化记忆",
+      "explanation": "短期记忆是当前会话的上下文窗口，长期记忆借助向量数据库等持久化历史信息，使 Agent 具备跨会话的连续性。"
+    },
+    {
+      "id": 7012,
+      "module": "Agent岗位",
+      "category": "工具调用",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "Function Calling 和 MCP（Model Context Protocol）的关系，以下哪项描述最准确？",
+      "options": [
+        "二者的技术定位和适用场景完全重叠",
+        "FC 是模型调用工具的能力，MCP 是工具接入协议",
+        "MCP 完全取代了传统 FC 的功能定位",
+        "FC 能力的实现必须依赖 MCP 协议层"
+      ],
+      "answer": "FC 是模型调用工具的能力，MCP 是工具接入协议",
+      "explanation": "Function Calling 是模型层面的能力（模型输出结构化参数），MCP 是工具层面的协议（统一工具的发现、调用、权限管理）。两者是互补关系，不是替代关系。"
+    },
+    {
+      "id": 7013,
+      "module": "Agent岗位",
+      "category": "Agent设计",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "关于 Single-Agent 和 Multi-Agent 架构的选择，以下哪个场景更适合 Multi-Agent？",
+      "options": [
+        "实现简单的天气信息查询对话机器人",
+        "同时需代码生成、审查和测试的复杂工程",
+        "对单一文档格式进行批量转换的工具",
+        "仅依赖一种数据源进行检索的问答系统"
+      ],
+      "answer": "同时需代码生成、审查和测试的复杂工程",
+      "explanation": "Multi-Agent 适合任务可明确拆分为不同专业领域、需要多角色协作的场景。简单任务用 Single-Agent 更高效，过度设计反而增加复杂度。"
+    },
+    {
+      "id": 7014,
+      "module": "Agent岗位",
+      "category": "Prompt工程",
+      "type": "true_false",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "CoT（Chain of Thought）通过在 Prompt 中加入「让我们一步步思考」来引导模型逐步推理，通常能提高复杂问题的回答准确率。",
+      "answer": "正确",
+      "explanation": "CoT 通过引导模型展示中间推理步骤，显著提升数学推理、逻辑分析等复杂任务的准确性，但会增加输出 token 消耗和延迟。"
+    },
+    {
+      "id": 7015,
+      "module": "Agent岗位",
+      "category": "Agent实践",
+      "type": "multi_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "以下哪些是 RAG 系统中常见的检索优化策略？（多选）",
+      "options": [
+        "Query Rewrite",
+        "多路召回",
+        "重排序",
+        "直接把整个文档塞进 Prompt",
+        "混合检索"
+      ],
+      "answer": [
+        "Query Rewrite",
+        "多路召回",
+        "重排序",
+        "混合检索"
+      ],
+      "explanation": "RAG 检索优化包括：Query Rewrite 优化用户输入、多路召回结合向量和关键词、Re-ranking 精排结果、混合检索提升召回率。直接塞整个文档会超出上下文限制。"
+    },
+    {
+      "id": 8001,
+      "module": "安全常识",
+      "category": "账号安全",
+      "type": "single_choice",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "以下哪种做法不利于账号安全？",
+      "options": [
+        "字母大小写、数字与特殊符号混合组合",
+        "开启基于手机或邮箱的双因素认证",
+        "为不同网站设置完全相同的登录密码",
+        "按照安全策略建议定期更换密保码"
+      ],
+      "answer": "为不同网站设置完全相同的登录密码",
+      "explanation": "密码复用是最常见的安全隐患。一旦一个网站泄露密码，所有使用相同密码的账户都会受到威胁。"
+    },
+    {
+      "id": 8002,
+      "module": "安全常识",
+      "category": "代码安全",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "以下代码有什么问题？\npassword = 'admin123'  # 数据库密码",
+      "options": [
+        "用于标识变量的命名方式不规范",
+        "将认证凭据等敏感信息硬编码在源码中",
+        "所设置的密码字符串长度不符合要求",
+        "内嵌注释的书写格式与团队规范不一致"
+      ],
+      "answer": "将认证凭据等敏感信息硬编码在源码中",
+      "explanation": "将密码等敏感信息硬编码在代码中是常见安全隐患。应使用环境变量或配置中心管理，且不应提交到版本控制。"
+    },
+    {
+      "id": 8003,
+      "module": "安全常识",
+      "category": "社会工程学",
+      "type": "multi_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "以下哪些属于常见的社会工程学攻击？（多选）",
+      "options": [
+        "伪装可信发件人的恶意钓鱼邮件攻击",
+        "冒充公司客服诱导目标泄露敏感信息",
+        "通过构造恶意语句操纵数据库查询",
+        "搭建伪造公共热点窃取连接者数据"
+      ],
+      "answer": [
+        "伪装可信发件人的恶意钓鱼邮件攻击",
+        "冒充公司客服诱导目标泄露敏感信息",
+        "搭建伪造公共热点窃取连接者数据"
+      ],
+      "explanation": "社会工程学利用人的心理弱点而非技术漏洞。SQL 注入是纯技术攻击手段，不属于社会工程学范畴。"
+    },
+    {
+      "id": 8004,
+      "module": "安全常识",
+      "category": "日常安全",
+      "type": "true_false",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "收到陌生邮件中的链接或附件，应该先确认发件人身份再决定是否打开。",
+      "answer": "正确",
+      "explanation": "钓鱼邮件是常见的攻击手段。不要随意点击陌生链接或下载附件，应先核实发件人身份。"
+    },
+    {
+      "id": 8005,
+      "module": "安全常识",
+      "category": "数据安全",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "关于用户数据隐私，以下哪项做法是正确的？",
+      "options": [
+        "将客户数据复制到个人设备便于分析",
+        "在团队群聊中直接发送敏感信息以加快处理",
+        "按最小权限原则仅访问完成工作所需数据",
+        "将客户数据处理案例截图发布于社交平台"
+      ],
+      "answer": "按最小权限原则仅访问完成工作所需数据",
+      "explanation": "数据隐私是 Agent 必须严格遵守的底线。最小权限原则要求只访问和处理完成工作所必需的数据。"
+    }
+  ]
+}

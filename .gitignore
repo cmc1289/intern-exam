@@ -1,0 +1,10 @@
+# 真实配置文件（含密钥），禁止提交
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+.idea/
