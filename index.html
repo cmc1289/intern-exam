@@ -402,10 +402,10 @@ async function startExam(specialty) {
 
   // 专业标签
   const tag = document.getElementById('specialty-tag');
-  const labels = selectedSpecialties
+  const spLabels = selectedSpecialties.filter(Boolean)
     .map(s => specialties[s] ? specialties[s].label : s)
     .join(' + ');
-  tag.textContent = '方向: ' + (labels || '通用基础');
+  tag.textContent = '方向: ' + (spLabels || '通用基础');
 
   // 初始化答案
   questions.forEach(q => {
@@ -475,7 +475,7 @@ function renderQuestion() {
     html += '<ul class="option-list">';
     q.options.forEach((opt, i) => {
       const sel = curAns === opt ? ' selected' : '';
-      html += `<li class="option-item${sel}" onclick="selectOption('${escapeAttr(opt)}')">
+      html += `<li class="option-item${sel}" data-value="${escapeAttr(opt)}">
         <div class="radio"></div><span>${String.fromCharCode(65+i)}. ${escapeHtml(opt)}</span></li>`;
     });
     html += '</ul>';
@@ -484,7 +484,7 @@ function renderQuestion() {
     q.options.forEach((opt, i) => {
       const arr = Array.isArray(curAns) ? curAns : [];
       const sel = arr.includes(opt) ? ' selected' : '';
-      html += `<li class="option-item${sel}" onclick="toggleOption('${escapeAttr(opt)}')">
+      html += `<li class="option-item${sel}" data-value="${escapeAttr(opt)}">
         <div class="checkbox"></div><span>${String.fromCharCode(65+i)}. ${escapeHtml(opt)}</span></li>`;
     });
     html += '</ul>';
@@ -492,7 +492,7 @@ function renderQuestion() {
     html += '<ul class="option-list">';
     ['正确', '错误'].forEach(opt => {
       const sel = curAns === opt ? ' selected' : '';
-      html += `<li class="option-item${sel}" onclick="selectOption('${opt}')">
+      html += `<li class="option-item${sel}" data-value="${opt}">
         <div class="radio"></div><span>${opt}</span></li>`;
     });
     html += '</ul>';
@@ -503,6 +503,21 @@ function renderQuestion() {
 
   document.getElementById('q-card').innerHTML = html;
 }
+
+// 选项点击事件委托（替代 unsafe inline onclick）
+document.getElementById('q-card').addEventListener('click', function(e) {
+  const li = e.target.closest('.option-item');
+  if (!li) return;
+  const val = li.dataset.value;
+  if (!val) return;
+  const q = questions[currentIndex];
+  if (q.type === 'multi_choice') {
+    toggleOption(val);
+  } else {
+    selectOption(val);
+  }
+});
+
 
 function selectOption(val) {
   userAnswers[questions[currentIndex].id] = val;
@@ -584,7 +599,7 @@ function renderResult(result) {
   const passed = result.passed;
   const scoreCls = passed ? 'pass' : 'fail';
   const verdict = passed ? '考核通过' : '考核未通过';
-  const labels = selectedSpecialties
+  const spLabels = selectedSpecialties.filter(Boolean)
     .map(s => specialties[s] ? specialties[s].label : s)
     .join(' + ');
 
@@ -592,7 +607,7 @@ function renderResult(result) {
     <div class="result-score">
       <div class="big-score ${scoreCls}">${result.final_score}</div>
       <div class="verdict" style="color:${passed?'#51cf66':'#ff6b6b'}">
-        ${verdict}（及格线: ${result.pass_score} 分 | 专业方向: ${labels || '通用基础'}）
+        ${verdict}（及格线: ${result.pass_score} 分 | 专业方向: ${spLabels || '通用基础'}）
       </div>
     </div>
   `;
@@ -656,8 +671,9 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 function escapeAttr(str) {
-  return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+  return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
+
 </script>
 </body>
 </html>

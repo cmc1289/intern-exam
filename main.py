@@ -225,7 +225,7 @@ async def start_exam(specialty: str = ""):
         "full_score": exam_config["full_score"],
         "pass_score": exam_config["pass_score"],
         "time_limit_minutes": exam_config["time_limit_minutes"],
-        "specialty": specialty_names or "未选择",
+        "specialty": specialty_names,
         "module_distribution": module_dist,
     }
 
