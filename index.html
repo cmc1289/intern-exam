@@ -428,6 +428,7 @@ function startTimer(totalSec) {
     if (timerSeconds <= 0) {
       clearInterval(timerInterval);
       alert('考试时间到，系统将自动提交。');
+      saveSubjective();
       submitExam();
     }
   }, 1000);
@@ -571,6 +572,7 @@ function nextOrSubmit() {
 
 // ===================== 提交 =====================
 async function submitExam() {
+  saveSubjective();
   if (timerInterval) clearInterval(timerInterval);
   const answers = questions.map(q => ({
     question_id: q.id,
@@ -578,6 +580,7 @@ async function submitExam() {
   }));
   document.getElementById('exam-page').classList.add('hidden');
   document.getElementById('result-page').classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: "smooth" });
   document.getElementById('result-content').innerHTML =
     '<div style="text-align:center;padding:60px;font-size:18px;color:#aab;">正在评判中，请稍候...</div>';
 
@@ -636,8 +639,8 @@ function renderResult(result) {
     html += `<div class="detail-item ${correctCls}">`;
     html += `<div class="d-q"><strong>${icon}</strong> [${d.category}] ${d.question.substring(0, 60)}${d.question.length > 60 ? '...' : ''}</div>`;
     html += `<div class="d-row">
-      <span><strong>你的答案:</strong> ${formatAnswer(d.user_answer)}</span>
-      <span><strong>正确答案:</strong> ${formatAnswer(d.correct_answer)}</span>
+      <span><strong>你的答案:</strong> ${escapeHtml(formatAnswer(d.user_answer))}</span>
+      <span><strong>正确答案:</strong> ${escapeHtml(formatAnswer(d.correct_answer))}</span>
     </div>`;
     html += `<div class="d-row">
       <span><strong>题型:</strong> ${typeNames[d.type] || d.type}</span>
