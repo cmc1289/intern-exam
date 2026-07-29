@@ -162,8 +162,7 @@ async def start_exam(specialty: str = ""):
 
     # 按模块分配名额
     module_needed = {
-        "通用基础": allocation.get("通用基础", 5),
-        "Agent岗位": allocation.get("Agent岗位", 3),
+        "通用基础": allocation.get("通用基础", 7),
         "安全常识": allocation.get("安全常识", 2),
     }
     if sp_allocation:

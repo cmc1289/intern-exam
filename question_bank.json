@@ -1,10 +1,9 @@
 {
   "exam_config": {
     "question_allocation": {
-      "通用基础": 5,
-      "Agent岗位": 3,
-      "安全常识": 2,
-      "专业方向": 5
+      "通用基础": 7,
+      "专业方向": 6,
+      "安全常识": 2
     },
     "pass_score": 60,
     "full_score": 100,
@@ -40,6 +39,11 @@
       "label": "算法与数据分析",
       "desc": "数据结构、算法、SQL 等",
       "icon": "📊"
+    },
+    "Agent岗位": {
+      "label": "AI Agent",
+      "desc": "LLM、RAG、工具调用、Multi-Agent 等",
+      "icon": "🤖"
     }
   },
   "questions": [
@@ -2484,6 +2488,866 @@
       ],
       "answer": "仅授予完成任务所需的最少权限且默认拒绝额外权限",
       "explanation": "「所有用户相同权限」违反最小权限本质。「禁止所有权限」是极端策略而非原则。「只关注管理员」忽略了普通用户权限过大同样危险。最小权限=刚好够用，不多不少。"
+    },
+    {
+      "id": 7022,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "一个典型的 Agent Loop 中，以下哪个步骤的顺序是正确的？",
+      "options": [
+        "观察 → 思考 → 行动 → 观察",
+        "行动 → 观察 → 思考 → 结束",
+        "思考 → 观察 → 行动 → 对话",
+        "观察 → 行动 → 思考 → 日志"
+      ],
+      "answer": "观察 → 思考 → 行动 → 观察",
+      "explanation": "Agent Loop 是观察-思考-行动（Observe-Think-Act）的循环。Agent 感知环境、分析推理、执行工具调用，再观察结果决定下一步，形成闭环。"
+    },
+    {
+      "id": 7023,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "Reflexion 机制与 ReAct 的最大区别是什么？",
+      "options": [
+        "Reflexion 在每轮循环后增加了自我反思与策略修正环节",
+        "Reflexion 完全取消了工具调用",
+        "Reflexion 只适用于单轮对话场景",
+        "Reflexion 不依赖大语言模型"
+      ],
+      "answer": "Reflexion 在每轮循环后增加了自我反思与策略修正环节",
+      "explanation": "Reflexion 在 ReAct 基础上新增反思阶段：Agent 将执行结果反馈给自己评估，发现错误后调整策略重新尝试。这使其具备自我纠错能力。"
+    },
+    {
+      "id": 7024,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "multi_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "Agent 系统防止死循环的常见策略包括哪些？（多选）",
+      "options": [
+        "设置最大迭代次数上限",
+        "令牌（Token）预算限制",
+        "完全禁用工具调用功能",
+        "连续无效操作检测自动中断"
+      ],
+      "answer": [
+        "设置最大迭代次数上限",
+        "令牌（Token）预算限制",
+        "连续无效操作检测自动中断"
+      ],
+      "explanation": "「完全禁用工具调用」等同于废掉 Agent 的核心能力。正确策略是：硬上限（最大步数/Token 数）+ 软检测（识别循环中的重复操作并中断）。"
+    },
+    {
+      "id": 7025,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "MCP 协议中，Server 端的主要职责是什么？",
+      "options": [
+        "管理用户登录和会话状态",
+        "暴露工具和资源的标准化接口供 Client 发现和调用",
+        "执行 LLM 推理并生成回复",
+        "存储对话历史记录和向量嵌入"
+      ],
+      "answer": "暴露工具和资源的标准化接口供 Client 发现和调用",
+      "explanation": "MCP Server 负责注册工具/资源/提示模板，通过标准化协议暴露给 Client。Client 发现后可将这些能力注入 LLM，由模型决定何时调用。"
+    },
+    {
+      "id": 7026,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "A2A 协议主要用于解决什么问题？",
+      "options": [
+        "单 Agent 与工具之间的通信",
+        "Agent 与用户之间的对话交互",
+        "多个 Agent 之间的发现、通信与协作",
+        "模型训练时的数据同步"
+      ],
+      "answer": "多个 Agent 之间的发现、通信与协作",
+      "explanation": "A2A（Agent-to-Agent）协议定义 Agent 间的互操作标准，包括 Agent 发现（Agent Card）、任务委托、状态同步，使多 Agent 系统能协同完成复杂任务。"
+    },
+    {
+      "id": 7027,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "single_choice",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "Agent Card 在 A2A 协议中的作用是什么？",
+      "options": [
+        "存储 Agent 登录凭据和密钥",
+        "描述 Agent 的能力、接口和端点信息供其他 Agent 发现",
+        "记录 Agent 每次对话的性能指标",
+        "加密 Agent 之间的通信数据"
+      ],
+      "answer": "描述 Agent 的能力、接口和端点信息供其他 Agent 发现",
+      "explanation": "Agent Card 类似服务注册中心的元数据：声明该 Agent 的技能、支持的输入输出格式、API 端点，使其他 Agent 可以自动发现并调用它。"
+    },
+    {
+      "id": 7028,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "当工具调用返回超大结果（如数十万字符）时，最有效的处理方式是？",
+      "options": [
+        "直接拼接进下一轮 Prompt 让 LLM 自行过滤",
+        "对结果进行截断、摘要或分块后按需检索",
+        "丢弃返回结果并告诉用户无法处理",
+        "将全文存入数据库后通知用户等待"
+      ],
+      "answer": "对结果进行截断、摘要或分块后按需检索",
+      "explanation": "超大结果直接塞进上下文会撑爆窗口。标准做法：先截断/摘要保留关键信息，或分块存入向量库按需检索。「丢弃结果」「让用户等」不可取。"
+    },
+    {
+      "id": 7029,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "single_choice",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "AI Agent 与直接调用 LLM API 的本质区别是？",
+      "options": [
+        "Agent 使用了更大的模型参数",
+        "Agent 具备自主感知环境、制定计划并调用工具执行的能力",
+        "Agent 的响应速度更快",
+        "Agent 不需要提示词"
+      ],
+      "answer": "Agent 具备自主感知环境、制定计划并调用工具执行的能力",
+      "explanation": "LLM 是单纯「输入→输出」的文本生成器。Agent 叠加了感知、规划、工具调用、记忆和循环执行层，让模型从「对话」变为「行动」。"
+    },
+    {
+      "id": 7030,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "multi_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "以下哪些是多 Agent 编排的常见模式？（多选）",
+      "options": [
+        "流水线模式（Pipeline）：Agent A 输出作为 B 的输入",
+        "辩论模式（Debate）：多个 Agent 各自给出观点后综合裁决",
+        "轮询模式（Round-Robin）：每个工具轮流调用一次",
+        "并行模式（Parallel）：多 Agent 同时处理不同子任务"
+      ],
+      "answer": [
+        "流水线模式（Pipeline）：Agent A 输出作为 B 的输入",
+        "辩论模式（Debate）：多个 Agent 各自给出观点后综合裁决",
+        "并行模式（Parallel）：多 Agent 同时处理不同子任务"
+      ],
+      "explanation": "「轮询模式」是网络负载均衡策略而非 Agent 编排模式。常见的多 Agent 编排包括：顺序流水线、并行分解、辩论协作、层级调度。"
+    },
+    {
+      "id": 7031,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "multi_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "生产环境中 Agent 系统面临的安全风险包括哪些？（多选）",
+      "options": [
+        "提示词注入（Prompt Injection）：用户通过恶意输入覆盖系统指令",
+        "工具调用滥用：LLM 被诱导执行危险操作",
+        "数据泄露：Agent 在回复中暴露敏感信息",
+        "网络带宽耗尽导致服务不可用"
+      ],
+      "answer": [
+        "提示词注入（Prompt Injection）：用户通过恶意输入覆盖系统指令",
+        "工具调用滥用：LLM 被诱导执行危险操作",
+        "数据泄露：Agent 在回复中暴露敏感信息"
+      ],
+      "explanation": "前三个是 Agent 特有的安全威胁（Prompt Injection、工具调用滥用、敏感信息泄露）。「网络带宽耗尽」是传统 DoS 攻击，非 Agent 特有安全风险。"
+    },
+    {
+      "id": 7032,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "上下文压缩策略中，滑动窗口法和摘要法各自的典型缺陷是？",
+      "options": [
+        "滑动窗口丢早期上下文 / 摘要法丢失细节信息",
+        "滑动窗口消耗更多 Token / 摘要法需要额外模型",
+        "滑动窗口仅支持英文 / 摘要法仅支持中文",
+        "滑动窗口导致幻觉 / 摘要法导致死循环"
+      ],
+      "answer": "滑动窗口丢早期上下文 / 摘要法丢失细节信息",
+      "explanation": "滑动窗口保留最近 N 轮但抛弃早期关键信息。摘要法压缩历史但可能丢失用户提到的具体参数、编号等细节。两者配合使用效果更好。"
+    },
+    {
+      "id": 7033,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "Function Calling 和 MCP 在 Agent 系统中的定位差异是？",
+      "options": [
+        "Function Calling 是厂商特定的工具调用接口 / MCP 是跨厂商的标准化协议",
+        "Function Calling 只能调用 Python 函数 / MCP 只能调用 HTTP API",
+        "Function Calling 不支持参数传递 / MCP 不支持异步调用",
+        "Function Calling 和 MCP 是完全一致的概念"
+      ],
+      "answer": "Function Calling 是厂商特定的工具调用接口 / MCP 是跨厂商的标准化协议",
+      "explanation": "Function Calling 是各 LLM 厂商（OpenAI、Anthropic）各自的工具调用实现方式；MCP 则提供独立于模型供应商的标准化工具协议，一次开发多处复用。"
+    },
+    {
+      "id": 7034,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "subjective",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "请解释 Reflexion 机制相比于 ReAct 的核心改进，并给出一个 Agent 自我纠错的场景例子。",
+      "answer": "Reflexion 在 ReAct 基础上增加自我反思环节：Agent 完成任务后，将执行轨迹输入评估模块生成反思（如分析失败原因、提出改进策略），再将反思作为经验注入下一轮 Prompt，使 Agent 具备从错误中学习的能力。典型场景：Agent 执行数据库查询时因语法错误失败，Reflexion 会分析是 SQL 关键字拼写还是字段名错误，并在重试时修正。"
+    },
+    {
+      "id": 7035,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "subjective",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "当 Agent 的对话历史超出上下文窗口时，有哪些管理策略？请至少说明三种方案及其适用场景。",
+      "answer": "1）滑动窗口：保留最近 N 轮，适合实时对话；2）摘要压缩：定期对历史做摘要插入，适合长任务；3）分层记忆：近期上下文+向量检索+长期摘要，适合复杂多轮场景；4）Token 预算管理：为系统提示、工具结果、历史各分配固定额度，超出则裁剪。通常混合使用。"
+    },
+    {
+      "id": 7036,
+      "module": "Agent岗位",
+      "category": "AI Agent",
+      "type": "subjective",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "请设计一个多 Agent 系统的架构方案，包含至少三个不同职责的 Agent，并说明它们之间的通信与协作方式。",
+      "answer": "例如：规划 Agent（拆解用户需求为子任务）→ 分发至 执行 Agent（调用工具获取数据）→ 汇总至 评审 Agent（验证结果质量）。通信可通过消息队列或 A2A 协议，各 Agent 注册到编排中心，通过发布/订阅模式交换任务和结果。"
+    },
+    {
+      "id": 1033,
+      "module": "通用基础",
+      "category": "计算机网络",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "TCP 三次握手为什么不能改为两次？",
+      "options": [
+        "两次握手无法验证服务器的网络带宽",
+        "两次握手无法让双方都确认自己的发送和接收能力正常",
+        "两次握手会增加网络延迟",
+        "两次握手不支持 IPv6 协议"
+      ],
+      "answer": "两次握手无法让双方都确认自己的发送和接收能力正常",
+      "explanation": "两次握手的问题：客户端不知道服务端能否收到自己发的数据（无 ACK 确认），服务端也无法确定客户端收到了自己的 SYN-ACK。三次握手是最小确认次数。"
+    },
+    {
+      "id": 1034,
+      "module": "通用基础",
+      "category": "计算机网络",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "Cookie、Session、Token 这三种认证方式的区别，以下描述正确的是？",
+      "options": [
+        "Cookie 存储在服务端，Session 与 Token 存储在客户端",
+        "Session 存储在服务端，Cookie 与 Token 存储在客户端",
+        "Token 存储在服务端，Cookie 与 Session 存储在客户端",
+        "三者都存储在服务端"
+      ],
+      "answer": "Session 存储在服务端，Cookie 与 Token 存储在客户端",
+      "explanation": "Cookie 是浏览器本地的小型数据。Session ID 通过 Cookie 传给客户端但会话数据存服务端。Token（如 JWT）自包含用户信息并编码为字符串存客户端。"
+    },
+    {
+      "id": 1035,
+      "module": "通用基础",
+      "category": "计算机网络",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "DNS 解析一个未缓存的域名时，完整的查询链路是？",
+      "options": [
+        "本地 DNS → 根域名服务器 → 顶级域服务器 → 权威 DNS",
+        "浏览器缓存 → 根域名服务器 → 运营商缓存",
+        "直接连接权威 DNS 获取结果",
+        "本地 DNS → 路由器 → ISP 网关"
+      ],
+      "answer": "本地 DNS → 根域名服务器 → 顶级域服务器 → 权威 DNS",
+      "explanation": "递归查询路径：客户端→本地DNS→根（返回 .com 的 NS）→顶级域（返回 example.com 的 NS）→权威DNS（返回最终 IP）。逐级委派。"
+    },
+    {
+      "id": 1036,
+      "module": "通用基础",
+      "category": "操作系统",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "下列进程调度算法中，哪个是抢占式的？",
+      "options": [
+        "先来先服务（FCFS）",
+        "最短作业优先（SJF）的非抢占版本",
+        "时间片轮转（Round Robin）",
+        "高响应比优先（HRRN）"
+      ],
+      "answer": "时间片轮转（Round Robin）",
+      "explanation": "时间片轮转是抢占式调度：每个进程分配固定时间片，时钟中断触发抢占。FCFS、非抢占 SJF、HRRN 都属于非抢占式，进程主动放弃 CPU 才切换。"
+    },
+    {
+      "id": 1037,
+      "module": "通用基础",
+      "category": "操作系统",
+      "type": "multi_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "以下哪些是常见的页面置换算法？（多选）",
+      "options": [
+        "FIFO（先进先出）",
+        "LRU（最近最少使用）",
+        "LFU（最不经常使用）",
+        "CLI（命令行接口）"
+      ],
+      "answer": [
+        "FIFO（先进先出）",
+        "LRU（最近最少使用）",
+        "LFU（最不经常使用）"
+      ],
+      "explanation": "FIFO、LRU、LFU 都是经典页面置换算法，分别按时间顺序、最近使用频率、整体频率淘汰页面。CLI 是命令行接口，与内存管理无关。"
+    },
+    {
+      "id": 1038,
+      "module": "通用基础",
+      "category": "数据结构与算法",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "堆排序的平均时间复杂度和空间复杂度分别是？",
+      "options": [
+        "O(n log n) / O(1)",
+        "O(n²) / O(n)",
+        "O(n log n) / O(n)",
+        "O(n) / O(log n)"
+      ],
+      "answer": "O(n log n) / O(1)",
+      "explanation": "堆排序：建堆 O(n)，每次调整 O(log n) 执行 n 次 → O(n log n)。原地排序无需额外数组，空间 O(1)。"
+    },
+    {
+      "id": 1039,
+      "module": "通用基础",
+      "category": "数据结构与算法",
+      "type": "true_false",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "Dijkstra 算法可以处理包含负权重边的图。",
+      "options": [
+        "正确",
+        "错误"
+      ],
+      "answer": "错误",
+      "explanation": "Dijkstra 基于贪心策略，假设已找到最短路径的节点不会再被更新。负权重边可能打破此前提（已确定节点出现更短路径），算法给出错误结果。"
+    },
+    {
+      "id": 1040,
+      "module": "通用基础",
+      "category": "数据结构与算法",
+      "type": "multi_choice",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "栈（Stack）在实际开发中的典型应用场景包括哪些？（多选）",
+      "options": [
+        "函数调用栈管理递归返回值",
+        "浏览器前进后退（配合另一个栈）",
+        "表达式求值和括号匹配检查",
+        "LRU 缓存淘汰"
+      ],
+      "answer": [
+        "函数调用栈管理递归返回值",
+        "浏览器前进后退（配合另一个栈）",
+        "表达式求值和括号匹配检查"
+      ],
+      "explanation": "栈的 LIFO 特性天然适合函数调用、撤销/回退、括号匹配。「LRU 缓存淘汰」需要快速定位+顺序维护，通常用哈希表+双向链表，非栈场景。"
+    },
+    {
+      "id": 1041,
+      "module": "通用基础",
+      "category": "编程基础",
+      "type": "multi_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "RESTful API 设计应遵循以下哪些原则？（多选）",
+      "options": [
+        "使用 HTTP 方法体现操作语义（GET 查询、POST 创建、PUT 更新、DELETE 删除）",
+        "资源路径用名词复数形式",
+        "所有接口统一使用 POST 方法",
+        "状态码准确表达结果（200、201、400、404 等）"
+      ],
+      "answer": [
+        "使用 HTTP 方法体现操作语义（GET 查询、POST 创建、PUT 更新、DELETE 删除）",
+        "资源路径用名词复数形式",
+        "状态码准确表达结果（200、201、400、404 等）"
+      ],
+      "explanation": "「所有接口统一 POST」是 RPC 风格而非 RESTful。REST 核心理念之一就是利用 HTTP 方法表达不同操作语义，资源用名词，表现用状态码。"
+    },
+    {
+      "id": 1042,
+      "module": "通用基础",
+      "category": "编程基础",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "乐观锁和悲观锁在并发控制中的核心区别是？",
+      "options": [
+        "乐观锁假设冲突较少，提交时检测版本号是否变更；悲观锁假设冲突频繁，先加锁再操作",
+        "乐观锁只在读多写少场景有效，悲观锁只在写多场景有效",
+        "乐观锁基于数据库锁实现，悲观锁基于内存实现",
+        "乐观锁比悲观锁永远性能更好"
+      ],
+      "answer": "乐观锁假设冲突较少，提交时检测版本号是否变更；悲观锁假设冲突频繁，先加锁再操作",
+      "explanation": "乐观锁（CAS/版本号）：读时不加锁，更新时检查数据是否被改过。悲观锁（SELECT FOR UPDATE）：操作前就加锁阻塞他人。选择取决于冲突概率而非绝对性能。"
+    },
+    {
+      "id": 3021,
+      "module": "后端开发",
+      "category": "数据库",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "MySQL 分库分表后，跨库 Join 查询常见的解决方案不包括？",
+      "options": [
+        "在应用层做数据聚合",
+        "引入 Elasticsearch 等异构数据源做宽表查询",
+        "将所有数据合并回一张表",
+        "冗余字段设计避免跨库关联"
+      ],
+      "answer": "将所有数据合并回一张表",
+      "explanation": "合并回单表等于放弃分库分表的扩展性收益。正确方案：应用层聚合、冗余字段减少跨库、异构数据源（ES）做搜索、或用分库中间件（ShardingSphere）。"
+    },
+    {
+      "id": 3022,
+      "module": "后端开发",
+      "category": "Redis",
+      "type": "single_choice",
+      "difficulty": "困难",
+      "weight": 2.0,
+      "question": "使用 Redis 实现分布式锁时，SET NX EX 和 Redisson 的红锁（RedLock）分别解决了什么问题？",
+      "options": [
+        "SET NX EX 解决单机互斥 / RedLock 解决主从切换后锁丢失问题",
+        "SET NX EX 解决集群锁 / RedLock 提高加锁速度",
+        "SET NX EX 比 RedLock 更可靠",
+        "RedLock 比 SET NX EX 配置更简单"
+      ],
+      "answer": "SET NX EX 解决单机互斥 / RedLock 解决主从切换后锁丢失问题",
+      "explanation": "SET NX EX 在单 Redis 实例上保证原子加锁+超时。但主从异步复制时，主挂后从升主可能丢掉锁记录。RedLock 向多数独立节点加锁来规避此问题。"
+    },
+    {
+      "id": 3023,
+      "module": "后端开发",
+      "category": "编程与框架",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "Java 线程池的参数中，CorePoolSize 和 MaxPoolSize 的作用是？",
+      "options": [
+        "CorePoolSize 控制常驻线程数 / MaxPoolSize 是峰值时最大线程数",
+        "CorePoolSize 控制任务队列长度 / MaxPoolSize 控制线程优先级",
+        "CorePoolSize 是初始线程数 / MaxPoolSize 是销毁阈值",
+        "两者都用于限制栈内存大小"
+      ],
+      "answer": "CorePoolSize 控制常驻线程数 / MaxPoolSize 是峰值时最大线程数",
+      "explanation": "CorePoolSize：线程池保底线程数（即便空闲也不回收）。MaxPoolSize：任务队列满后可扩展的最大线程数。超出核心数的空闲线程会在 keepAliveTime 后回收。"
+    },
+    {
+      "id": 3024,
+      "module": "后端开发",
+      "category": "编程与框架",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "Spring IoC 容器通过什么机制管理 Bean 的依赖？",
+      "options": [
+        "依赖注入（DI）：容器自动将依赖对象注入到目标 Bean 中",
+        "硬编码：在构造函数中 new 出所有依赖",
+        "配置文件反射：每次使用时解析 XML",
+        "代理模式：通过 CGlib 代理 Bean 调用"
+      ],
+      "answer": "依赖注入（DI）：容器自动将依赖对象注入到目标 Bean 中",
+      "explanation": "IoC（控制反转）的核心是 DI：容器在 Bean 创建时自动注入其声明的依赖，不需要 Bean 自己查找或创建依赖对象，降低耦合。"
+    },
+    {
+      "id": 3025,
+      "module": "后端开发",
+      "category": "API设计",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "接口幂等性的含义是？",
+      "options": [
+        "同一请求执行一次和执行多次对系统产生相同的副作用",
+        "每次请求都会返回相同的结果",
+        "接口只支持 GET 方法调用",
+        "同一接口每秒钟只能调用一次"
+      ],
+      "answer": "同一请求执行一次和执行多次对系统产生相同的副作用",
+      "explanation": "幂等关注的是副作用而非返回值。例如支付接口：重复请求不应重复扣款。实现方式通常包括唯一请求 ID + 业务状态机校验。"
+    },
+    {
+      "id": 2018,
+      "module": "前端开发",
+      "category": "CSS",
+      "type": "single_choice",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "标准 CSS 盒模型中，一个元素的 width 属性设置的是哪部分的宽度？",
+      "options": [
+        "内容区域（content）的宽度",
+        "内容 + padding + border 的总宽度",
+        "内容 + padding 的宽度",
+        "元素的 margin 外边界宽度"
+      ],
+      "answer": "内容区域（content）的宽度",
+      "explanation": "标准盒模型（box-sizing: content-box）下，width 仅指内容区。实际占据宽度 = content + padding + border + margin。IE 盒模型（border-box）则包含到 border。"
+    },
+    {
+      "id": 2019,
+      "module": "前端开发",
+      "category": "JavaScript",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "以下哪组排列正确表示了浏览器事件循环中宏任务与微任务的执行顺序？",
+      "options": [
+        "同步代码 → 微任务 → 宏任务 → 微任务 → ...",
+        "宏任务 → 同步代码 → 微任务 → 宏任务 → ...",
+        "微任务 → 宏任务 → 同步代码 → ...",
+        "同步代码、宏任务、微任务三者随机执行"
+      ],
+      "answer": "同步代码 → 微任务 → 宏任务 → 微任务 → ...",
+      "explanation": "每次事件循环：先执行一个宏任务（script/main）、清空所有微任务（Promise/MutationObserver）、再取下一个宏任务（setTimeout/I/O）、再清空微任务，循环往复。"
+    },
+    {
+      "id": 2020,
+      "module": "前端开发",
+      "category": "React",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "React 虚拟 DOM 的 Diff 算法中，对列表元素为什么需要 key 属性？",
+      "options": [
+        "key 帮助 React 识别每个元素的身份，避免不必要的销毁重建",
+        "key 用于 CSS 样式隔离",
+        "key 是 HTML 语义标签，提升 SEO 效果",
+        "key 用于路由跳转时传递参数"
+      ],
+      "answer": "key 帮助 React 识别每个元素的身份，避免不必要的销毁重建",
+      "explanation": "无 key 时，React 按索引对比元素，数据顺序变化会导致大量 DOM 重建。有唯一 key 后，React 能精确复用已有 DOM 节点，仅移动位置而非销毁重建。"
+    },
+    {
+      "id": 2021,
+      "module": "前端开发",
+      "category": "网络",
+      "type": "multi_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "以下哪些是常见的跨域解决方案？（多选）",
+      "options": [
+        "CORS：服务端设置 Access-Control-Allow-Origin 响应头",
+        "JSONP：利用 script 标签不受同源策略限制",
+        "Nginx 反向代理将跨域转为同域请求",
+        "修改浏览器的 User-Agent"
+      ],
+      "answer": [
+        "CORS：服务端设置 Access-Control-Allow-Origin 响应头",
+        "JSONP：利用 script 标签不受同源策略限制",
+        "Nginx 反向代理将跨域转为同域请求"
+      ],
+      "explanation": "跨域是浏览器的同源策略限制。CORS、JSONP、反向代理都是标准解法。「修改 User-Agent」只改变请求头标识，无法绕过同源策略。"
+    },
+    {
+      "id": 2022,
+      "module": "前端开发",
+      "category": "TypeScript",
+      "type": "true_false",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "TypeScript 的泛型（Generics）在编译后的 JavaScript 中会被擦除，变为普通的类型约束。",
+      "options": [
+        "正确",
+        "错误"
+      ],
+      "answer": "正确",
+      "explanation": "TypeScript 是编译时类型系统，泛型仅在编译阶段做类型检查。编译成 JS 后泛型信息被完全擦除，运行时无任何泛型约束。"
+    },
+    {
+      "id": 4018,
+      "module": "测试",
+      "category": "测试基础",
+      "type": "single_choice",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "单元测试和集成测试的主要区别是？",
+      "options": [
+        "单元测试验证单个模块的函数或类 / 集成测试验证多个模块之间的交互",
+        "单元测试需要部署到服务器 / 集成测试在本地运行",
+        "单元测试只测前端 / 集成测试只测后端",
+        "单元测试需要数据库 / 集成测试不需要数据库"
+      ],
+      "answer": "单元测试验证单个模块的函数或类 / 集成测试验证多个模块之间的交互",
+      "explanation": "单元测试关注最小可测单元（函数、方法），通常 mock 外部依赖。集成测试验证模块间接口协作（数据库+服务+API），更接近真实运行场景。"
+    },
+    {
+      "id": 4019,
+      "module": "测试",
+      "category": "测试方法",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "测试中 Mock 和 Stub 的核心区别是什么？",
+      "options": [
+        "Mock 验证行为（方法是否被调用、参数是否正确）/ Stub 仅提供预设返回值",
+        "Mock 只用于数据库 / Stub 只用于网络请求",
+        "Mock 比 Stub 更容易编写",
+        "Mock 和 Stub 是相同的概念"
+      ],
+      "answer": "Mock 验证行为（方法是否被调用、参数是否正确）/ Stub 仅提供预设返回值",
+      "explanation": "Stub 是「给你一个假数据」不关心如何被调用。Mock 是「监视交互」——验证方法被调用了几次、传了什么参数、调用顺序是否正确。"
+    },
+    {
+      "id": 4020,
+      "module": "测试",
+      "category": "性能测试",
+      "type": "multi_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "性能测试中，以下哪些是关键指标？（多选）",
+      "options": [
+        "TPS/QPS（每秒事务数/请求数）",
+        "平均响应时间和 P99 延迟",
+        "代码行数覆盖率",
+        "错误率"
+      ],
+      "answer": [
+        "TPS/QPS（每秒事务数/请求数）",
+        "平均响应时间和 P99 延迟",
+        "错误率"
+      ],
+      "explanation": "TPS/QPS 衡量吞吐量，响应时间/P99 衡量延迟表现，错误率衡量稳定性。「代码行数覆盖率」是单元测试的度量，与性能测试无关。"
+    },
+    {
+      "id": 4021,
+      "module": "测试",
+      "category": "测试流程",
+      "type": "true_false",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "冒烟测试（Smoke Testing）的主要目的是验证软件的核心功能是否可用，再决定是否进行更全面的测试。",
+      "options": [
+        "正确",
+        "错误"
+      ],
+      "answer": "正确",
+      "explanation": "冒烟测试是快速验证版本「是否能跑起来」的准入门槛——基本流程走不通就没必要投入完整测试资源。通常在每日构建后或提测前执行。"
+    },
+    {
+      "id": 5019,
+      "module": "运维",
+      "category": "容器",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "Kubernetes 中 Pod 的生命周期从创建到终止的正确阶段顺序是？",
+      "options": [
+        "Pending → Running → Succeeded/Failed",
+        "Building → Deploying → Running → Stopping",
+        "Created → Started → Paused → Killed",
+        "Init → Exec → Wait → Exit"
+      ],
+      "answer": "Pending → Running → Succeeded/Failed",
+      "explanation": "Pod 生命周期：Pending（调度中/拉镜像）→ Running（至少一容器运行）→ Succeeded（正常退出码 0）或 Failed（异常退出）。Building/Deploying 不是 Pod 阶段名称。"
+    },
+    {
+      "id": 5020,
+      "module": "运维",
+      "category": "网络",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "Nginx 作为反向代理时，proxy_pass 指令的作用是？",
+      "options": [
+        "将客户端请求转发到指定的后端服务器，并将响应返回给客户端",
+        "为静态文件生成缓存副本",
+        "加密客户端与 Nginx 之间的通信",
+        "限制单个 IP 的连接数"
+      ],
+      "answer": "将客户端请求转发到指定的后端服务器，并将响应返回给客户端",
+      "explanation": "反向代理的核心：客户端不知道后端服务器的存在，Nginx 作为中间人转发请求和响应。配合 upstream 可做负载均衡。静态缓存、SSL、限流是其他模块的职责。"
+    },
+    {
+      "id": 5021,
+      "module": "运维",
+      "category": "监控",
+      "type": "multi_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "以下哪些是生产环境日志收集的常见组件？（多选）",
+      "options": [
+        "Filebeat（采集日志文件）",
+        "Logstash（日志处理与过滤）",
+        "Elasticsearch（日志存储与搜索）",
+        "Redis作为消息队列（仅限缓存场景）"
+      ],
+      "answer": [
+        "Filebeat（采集日志文件）",
+        "Logstash（日志处理与过滤）",
+        "Elasticsearch（日志存储与搜索）"
+      ],
+      "explanation": "经典 ELK 栈：Filebeat 轻量采集 → Logstash 或 Kafka 缓冲/处理 → Elasticsearch 存储索引 → Kibana 可视化。Redis 在此栈中作用有限。"
+    },
+    {
+      "id": 5022,
+      "module": "运维",
+      "category": "部署",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "蓝绿部署和滚动部署的主要区别是？",
+      "options": [
+        "蓝绿部署同时维护两套完整环境切换 / 滚动部署逐步替换实例",
+        "蓝绿部署只适用于单个服务器 / 滚动部署适用于集群",
+        "蓝绿部署需要容器化 / 滚动部署不需要",
+        "两者是完全相同的概念"
+      ],
+      "answer": "蓝绿部署同时维护两套完整环境切换 / 滚动部署逐步替换实例",
+      "explanation": "蓝绿部署：准备两套完全独立的环境（蓝=当前/绿=新版），流量一次性切到新版。滚动部署：逐台替换旧实例，逐步过渡。蓝绿的优点是秒级回滚，代价是双倍资源。"
+    },
+    {
+      "id": 6019,
+      "module": "算法数据",
+      "category": "算法思想",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "动态规划与分治法的关键区别是？",
+      "options": [
+        "动态规划的子问题有重叠，通过记忆化避免重复计算；分治法的子问题相互独立",
+        "动态规划只能解决最优化问题，分治法只能解决排序问题",
+        "动态规划的空间复杂度更高，时间复杂度更低",
+        "动态规划自顶向下，分治法自底向上"
+      ],
+      "answer": "动态规划的子问题有重叠，通过记忆化避免重复计算；分治法的子问题相互独立",
+      "explanation": "分治法（如归并排序）：子问题无重叠，各自独立求解后合并。DP（如斐波那契）：子问题大量重叠，用数组/哈希表缓存中间结果避免重复计算。"
+    },
+    {
+      "id": 6020,
+      "module": "算法数据",
+      "category": "排序算法",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "归并排序的时间复杂度和空间复杂度分别是？",
+      "options": [
+        "O(n log n) / O(n)",
+        "O(n²) / O(1)",
+        "O(n log n) / O(1)",
+        "O(n) / O(n log n)"
+      ],
+      "answer": "O(n log n) / O(n)",
+      "explanation": "归并排序每次二分 O(log n) 层，每层合并 O(n) → O(n log n)。合并需要临时数组存放左右子数组 → O(n) 额外空间。"
+    },
+    {
+      "id": 6021,
+      "module": "算法数据",
+      "category": "搜索算法",
+      "type": "single_choice",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "BFS（广度优先搜索）和 DFS（深度优先搜索）在遍历图时的数据结构选择是？",
+      "options": [
+        "BFS 用队列（Queue）/ DFS 用栈（Stack）",
+        "BFS 用栈（Stack）/ DFS 用队列（Queue）",
+        "两者都使用队列",
+        "两者都使用栈"
+      ],
+      "answer": "BFS 用队列（Queue）/ DFS 用栈（Stack）",
+      "explanation": "BFS 逐层扩展 → 先进先出（队列）。DFS 一路到底再回溯 → 先进后出（栈，或递归调用栈）。两种数据结构的特性直接决定了搜索顺序。"
+    },
+    {
+      "id": 6022,
+      "module": "算法数据",
+      "category": "算法思想",
+      "type": "multi_choice",
+      "difficulty": "简单",
+      "weight": 1.0,
+      "question": "以下算法的时间复杂度，从小到大排列正确的选项包括？（多选）",
+      "options": [
+        "O(1) < O(log n) < O(n) < O(n log n) < O(n²)",
+        "O(n) < O(1) < O(n²) < O(log n)",
+        "O(n!) 和 O(2ⁿ) 都属于指数/阶乘级，远超多项式",
+        "O(log n) 比 O(n) 增长更快"
+      ],
+      "answer": [
+        "O(1) < O(log n) < O(n) < O(n log n) < O(n²)",
+        "O(n!) 和 O(2ⁿ) 都属于指数/阶乘级，远超多项式"
+      ],
+      "explanation": "常见复杂度递增：O(1)常数 < O(log n)对数 < O(n)线性 < O(n log n)线性对数 < O(n²)平方 < O(2ⁿ)指数 < O(n!)阶乘。指数/阶乘级在 n>20 时已不可用。"
+    },
+    {
+      "id": 8059,
+      "module": "安全常识",
+      "category": "Web安全",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "SSRF（服务端请求伪造）攻击与 CSRF 攻击的核心区别是？",
+      "options": [
+        "SSRF 利用服务端发起伪造请求访问内部系统 / CSRF 利用用户已登录态发起伪造请求",
+        "SSRF 只攻击前端 / CSRF 只攻击后端",
+        "SSRF 发生在客户端 / CSRF 发生在服务端",
+        "SSRF 和 CSRF 是同一种攻击"
+      ],
+      "answer": "SSRF 利用服务端发起伪造请求访问内部系统 / CSRF 利用用户已登录态发起伪造请求",
+      "explanation": "SSRF 的攻击目标是服务器：让服务器代攻击者访问内网资源（如 http://169.254.169.254/ ）。CSRF 的攻击目标是用户：借用用户身份执行操作。"
+    },
+    {
+      "id": 8060,
+      "module": "安全常识",
+      "category": "认证安全",
+      "type": "true_false",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "JWT Token 的 Payload 部分是加密的，所以可以存放密码等敏感信息。",
+      "options": [
+        "正确",
+        "错误"
+      ],
+      "answer": "错误",
+      "explanation": "JWT 的 Payload 仅 Base64 编码（非加密），任何人都可以解码查看内容。安全性依赖签名（Signature）防篡改，不依赖内容保密。敏感信息绝对不应放入 JWT。"
+    },
+    {
+      "id": 8061,
+      "module": "安全常识",
+      "category": "安全架构",
+      "type": "single_choice",
+      "difficulty": "中等",
+      "weight": 1.5,
+      "question": "零信任架构与传统边界安全模型的核心区别是？",
+      "options": [
+        "零信任默认不信任任何请求（内外网一视同仁）/ 传统模型信任内网流量",
+        "零信任完全放弃网络防护 / 传统模型多重防火墙层叠",
+        "零信任只适用于云环境 / 传统模型只适用于物理机房",
+        "零信任使用单点登录 / 传统模型使用多因素认证"
+      ],
+      "answer": "零信任默认不信任任何请求（内外网一视同仁）/ 传统模型信任内网流量",
+      "explanation": "传统模型是「城堡+护城河」——进入内网就安全。零信任是「永不信任，始终验证」——每次访问都需认证和授权，不论来自内外网。"
     }
   ]
 }
