@@ -1,0 +1,138 @@
+import json
+import random
+
+from app.config import BANK_PATH
+
+
+def load_question_bank() -> dict:
+    with open(BANK_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+bank = load_question_bank()
+all_questions = bank["questions"]
+exam_config = bank["exam_config"]
+specialties = bank["specialties"]
+
+
+def get_specialties() -> dict:
+    return specialties
+
+
+def get_exam_config() -> dict:
+    return exam_config
+
+
+def get_questions() -> list[dict]:
+    return all_questions
+
+
+def get_total_question_count() -> int:
+    return len(all_questions)
+
+
+def get_question_map() -> dict[int, dict]:
+    return {q["id"]: q for q in all_questions}
+
+
+def generate_exam(specialty: str = "") -> dict:
+    allocation = exam_config["question_allocation"]
+    selected = []
+
+    sp_list = []
+    if specialty:
+        sp_list = [s.strip() for s in specialty.split(",") if s.strip() in specialties]
+        sp_list = sp_list[:3]
+
+    specialty_names = ",".join(sp_list) if sp_list else ""
+    sp_count = len(sp_list)
+    pro_total = allocation.get("专业方向", 5)
+
+    sp_allocation = {}
+    if sp_count == 1:
+        sp_allocation[sp_list[0]] = pro_total
+    elif sp_count > 1:
+        base = pro_total // sp_count
+        remain = pro_total % sp_count
+        bonus = set(random.sample(sp_list, remain))
+        for s in sp_list:
+            sp_allocation[s] = base + (1 if s in bonus else 0)
+
+    module_needed = {
+        "通用基础": allocation.get("通用基础", 5),
+        "Agent岗位": allocation.get("Agent岗位", 3),
+        "安全常识": allocation.get("安全常识", 2),
+    }
+    if sp_allocation:
+        module_needed.update(sp_allocation)
+    else:
+        module_needed["通用基础"] += pro_total
+
+    for module, need in module_needed.items():
+        module_pool = [
+            q for q in all_questions
+            if q["module"] == module and q not in selected
+        ]
+        count = min(need, len(module_pool))
+        if count > 0:
+            selected.extend(random.sample(module_pool, count))
+
+    selected = ensure_min_subjective_questions(selected, module_needed)
+    random.shuffle(selected)
+
+    questions_out = [to_public_question(q) for q in selected]
+
+    module_dist = {}
+    for q in selected:
+        module = q["module"]
+        module_dist[module] = module_dist.get(module, 0) + 1
+
+    return {
+        "questions": questions_out,
+        "total": len(questions_out),
+        "full_score": exam_config["full_score"],
+        "pass_score": exam_config["pass_score"],
+        "time_limit_minutes": exam_config["time_limit_minutes"],
+        "specialty": specialty_names or "未选择",
+        "module_distribution": module_dist,
+    }
+
+
+def ensure_min_subjective_questions(
+    selected: list[dict],
+    module_needed: dict[str, int],
+    min_subjective: int = 2,
+) -> list[dict]:
+    subjective_selected = [q for q in selected if q["type"] == "subjective"]
+    objective_selected = [q for q in selected if q["type"] != "subjective"]
+    deficit = max(0, min_subjective - len(subjective_selected))
+    if deficit == 0:
+        return selected
+
+    available_subjective = [
+        q for q in all_questions
+        if q["type"] == "subjective"
+        and q["module"] in module_needed
+        and q not in selected
+    ]
+    replace_count = min(deficit, len(available_subjective), len(objective_selected))
+    if replace_count == 0:
+        return selected
+
+    extra_subjective = random.sample(available_subjective, replace_count)
+    return subjective_selected + extra_subjective + objective_selected[:-replace_count]
+
+
+def to_public_question(question: dict) -> dict:
+    question_out = {
+        "id": question["id"],
+        "module": question["module"],
+        "category": question["category"],
+        "type": question["type"],
+        "difficulty": question["difficulty"],
+        "weight": question["weight"],
+        "question": question["question"],
+    }
+    if question["type"] in ("single_choice", "multi_choice"):
+        question_out["options"] = question["options"]
+    return question_out

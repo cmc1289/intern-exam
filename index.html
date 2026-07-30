@@ -233,6 +233,21 @@
   .hidden { display: none; }
 
   .back-btn-wrap { text-align: center; margin-top: 30px; margin-bottom: 40px; }
+  .history-list { display: grid; gap: 12px; margin-top: 20px; text-align: left; }
+  .history-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    align-items: center;
+  }
+  .history-main { min-width: 0; }
+  .history-title { color: #fff; font-weight: 700; margin-bottom: 6px; }
+  .history-meta { color: #889; font-size: 12px; line-height: 1.7; }
+  .history-actions { flex: 0 0 auto; }
 </style>
 </head>
 <body>
@@ -243,7 +258,7 @@
   <div id="start-page">
     <div class="start-card">
       <h1>Agent 实习生 · 入职考核</h1>
-      <p class="subtitle">检验计算机基础、专业方向知识与安全常识</p>
+      <p class="subtitle">检验计算机基础、专业方向知识、安全常识与岗位情景应对能力</p>
       <div class="info-grid">
         <div class="info-item">
           <div class="label">题目数量</div>
@@ -261,13 +276,15 @@
       <div class="exam-composition">
         <div class="comp-title">试卷构成：</div>
         <div class="comp-row">
-          通用计算机基础 <span>7题</span>（必答）<br>
-          专业方向题目 <span>6题</span>（自选）<br>
+          通用计算机基础 <span>5题</span>（必答）<br>
+          专业方向题目 <span>5题</span>（自选）<br>
+          Agent 岗位情景 <span>3题</span>（必答）<br>
           安全常识 <span>2题</span>（必答）<br>
           <span style="font-size:11px;color:#889;">题型：单选 / 多选 / 判断 / 主观题 · 难度加权：简单×1.0 中等×1.5 困难×2.0</span>
         </div>
       </div>
       <button class="btn btn-primary" onclick="showSpecialtySelect()">下一步：选择题库方向</button>
+      <button class="btn btn-outline" style="margin-left:10px;" onclick="showHistory()">历史记录</button>
     </div>
   </div>
 
@@ -302,7 +319,18 @@
   <div id="result-page" class="hidden">
     <div class="result-card" id="result-content"></div>
     <div class="back-btn-wrap">
-      <button class="btn btn-primary" onclick="location.reload()">重新开始</button>
+      <button class="btn btn-outline" onclick="showHistory()">历史记录</button>
+      <button class="btn btn-primary" onclick="restartExam()">重新开始</button>
+    </div>
+  </div>
+
+  <!-- ========== 历史记录页 ========== -->
+  <div id="history-page" class="hidden">
+    <div class="start-card">
+      <h1>历史记录</h1>
+      <p class="subtitle">查看已开始和已提交的考试记录</p>
+      <div class="history-list" id="history-list"></div>
+      <button class="btn btn-outline" style="margin-top:22px;" onclick="backToStart()">返回首页</button>
     </div>
   </div>
 
@@ -319,6 +347,46 @@ let timerSeconds = 0;
 let timerInterval = null;
 let selectedSpecialties = [];
 let specialties = {};
+let examRecordId = null;
+
+const pages = ['start', 'specialty', 'exam', 'result', 'history'];
+
+function setRoute(page, replace = false) {
+  if (!pages.includes(page)) page = 'start';
+  const url = page === 'start' ? location.pathname : location.pathname + '#' + page;
+  const state = { page };
+  if (replace) history.replaceState(state, '', url);
+  else history.pushState(state, '', url);
+}
+
+function getRoutePage() {
+  const statePage = history.state && history.state.page;
+  if (pages.includes(statePage)) return statePage;
+  const hashPage = location.hash.replace('#', '');
+  return pages.includes(hashPage) ? hashPage : 'start';
+}
+
+function showPage(page) {
+  document.getElementById('start-page').classList.toggle('hidden', page !== 'start');
+  document.getElementById('specialty-page').classList.toggle('hidden', page !== 'specialty');
+  document.getElementById('exam-page').classList.toggle('hidden', page !== 'exam');
+  document.getElementById('result-page').classList.toggle('hidden', page !== 'result');
+  document.getElementById('history-page').classList.toggle('hidden', page !== 'history');
+}
+
+function handleRoute(page) {
+  if (page !== 'exam' && timerInterval) clearInterval(timerInterval);
+  if (page === 'specialty') {
+    renderSpecialtySelect();
+  } else if (page === 'history') {
+    loadHistory();
+  }
+  showPage(page);
+}
+
+window.addEventListener('popstate', () => {
+  handleRoute(getRoutePage());
+});
 
 // ===================== 初始化 =====================
 window.addEventListener('DOMContentLoaded', async () => {
@@ -326,16 +394,24 @@ window.addEventListener('DOMContentLoaded', async () => {
     const resp = await fetch(API + '/api/specialties');
     const data = await resp.json();
     specialties = data.specialties;
+    if (getRoutePage() === 'specialty') renderSpecialtySelect();
   } catch (e) {
     console.error('加载专业列表失败', e);
   }
 });
 
 // ===================== 专业选择（多选 1~3 个） =====================
-function showSpecialtySelect() {
-  document.getElementById('start-page').classList.add('hidden');
-  document.getElementById('specialty-page').classList.remove('hidden');
+const initialPage = getRoutePage();
+setRoute(initialPage, true);
+handleRoute(initialPage);
 
+function showSpecialtySelect() {
+  setRoute('specialty');
+  renderSpecialtySelect();
+  showPage('specialty');
+}
+
+function renderSpecialtySelect() {
   const grid = document.getElementById('specialty-grid');
   grid.innerHTML = '';
   selectedSpecialties = [];
@@ -380,9 +456,8 @@ function confirmSpecialty() {
 
 // ===================== 开始考试 =====================
 async function startExam(specialty) {
-  document.getElementById('specialty-page').classList.add('hidden');
-  document.getElementById('exam-page').classList.remove('hidden');
-  document.getElementById('result-page').classList.add('hidden');
+  setRoute('exam');
+  showPage('exam');
 
   // 显示加载
   document.getElementById('q-card').innerHTML =
@@ -394,6 +469,7 @@ async function startExam(specialty) {
 
   const resp = await fetch(url);
   examData = await resp.json();
+  examRecordId = examData.record_id || null;
   questions = examData.questions;
   userAnswers = {};
   currentIndex = 0;
@@ -401,10 +477,10 @@ async function startExam(specialty) {
 
   // 专业标签
   const tag = document.getElementById('specialty-tag');
-  const spLabels = selectedSpecialties.filter(Boolean)
+  const labels = selectedSpecialties
     .map(s => specialties[s] ? specialties[s].label : s)
     .join(' + ');
-  tag.textContent = '方向: ' + (spLabels || '通用基础');
+  tag.textContent = '方向: ' + (labels || '通用基础');
 
   // 初始化答案
   questions.forEach(q => {
@@ -427,7 +503,6 @@ function startTimer(totalSec) {
     if (timerSeconds <= 0) {
       clearInterval(timerInterval);
       alert('考试时间到，系统将自动提交。');
-      saveSubjective();
       submitExam();
     }
   }, 1000);
@@ -475,7 +550,7 @@ function renderQuestion() {
     html += '<ul class="option-list">';
     q.options.forEach((opt, i) => {
       const sel = curAns === opt ? ' selected' : '';
-      html += `<li class="option-item${sel}" data-value="${escapeAttr(opt)}">
+      html += `<li class="option-item${sel}" onclick="selectOption('${escapeAttr(opt)}')">
         <div class="radio"></div><span>${String.fromCharCode(65+i)}. ${escapeHtml(opt)}</span></li>`;
     });
     html += '</ul>';
@@ -484,7 +559,7 @@ function renderQuestion() {
     q.options.forEach((opt, i) => {
       const arr = Array.isArray(curAns) ? curAns : [];
       const sel = arr.includes(opt) ? ' selected' : '';
-      html += `<li class="option-item${sel}" data-value="${escapeAttr(opt)}">
+      html += `<li class="option-item${sel}" onclick="toggleOption('${escapeAttr(opt)}')">
         <div class="checkbox"></div><span>${String.fromCharCode(65+i)}. ${escapeHtml(opt)}</span></li>`;
     });
     html += '</ul>';
@@ -492,7 +567,7 @@ function renderQuestion() {
     html += '<ul class="option-list">';
     ['正确', '错误'].forEach(opt => {
       const sel = curAns === opt ? ' selected' : '';
-      html += `<li class="option-item${sel}" data-value="${opt}">
+      html += `<li class="option-item${sel}" onclick="selectOption('${opt}')">
         <div class="radio"></div><span>${opt}</span></li>`;
     });
     html += '</ul>';
@@ -503,21 +578,6 @@ function renderQuestion() {
 
   document.getElementById('q-card').innerHTML = html;
 }
-
-// 选项点击事件委托（替代 unsafe inline onclick）
-document.getElementById('q-card').addEventListener('click', function(e) {
-  const li = e.target.closest('.option-item');
-  if (!li) return;
-  const val = li.dataset.value;
-  if (!val) return;
-  const q = questions[currentIndex];
-  if (q.type === 'multi_choice') {
-    toggleOption(val);
-  } else {
-    selectOption(val);
-  }
-});
-
 
 function selectOption(val) {
   userAnswers[questions[currentIndex].id] = val;
@@ -571,15 +631,13 @@ function nextOrSubmit() {
 
 // ===================== 提交 =====================
 async function submitExam() {
-  saveSubjective();
   if (timerInterval) clearInterval(timerInterval);
   const answers = questions.map(q => ({
     question_id: q.id,
     user_answer: userAnswers[q.id]
   }));
-  document.getElementById('exam-page').classList.add('hidden');
-  document.getElementById('result-page').classList.remove('hidden');
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  setRoute('result');
+  showPage('result');
   document.getElementById('result-content').innerHTML =
     '<div style="text-align:center;padding:60px;font-size:18px;color:#aab;">正在评判中，请稍候...</div>';
 
@@ -587,7 +645,7 @@ async function submitExam() {
     const resp = await fetch(API + '/api/exam/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ answers })
+      body: JSON.stringify({ record_id: examRecordId, answers })
     });
     renderResult(await resp.json());
   } catch (e) {
@@ -601,7 +659,7 @@ function renderResult(result) {
   const passed = result.passed;
   const scoreCls = passed ? 'pass' : 'fail';
   const verdict = passed ? '考核通过' : '考核未通过';
-  const spLabels = selectedSpecialties.filter(Boolean)
+  const labels = selectedSpecialties
     .map(s => specialties[s] ? specialties[s].label : s)
     .join(' + ');
 
@@ -609,7 +667,7 @@ function renderResult(result) {
     <div class="result-score">
       <div class="big-score ${scoreCls}">${result.final_score}</div>
       <div class="verdict" style="color:${passed?'#51cf66':'#ff6b6b'}">
-        ${verdict}（及格线: ${result.pass_score} 分 | 专业方向: ${spLabels || '通用基础'}）
+        ${verdict}（及格线: ${result.pass_score} 分 | 专业方向: ${labels || '通用基础'}）
       </div>
     </div>
   `;
@@ -638,8 +696,8 @@ function renderResult(result) {
     html += `<div class="detail-item ${correctCls}">`;
     html += `<div class="d-q"><strong>${icon}</strong> [${d.category}] ${d.question.substring(0, 60)}${d.question.length > 60 ? '...' : ''}</div>`;
     html += `<div class="d-row">
-      <span><strong>你的答案:</strong> ${escapeHtml(formatAnswer(d.user_answer))}</span>
-      <span><strong>正确答案:</strong> ${escapeHtml(formatAnswer(d.correct_answer))}</span>
+      <span><strong>你的答案:</strong> ${formatAnswer(d.user_answer)}</span>
+      <span><strong>正确答案:</strong> ${formatAnswer(d.correct_answer)}</span>
     </div>`;
     html += `<div class="d-row">
       <span><strong>题型:</strong> ${typeNames[d.type] || d.type}</span>
@@ -662,6 +720,103 @@ function renderResult(result) {
   document.getElementById('result-content').innerHTML = html;
 }
 
+async function showHistory() {
+  if (timerInterval) clearInterval(timerInterval);
+  setRoute('history');
+  showPage('history');
+  loadHistory();
+}
+
+async function loadHistory() {
+  const list = document.getElementById('history-list');
+  list.innerHTML = '<div style="text-align:center;padding:30px;color:#aab;">正在加载...</div>';
+
+  try {
+    const resp = await fetch(API + '/api/records');
+    const data = await resp.json();
+    renderHistory(data.records || []);
+  } catch (e) {
+    list.innerHTML = '<div style="text-align:center;padding:30px;color:#ff6b6b;">加载失败: ' + escapeHtml(e.message) + '</div>';
+  }
+}
+
+function renderHistory(records) {
+  const list = document.getElementById('history-list');
+  if (!records.length) {
+    list.innerHTML = '<div style="text-align:center;padding:30px;color:#aab;">暂无考试记录</div>';
+    return;
+  }
+
+  list.innerHTML = records.map(r => {
+    const status = r.status === 'submitted' ? '已提交' : '进行中';
+    const score = r.final_score === null || r.final_score === undefined ? '-' : r.final_score;
+    const passed = r.passed === null || r.passed === undefined ? '' : (r.passed ? ' · 通过' : ' · 未通过');
+    const startedAt = formatTime(r.started_at);
+    const submittedAt = r.submitted_at ? formatTime(r.submitted_at) : '-';
+    const canView = r.status === 'submitted';
+    return `
+      <div class="history-item">
+        <div class="history-main">
+          <div class="history-title">${escapeHtml(r.specialty || '未选择方向')} · ${status}</div>
+          <div class="history-meta">
+            分数: ${score}${passed}<br>
+            开始: ${startedAt} · 提交: ${submittedAt}
+          </div>
+        </div>
+        <div class="history-actions">
+          <button class="btn btn-outline" ${canView ? '' : 'disabled'} onclick="viewRecord('${escapeAttr(r.id)}')">查看</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+async function viewRecord(recordId) {
+  const list = document.getElementById('history-list');
+  list.innerHTML = '<div style="text-align:center;padding:30px;color:#aab;">正在加载结果...</div>';
+
+  try {
+    const resp = await fetch(API + '/api/records/' + encodeURIComponent(recordId));
+    const record = await resp.json();
+    if (!record.result) {
+      renderHistory([record]);
+      return;
+    }
+    selectedSpecialties = record.specialty ? record.specialty.split(',') : [];
+    setRoute('result');
+    showPage('result');
+    renderResult(record.result);
+  } catch (e) {
+    list.innerHTML = '<div style="text-align:center;padding:30px;color:#ff6b6b;">加载失败: ' + escapeHtml(e.message) + '</div>';
+  }
+}
+
+function backToStart() {
+  if (timerInterval) clearInterval(timerInterval);
+  setRoute('start');
+  showPage('start');
+}
+
+function restartExam() {
+  if (timerInterval) clearInterval(timerInterval);
+  examData = null;
+  questions = [];
+  userAnswers = {};
+  currentIndex = 0;
+  timerSeconds = 0;
+  selectedSpecialties = [];
+  examRecordId = null;
+  setRoute('start');
+  showPage('start');
+}
+
+function formatTime(value) {
+  if (!value) return '-';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleString();
+}
+
 function formatAnswer(ans) {
   if (Array.isArray(ans)) return ans.join(', ') || '（未作答）';
   return ans || '（未作答）';
@@ -673,9 +828,8 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 function escapeAttr(str) {
-  return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
 }
-
 </script>
 </body>
 </html>
