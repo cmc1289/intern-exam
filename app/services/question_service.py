@@ -58,9 +58,16 @@ def generate_exam(specialty: str = "") -> dict:
         for s in sp_list:
             sp_allocation[s] = base + (1 if s in bonus else 0)
 
+        # Agent 方向多分 1 题，从另一个非 Agent 方向减去
+        if "Agent岗位" in sp_list:
+            non_agents = [s for s in sp_list if s != "Agent岗位" and sp_allocation[s] >= 2]
+            if non_agents:
+                victim = random.choice(non_agents)
+                sp_allocation["Agent岗位"] += 1
+                sp_allocation[victim] -= 1
+
     module_needed = {
         "通用基础": allocation.get("通用基础", 5),
-        "Agent岗位": allocation.get("Agent岗位", 3),
         "安全常识": allocation.get("安全常识", 2),
     }
     if sp_allocation:
@@ -136,3 +143,13 @@ def to_public_question(question: dict) -> dict:
     if question["type"] in ("single_choice", "multi_choice"):
         question_out["options"] = question["options"]
     return question_out
+
+
+def get_questions_by_ids(question_ids: list[int]) -> list[dict]:
+    """根据 ID 列表返回题目（不含答案），保持传入顺序"""
+    q_map = get_question_map()
+    return [
+        to_public_question(q_map[qid])
+        for qid in question_ids
+        if qid in q_map
+    ]

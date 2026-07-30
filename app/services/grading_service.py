@@ -29,11 +29,11 @@ async def submit_exam(request: SubmitRequest) -> dict:
             subjective_tasks.append((item, question, weight))
             continue
 
-        correct = judge_objective(question, item.user_answer)
-        item_score = weight * 100 if correct else 0
+        score_rate = judge_objective(question, item.user_answer)
+        item_score = round(weight * 100 * score_rate, 1)
         total_weighted += item_score
 
-        details.append(build_detail(question, item.user_answer, correct, item_score))
+        details.append(build_detail(question, item.user_answer, score_rate >= 1.0, item_score))
 
     for item, question, weight in subjective_tasks:
         result = await judge_subjective(
@@ -80,16 +80,28 @@ async def submit_exam(request: SubmitRequest) -> dict:
     return result
 
 
-def judge_objective(question: dict, user_answer: str | list[str]) -> bool:
+def judge_objective(question: dict, user_answer: str | list[str]) -> float:
+    """返回得分率：1.0 全对，0.5 半对（至少对一个且无错选），0.0 错选或全错"""
     if question["type"] in ("true_false", "single_choice"):
-        return str(user_answer).strip() == str(question["answer"]).strip()
+        return 1.0 if str(user_answer).strip() == str(question["answer"]).strip() else 0.0
 
     if question["type"] == "multi_choice":
-        user_answers = user_answer if isinstance(user_answer, list) else [user_answer]
-        reference_answers = question["answer"] if isinstance(question["answer"], list) else [question["answer"]]
-        return set(user_answers) == set(reference_answers)
+        user_answers = set(user_answer) if isinstance(user_answer, list) else {user_answer}
+        reference_answers = set(question["answer"]) if isinstance(question["answer"], list) else {question["answer"]}
 
-    return False
+        # 全对
+        if user_answers == reference_answers:
+            return 1.0
+        # 选了不在正确答案中的选项 → 错选，0分
+        if user_answers - reference_answers:
+            return 0.0
+        # 没选错，但漏选了（至少还对了一个）→ 半对
+        if user_answers & reference_answers:
+            return 0.5
+        # 全错
+        return 0.0
+
+    return 0.0
 
 
 async def judge_subjective(question_text: str, reference_answer: str, user_answer: str) -> dict:

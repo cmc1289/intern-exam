@@ -17,3 +17,10 @@ async def get_record(record_id: str):
     if record is None:
         raise HTTPException(status_code=404, detail="Record not found")
     return record
+
+
+@router.delete("/records/{record_id}")
+async def delete_record(record_id: str):
+    if not record_service.delete_record(record_id):
+        raise HTTPException(status_code=404, detail="Record not found")
+    return {"ok": True}
