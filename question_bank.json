@@ -351,12 +351,12 @@
       "weight": 2.0,
       "question": "哈希冲突的常见解决方法不包括以下哪项？",
       "options": [
-        "链地址法：用链表存储冲突元素",
-        "开放地址法：寻找下一个空闲位置",
-        "再哈希法：换哈希函数重新计算",
-        "二叉查找法：用二叉树定位数据"
+        "链地址法",
+        "开放地址法",
+        "再哈希法",
+        "二叉查找法"
       ],
-      "answer": "二叉查找法：用二叉树定位数据",
+      "answer": "二叉查找法",
       "explanation": "「二叉查找法」不是哈希冲突解决方法，它用于二叉搜索树的查找。哈希冲突的正确解法为：链地址法（用链表存储同桶元素）、开放地址法（找下一个空位）、再哈希法（换哈希函数重算）。"
     },
     {
@@ -625,7 +625,7 @@
       "weight": 1.0,
       "question": "关系型数据库中，主键（Primary Key）的作用是？",
       "options": [
-        "加速查询速度（索引的作用）",
+        "加速查询速度",
         "唯一标识表中的每一行记录",
         "建立表与表之间的关系",
         "存储大文本数据"
@@ -1080,15 +1080,15 @@
       "weight": 2.0,
       "question": "以下哪些做法有助于服务的稳定部署？（多选）",
       "options": [
-        "灰度发布：小范围先上线验证后全量",
-        "健康检查：异常时自动触发回滚流程",
-        "线上热修：直接在服务器修改代码文件",
-        "蓝绿部署：两套环境切换实现零停机"
+        "灰度发布",
+        "健康检查",
+        "线上热修",
+        "蓝绿部署"
       ],
       "answer": [
-        "灰度发布：小范围先上线验证后全量",
-        "健康检查：异常时自动触发回滚流程",
-        "蓝绿部署：两套环境切换实现零停机"
+        "灰度发布",
+        "健康检查",
+        "蓝绿部署"
       ],
       "explanation": "灰度发布逐步放量降低风险；健康检查+自动回滚确保异常时自动恢复；蓝绿部署通过切换流量实现零停机。直接线上改代码是最危险的做法。"
     },
@@ -1174,12 +1174,12 @@
       "weight": 1.5,
       "question": "BFS（广度优先搜索）通常使用什么数据结构实现？",
       "options": [
-        "栈：后进先出，用于深度优先遍历",
-        "队列：先进先出，用于广度优先遍历",
-        "堆：按优先级出队，用于任务调度",
-        "哈希表：键值映射，用于快速查找"
+        "栈",
+        "队列",
+        "堆",
+        "哈希表"
       ],
-      "answer": "队列：先进先出，用于广度优先遍历",
+      "answer": "队列",
       "explanation": "BFS 逐层遍历，使用队列 FIFO 的特性保证按层访问。DFS（深度优先搜索）使用栈或递归。"
     },
     {
@@ -1296,17 +1296,17 @@
       "weight": 1.5,
       "question": "AI Agent 的核心组件通常包括哪些？（多选）",
       "options": [
-        "规划模块：负责分解和编排子任务",
-        "记忆模块：管理会话上下文与历史",
-        "工具模块：调用外部 API 和函数",
-        "推理引擎：驱动决策的大语言模型",
-        "缓存模块：加速数据库查询的组件"
+        "规划模块",
+        "记忆模块",
+        "工具模块",
+        "推理引擎",
+        "缓存模块"
       ],
       "answer": [
-        "规划模块：负责分解和编排子任务",
-        "记忆模块：管理会话上下文与历史",
-        "工具模块：调用外部 API 和函数",
-        "推理引擎：驱动决策的大语言模型"
+        "规划模块",
+        "记忆模块",
+        "工具模块",
+        "推理引擎"
       ],
       "explanation": "Agent 通常由 LLM（大脑）、规划模块（任务分解）、记忆模块（上下文管理）、工具调用（执行能力）四部分组成。"
     },
@@ -1320,11 +1320,11 @@
       "question": "ReAct 是 Agent 领域的一种经典范式，ReAct 的含义是？",
       "options": [
         "React 框架的 AI 版本",
-        "Reasoning + Acting，即推理与行动交替进行",
+        "Reasoning + Acting，推理与行动交替",
         "Reactive Action，被动响应模式",
         "Re-Activation，模型的二次激活"
       ],
-      "answer": "Reasoning + Acting，即推理与行动交替进行",
+      "answer": "Reasoning + Acting，推理与行动交替",
       "explanation": "ReAct = Reasoning + Acting。Agent 先思考（推理）下一步该做什么，然后执行（行动），观察结果后再继续推理，形成循环。这是区别于普通 LLM 的关键。"
     },
     {
@@ -1816,11 +1816,11 @@
       "question": "JavaScript 中 Promise.all 和 Promise.allSettled 的区别是？",
       "options": [
         "二者在执行行为和返回结果格式上没有差别",
-        "allSettled 等待全部完成并返回状态数组，all 任一失败即中断",
-        "allSettled 的并发执行优先级总高于 Promise.all",
-        "allSettled 只能处理同步操作而 all 专用于异步"
+        "allSettled 等全部完成返回状态数组，all 遇失败即中断",
+        "allSettled 并发优先级高于 Promise.all",
+        "allSettled 只处理同步，all 专用于异步"
       ],
-      "answer": "allSettled 等待全部完成并返回状态数组，all 任一失败即中断",
+      "answer": "allSettled 等全部完成返回状态数组，all 遇失败即中断",
       "explanation": "Promise.all 遇任意一个 reject 立即返回失败；Promise.allSettled 等待所有 Promise 结束（无论成功或失败），返回包含每个状态的数组。"
     },
     {
@@ -2023,12 +2023,12 @@
       "weight": 1.5,
       "question": "消息队列在系统中的核心作用不包括？",
       "options": [
-        "削峰填谷：缓冲瞬时高峰请求保护下游服务",
-        "服务解耦：发布者和消费者无需直接相互调用",
-        "取代数据库：作为持久化存储替代关系型数据库",
-        "异步处理：非关键路径逻辑异步执行减少响应延迟"
+        "削峰填谷",
+        "服务解耦",
+        "取代数据库",
+        "异步处理"
       ],
-      "answer": "取代数据库：作为持久化存储替代关系型数据库",
+      "answer": "取代数据库",
       "explanation": "「取代数据库」不是消息队列的设计目标。MQ 定位是异步通信中间件，不提供 SQL 查询、事务 ACID、复杂关联等数据库核心能力。其真正的核心作用是：异步解耦生产者与消费者、削峰填谷缓冲流量、保证消息顺序投递。"
     },
     {
@@ -2638,15 +2638,15 @@
       "weight": 1.5,
       "question": "以下哪些是多 Agent 编排的常见模式？（多选）",
       "options": [
-        "流水线模式（Pipeline）：Agent A 输出作为 B 的输入",
-        "辩论模式（Debate）：多个 Agent 各自给出观点后综合裁决",
-        "轮询模式（Round-Robin）：每个工具轮流调用一次",
-        "并行模式（Parallel）：多 Agent 同时处理不同子任务"
+        "流水线模式（Pipeline）",
+        "辩论模式（Debate）",
+        "轮询模式（Round-Robin）",
+        "并行模式（Parallel）"
       ],
       "answer": [
-        "流水线模式（Pipeline）：Agent A 输出作为 B 的输入",
-        "辩论模式（Debate）：多个 Agent 各自给出观点后综合裁决",
-        "并行模式（Parallel）：多 Agent 同时处理不同子任务"
+        "流水线模式（Pipeline）",
+        "辩论模式（Debate）",
+        "并行模式（Parallel）"
       ],
       "explanation": "「轮询模式」是网络负载均衡策略而非 Agent 编排模式。常见的多 Agent 编排包括：顺序流水线、并行分解、辩论协作、层级调度。"
     },
@@ -2659,15 +2659,15 @@
       "weight": 2.0,
       "question": "生产环境中 Agent 系统面临的安全风险包括哪些？（多选）",
       "options": [
-        "提示词注入（Prompt Injection）：用户通过恶意输入覆盖系统指令",
-        "工具调用滥用：LLM 被诱导执行危险操作",
-        "数据泄露：Agent 在回复中暴露敏感信息",
-        "网络带宽耗尽导致服务不可用"
+        "提示词注入（Prompt Injection）",
+        "工具调用滥用",
+        "数据泄露",
+        "网络带宽耗尽"
       ],
       "answer": [
-        "提示词注入（Prompt Injection）：用户通过恶意输入覆盖系统指令",
-        "工具调用滥用：LLM 被诱导执行危险操作",
-        "数据泄露：Agent 在回复中暴露敏感信息"
+        "提示词注入（Prompt Injection）",
+        "工具调用滥用",
+        "数据泄露"
       ],
       "explanation": "前三个是 Agent 特有的安全威胁（Prompt Injection、工具调用滥用、敏感信息泄露）。「网络带宽耗尽」是传统 DoS 攻击，非 Agent 特有安全风险。"
     },
@@ -2796,7 +2796,7 @@
       "question": "下列进程调度算法中，哪个是抢占式的？",
       "options": [
         "先来先服务（FCFS）",
-        "最短作业优先（SJF）的非抢占版本",
+        "最短作业优先（SJF）",
         "时间片轮转（Round Robin）",
         "高响应比优先（HRRN）"
       ],
@@ -2812,15 +2812,15 @@
       "weight": 1.5,
       "question": "以下哪些是常见的页面置换算法？（多选）",
       "options": [
-        "FIFO（先进先出）",
-        "LRU（最近最少使用）",
-        "LFU（最不经常使用）",
-        "CLI（命令行接口）"
+        "FIFO",
+        "LRU",
+        "LFU",
+        "CLI"
       ],
       "answer": [
-        "FIFO（先进先出）",
-        "LRU（最近最少使用）",
-        "LFU（最不经常使用）"
+        "FIFO",
+        "LRU",
+        "LFU"
       ],
       "explanation": "FIFO、LRU、LFU 都是经典页面置换算法，分别按时间顺序、最近使用频率、整体频率淘汰页面。CLI 是命令行接口，与内存管理无关。"
     },
@@ -2975,12 +2975,12 @@
       "weight": 1.5,
       "question": "Spring IoC 容器通过什么机制管理 Bean 的依赖？",
       "options": [
-        "依赖注入（DI）：容器自动将依赖对象注入到目标 Bean 中",
-        "硬编码：在构造函数中 new 出所有依赖",
-        "配置文件反射：每次使用时解析 XML",
-        "代理模式：通过 CGlib 代理 Bean 调用"
+        "依赖注入（DI）",
+        "硬编码",
+        "配置文件反射",
+        "代理模式"
       ],
-      "answer": "依赖注入（DI）：容器自动将依赖对象注入到目标 Bean 中",
+      "answer": "依赖注入（DI）",
       "explanation": "IoC（控制反转）的核心是 DI：容器在 Bean 创建时自动注入其声明的依赖，不需要 Bean 自己查找或创建依赖对象，降低耦合。"
     },
     {
@@ -3060,15 +3060,15 @@
       "weight": 1.5,
       "question": "以下哪些是常见的跨域解决方案？（多选）",
       "options": [
-        "CORS：服务端设置 Access-Control-Allow-Origin 响应头",
-        "JSONP：利用 script 标签不受同源策略限制",
-        "Nginx 反向代理将跨域转为同域请求",
-        "修改浏览器的 User-Agent"
+        "CORS",
+        "JSONP",
+        "Nginx 反向代理",
+        "修改 User-Agent"
       ],
       "answer": [
-        "CORS：服务端设置 Access-Control-Allow-Origin 响应头",
-        "JSONP：利用 script 标签不受同源策略限制",
-        "Nginx 反向代理将跨域转为同域请求"
+        "CORS",
+        "JSONP",
+        "Nginx 反向代理"
       ],
       "explanation": "跨域是浏览器的同源策略限制。CORS、JSONP、反向代理都是标准解法。「修改 User-Agent」只改变请求头标识，无法绕过同源策略。"
     },
@@ -3113,12 +3113,12 @@
       "weight": 1.5,
       "question": "测试中 Mock 和 Stub 的核心区别是什么？",
       "options": [
-        "Mock 验证行为（方法是否被调用、参数是否正确）/ Stub 仅提供预设返回值",
+        "Mock 验证行为 / Stub 仅提供预设返回值",
         "Mock 只用于数据库 / Stub 只用于网络请求",
         "Mock 比 Stub 更容易编写",
         "Mock 和 Stub 是相同的概念"
       ],
-      "answer": "Mock 验证行为（方法是否被调用、参数是否正确）/ Stub 仅提供预设返回值",
+      "answer": "Mock 验证行为 / Stub 仅提供预设返回值",
       "explanation": "Stub 是「给你一个假数据」不关心如何被调用。Mock 是「监视交互」——验证方法被调用了几次、传了什么参数、调用顺序是否正确。"
     },
     {
@@ -3200,15 +3200,15 @@
       "weight": 1.5,
       "question": "以下哪些是生产环境日志收集的常见组件？（多选）",
       "options": [
-        "Filebeat（采集日志文件）",
-        "Logstash（日志处理与过滤）",
-        "Elasticsearch（日志存储与搜索）",
-        "Redis作为消息队列（仅限缓存场景）"
+        "Filebeat",
+        "Logstash",
+        "Elasticsearch",
+        "Redis"
       ],
       "answer": [
-        "Filebeat（采集日志文件）",
-        "Logstash（日志处理与过滤）",
-        "Elasticsearch（日志存储与搜索）"
+        "Filebeat",
+        "Logstash",
+        "Elasticsearch"
       ],
       "explanation": "经典 ELK 栈：Filebeat 轻量采集 → Logstash 或 Kafka 缓冲/处理 → Elasticsearch 存储索引 → Kibana 可视化。Redis 在此栈中作用有限。"
     },
