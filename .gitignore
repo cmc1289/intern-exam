@@ -11,3 +11,6 @@ venv/
 # IDE
 .vscode/
 .idea/
+
+# 临时 AI 工具目录
+temp_ai_handbook/

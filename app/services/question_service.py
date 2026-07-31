@@ -84,7 +84,7 @@ def generate_exam(specialty: str = "") -> dict:
         if count > 0:
             selected.extend(random.sample(module_pool, count))
 
-    selected = ensure_min_subjective_questions(selected, module_needed)
+    selected = ensure_subjective_range(selected, module_needed)
     random.shuffle(selected)
 
     questions_out = [to_public_question(q) for q in selected]
@@ -105,29 +105,44 @@ def generate_exam(specialty: str = "") -> dict:
     }
 
 
-def ensure_min_subjective_questions(
+def ensure_subjective_range(
     selected: list[dict],
     module_needed: dict[str, int],
     min_subjective: int = 2,
+    max_subjective: int = 4,
 ) -> list[dict]:
     subjective_selected = [q for q in selected if q["type"] == "subjective"]
     objective_selected = [q for q in selected if q["type"] != "subjective"]
-    deficit = max(0, min_subjective - len(subjective_selected))
-    if deficit == 0:
-        return selected
-
     available_subjective = [
         q for q in all_questions
         if q["type"] == "subjective"
         and q["module"] in module_needed
         and q not in selected
     ]
-    replace_count = min(deficit, len(available_subjective), len(objective_selected))
-    if replace_count == 0:
-        return selected
 
-    extra_subjective = random.sample(available_subjective, replace_count)
-    return subjective_selected + extra_subjective + objective_selected[:-replace_count]
+    # 不足：用主观题替换客观题
+    deficit = max(0, min_subjective - len(subjective_selected))
+    if deficit > 0:
+        replace_count = min(deficit, len(available_subjective), len(objective_selected))
+        if replace_count > 0:
+            extra_subjective = random.sample(available_subjective, replace_count)
+            return subjective_selected + extra_subjective + objective_selected[:-replace_count]
+
+    # 过多：用客观题替换多出来的主观题
+    excess = max(0, len(subjective_selected) - max_subjective)
+    if excess > 0:
+        available_objective = [
+            q for q in all_questions
+            if q["type"] != "subjective"
+            and q["module"] in module_needed
+            and q not in selected
+        ]
+        replace_count = min(excess, len(available_objective))
+        if replace_count > 0:
+            extra_objective = random.sample(available_objective, replace_count)
+            return objective_selected + extra_objective + subjective_selected[:-replace_count]
+
+    return selected
 
 
 def to_public_question(question: dict) -> dict:

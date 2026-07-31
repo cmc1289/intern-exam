@@ -37,6 +37,10 @@ function showPage(page) {
 }
 
 function handleRoute(page) {
+  // 离开考试页面时保存进度
+  if (page !== 'exam' && examRecordId && questions.length > 0) {
+    saveBeforeExit();
+  }
   if (page !== 'exam' && timerInterval) clearInterval(timerInterval);
 
   // exam / result 依赖内存数据，刷新后数据丢失则回首页
@@ -74,9 +78,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 
 // ===================== 专业选择（多选 1~3 个） =====================
-const initialPage = getRoutePage();
-setRoute(initialPage, true);
-handleRoute(initialPage);
+// 每次刷新/全新加载都回到首页
+setRoute('start', true);
+handleRoute('start');
 
 function showSpecialtySelect() {
   setRoute('specialty');
@@ -355,6 +359,23 @@ function stopAutoSave() {
   }
 }
 
+function saveBeforeExit() {
+  // 离开考试页面或关闭浏览器前保存进度（keepalive 保证页面关闭时也能发出）
+  if (!examRecordId || !questions.length) return;
+  const answers = questions.map(q => ({
+    question_id: q.id,
+    user_answer: userAnswers[q.id]
+  }));
+  fetch(API + '/api/exam/save/' + encodeURIComponent(examRecordId), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(answers),
+    keepalive: true
+  }).catch(() => {});
+}
+
+window.addEventListener('beforeunload', saveBeforeExit);
+
 // ===================== 提交 =====================
 async function submitExam() {
   if (timerInterval) clearInterval(timerInterval);
@@ -629,6 +650,7 @@ async function resumeExam(recordId) {
 
 function backToStart() {
   if (timerInterval) clearInterval(timerInterval);
+  saveBeforeExit();
   stopAutoSave();
   setRoute('start');
   showPage('start');
@@ -636,6 +658,7 @@ function backToStart() {
 
 function restartExam() {
   if (timerInterval) clearInterval(timerInterval);
+  saveBeforeExit();
   stopAutoSave();
   examData = null;
   questions = [];
