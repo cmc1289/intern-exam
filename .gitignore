@@ -1,12 +1,17 @@
 # 真实配置文件（含密钥），禁止提交
 .env
 
+# 部署密钥（本地私钥，禁止提交）
+deploy_key
+deploy_key.pub
+
 # Python
 __pycache__/
 *.pyc
 venv/
 *.sqlite3
 *.db
+*.bak
 
 # IDE
 .vscode/

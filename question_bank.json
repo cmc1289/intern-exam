@@ -12,6 +12,56 @@
       "简单": 1.0,
       "中等": 1.5,
       "困难": 2.0
+    },
+    "assessment_ratios": {
+      "前端开发": {
+        "HTML/CSS": 27,
+        "JavaScript基础": 36,
+        "框架应用": 16,
+        "浏览器原理": 12,
+        "性能优化": 2,
+        "工程化": 7
+      },
+      "后端开发": {
+        "数据库": 36,
+        "接口设计": 14,
+        "语言基础": 13,
+        "缓存": 9,
+        "系统设计": 16,
+        "安全": 7,
+        "Web框架": 5
+      },
+      "测试": {
+        "测试理论": 52,
+        "测试设计": 13,
+        "自动化测试": 19,
+        "性能测试": 12,
+        "接口测试": 4
+      },
+      "运维": {
+        "Linux": 25,
+        "Docker": 25,
+        "CI/CD": 17,
+        "监控": 12,
+        "网络": 15,
+        "云部署": 6
+      },
+      "算法数据": {
+        "数据结构与算法": 65,
+        "SQL与数据": 21,
+        "数据分析": 12,
+        "编程基础": 2
+      },
+      "Agent岗位": {
+        "Agent基础": 15,
+        "RAG知识增强": 20,
+        "Prompt工程": 15,
+        "Agent架构与框架": 15,
+        "Tool Calling与MCP": 15,
+        "Memory与上下文管理": 5,
+        "Agent安全": 10,
+        "Agent工程实践": 5
+      }
     }
   },
   "specialties": {
@@ -62,7 +112,11 @@
         "<br>"
       ],
       "answer": "<p>",
-      "explanation": "<p>（paragraph）标签用于定义段落。<div>是块级容器，<span>是行内容器，<br>是换行。"
+      "explanation": "<p>（paragraph）标签用于定义段落。<div>是块级容器，<span>是行内容器，<br>是换行。",
+      "assessment_category": "HTML/CSS",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 2002,
@@ -79,7 +133,11 @@
         "float: center"
       ],
       "answer": "margin: 0 auto",
-      "explanation": "对于有宽度的块级元素，margin: 0 auto 是最常用的水平居中方式。text-align: center 用于行内元素。"
+      "explanation": "对于有宽度的块级元素，margin: 0 auto 是最常用的水平居中方式。text-align: center 用于行内元素。",
+      "assessment_category": "HTML/CSS",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 2003,
@@ -96,7 +154,11 @@
         "=== 是 ES6 新增语法，== 是旧版语法"
       ],
       "answer": "=== 严格比较类型，== 会做类型转换",
-      "explanation": "=== 是严格相等，不进行类型转换。== 在比较前会进行类型强制转换，例如 '5' == 5 返回 true，但 '5' === 5 返回 false。"
+      "explanation": "=== 是严格相等，不进行类型转换。== 在比较前会进行类型强制转换，例如 '5' == 5 返回 true，但 '5' === 5 返回 false。",
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 2004,
@@ -113,7 +175,11 @@
         "setTimeout()"
       ],
       "answer": "fetch()",
-      "explanation": "fetch() 是现代浏览器内置的 HTTP 请求 API。还有 XMLHttpRequest 等老旧方式，但 fetch 是目前推荐的做法。"
+      "explanation": "fetch() 是现代浏览器内置的 HTTP 请求 API。还有 XMLHttpRequest 等老旧方式，但 fetch 是目前推荐的做法。",
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 2005,
@@ -130,7 +196,11 @@
         "v-if 只能写在 template 根节点上"
       ],
       "answer": "v-if 增删 DOM 元素，v-show 仅切换显示",
-      "explanation": "v-if 会真正地销毁和重建 DOM 元素，切换开销大；v-show 只是切换 CSS display 属性，初始渲染开销大。频繁切换用 v-show，运行时条件变化少用 v-if。"
+      "explanation": "v-if 会真正地销毁和重建 DOM 元素，切换开销大；v-show 只是切换 CSS display 属性，初始渲染开销大。频繁切换用 v-show，运行时条件变化少用 v-if。",
+      "assessment_category": "框架应用",
+      "skill_dimension": [
+        "工程实践能力"
+      ]
     },
     {
       "id": 2006,
@@ -147,7 +217,11 @@
         "页面引入的外部 CSS 样式表加载"
       ],
       "answer": "不同源的页面间 DOM 访问和网络请求",
-      "explanation": "同源策略是浏览器核心安全机制，限制不同源（协议+域名+端口）之间的 DOM 访问和 AJAX 请求。跨域需要 CORS 或 JSONP 等方案解决。"
+      "explanation": "同源策略是浏览器核心安全机制，限制不同源（协议+域名+端口）之间的 DOM 访问和 AJAX 请求。跨域需要 CORS 或 JSONP 等方案解决。",
+      "assessment_category": "浏览器原理",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 2007,
@@ -168,7 +242,11 @@
         "<section>",
         "<article>"
       ],
-      "explanation": "<header>、<section>、<article> 都是 HTML5 新增的语义化标签。<frame> 是旧 HTML 标签，已废弃。"
+      "explanation": "<header>、<section>、<article> 都是 HTML5 新增的语义化标签。<frame> 是旧 HTML 标签，已废弃。",
+      "assessment_category": "HTML/CSS",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 2008,
@@ -179,7 +257,11 @@
       "weight": 1.0,
       "question": "JavaScript 是一种编译型语言。",
       "answer": "错误",
-      "explanation": "JavaScript 是解释型（或 JIT 编译）的脚本语言，代码由浏览器引擎在运行时解析执行，不需要预先编译。"
+      "explanation": "JavaScript 是解释型（或 JIT 编译）的脚本语言，代码由浏览器引擎在运行时解析执行，不需要预先编译。",
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 2009,
@@ -196,7 +278,11 @@
         "控制所有子元素为统一高度值"
       ],
       "answer": "控制主轴上的子元素水平居中对齐",
-      "explanation": "justify-content 控制主轴（水平方向，默认）上的对齐方式。align-items 控制交叉轴（垂直方向）。"
+      "explanation": "justify-content 控制主轴（水平方向，默认）上的对齐方式。align-items 控制交叉轴（垂直方向）。",
+      "assessment_category": "HTML/CSS",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 2010,
@@ -213,7 +299,11 @@
         "通过 CDN 分发加速静态资源加载"
       ],
       "answer": "将 CSS 全部写入内联 style 属性",
-      "explanation": "内联样式不利于浏览器缓存、代码维护和分离关注点。应该使用外部 CSS 文件并使用缓存策略。"
+      "explanation": "内联样式不利于浏览器缓存、代码维护和分离关注点。应该使用外部 CSS 文件并使用缓存策略。",
+      "assessment_category": "性能优化",
+      "skill_dimension": [
+        "性能优化能力"
+      ]
     },
     {
       "id": 2011,
@@ -224,7 +314,11 @@
       "weight": 2.0,
       "question": "请解释什么是闭包（Closure），并举一个简单例子。（80字以内）",
       "answer": "闭包是函数能访问其外部作用域变量的能力，即使外部函数已执行完毕。例如函数内返回一个函数，返回的函数仍可访问外部函数的变量。常用于数据封装、回调等场景。",
-      "explanation": "评分要点：1) 函数访问外部作用域变量；2) 外部函数执行完毕后仍可访问；3) 提到实际用途（封装/回调）。"
+      "explanation": "评分要点：1) 函数访问外部作用域变量；2) 外部函数执行完毕后仍可访问；3) 提到实际用途（封装/回调）。",
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 2012,
@@ -235,7 +329,11 @@
       "weight": 2.0,
       "question": "请简述浏览器事件循环（Event Loop）的机制。（80字以内）",
       "answer": "JS是单线程的，通过事件循环实现异步。同步任务先执行，异步任务（如setTimeout、网络请求）放入任务队列，主线程空闲时从队列中取出回调执行。微任务优先于宏任务。",
-      "explanation": "评分要点：1) 单线程+异步；2) 任务队列/回调；3) 微任务优先于宏任务。"
+      "explanation": "评分要点：1) 单线程+异步；2) 任务队列/回调；3) 微任务优先于宏任务。",
+      "assessment_category": "浏览器原理",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 3001,
@@ -252,7 +350,11 @@
         "存储大文本数据"
       ],
       "answer": "唯一标识表中的每一行记录",
-      "explanation": "主键用于唯一标识表中的每条记录。外键用于建立表间关系，索引用于加速查询。"
+      "explanation": "主键用于唯一标识表中的每条记录。外键用于建立表间关系，索引用于加速查询。",
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
+      ]
     },
     {
       "id": 3002,
@@ -269,7 +371,11 @@
         "修改已存在数据表的字段结构"
       ],
       "answer": "基于关联条件合并多表数据查询",
-      "explanation": "JOIN 用于关联查询多个表的数据，常见类型有 INNER JOIN、LEFT JOIN、RIGHT JOIN 等。"
+      "explanation": "JOIN 用于关联查询多个表的数据，常见类型有 INNER JOIN、LEFT JOIN、RIGHT JOIN 等。",
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
+      ]
     },
     {
       "id": 3003,
@@ -286,7 +392,11 @@
         "/api/getUser/1"
       ],
       "answer": "/api/users/1",
-      "explanation": "RESTful 风格使用名词表示资源（users），用 HTTP 方法表示操作（GET/POST/PUT/DELETE），用路径参数表示具体资源 ID。"
+      "explanation": "RESTful 风格使用名词表示资源（users），用 HTTP 方法表示操作（GET/POST/PUT/DELETE），用路径参数表示具体资源 ID。",
+      "assessment_category": "接口设计",
+      "skill_dimension": [
+        "后端架构能力"
+      ]
     },
     {
       "id": 3004,
@@ -297,7 +407,11 @@
       "weight": 1.0,
       "question": "数据库事务（Transaction）的 ACID 特性包括原子性、一致性、隔离性和持久性。",
       "answer": "正确",
-      "explanation": "ACID：Atomicity（原子性）、Consistency（一致性）、Isolation（隔离性）、Durability（持久性），是事务的四个基本属性。"
+      "explanation": "ACID：Atomicity（原子性）、Consistency（一致性）、Isolation（隔离性）、Durability（持久性），是事务的四个基本属性。",
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
+      ]
     },
     {
       "id": 3005,
@@ -314,7 +428,11 @@
         "<>"
       ],
       "answer": "{}",
-      "explanation": "Python 中 {} 表示字典（dict），[] 表示列表（list），() 表示元组（tuple）。"
+      "explanation": "Python 中 {} 表示字典（dict），[] 表示列表（list），() 表示元组（tuple）。",
+      "assessment_category": "语言基础",
+      "skill_dimension": [
+        "编码能力"
+      ]
     },
     {
       "id": 3006,
@@ -331,7 +449,11 @@
         "惰性求值的生成器缩写表达式"
       ],
       "answer": "不修改原函数为其增加功能的语法",
-      "explanation": "@ 语法是 Python 的装饰器，用于在不修改原函数的情况下为其添加额外功能。Flask/FastAPI 等框架大量使用装饰器注册路由。"
+      "explanation": "@ 语法是 Python 的装饰器，用于在不修改原函数的情况下为其添加额外功能。Flask/FastAPI 等框架大量使用装饰器注册路由。",
+      "assessment_category": "语言基础",
+      "skill_dimension": [
+        "编码能力"
+      ]
     },
     {
       "id": 3007,
@@ -348,7 +470,11 @@
         "将数据库引擎升级到更安全的版本"
       ],
       "answer": "使用预编译语句分离 SQL 逻辑与数据",
-      "explanation": "参数化查询将 SQL 逻辑和数据分离，从根本上防止恶意输入被当作 SQL 代码执行。这是防御 SQL 注入的最有效手段。"
+      "explanation": "参数化查询将 SQL 逻辑和数据分离，从根本上防止恶意输入被当作 SQL 代码执行。这是防御 SQL 注入的最有效手段。",
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
+      ]
     },
     {
       "id": 3008,
@@ -365,7 +491,11 @@
         "版本控制工具"
       ],
       "answer": "内存缓存和键值存储",
-      "explanation": "Redis 是高性能的内存键值数据库，常用于缓存、消息队列、会话存储、排行榜等场景。"
+      "explanation": "Redis 是高性能的内存键值数据库，常用于缓存、消息队列、会话存储、排行榜等场景。",
+      "assessment_category": "缓存",
+      "skill_dimension": [
+        "数据库设计能力"
+      ]
     },
     {
       "id": 3009,
@@ -382,7 +512,11 @@
         "可以完全省去数据库的使用"
       ],
       "answer": "各服务独立部署扩展，技术栈灵活",
-      "explanation": "微服务将应用拆分为独立的小服务，每个服务可以独立开发、部署和扩展。但也会引入分布式系统的复杂性。"
+      "explanation": "微服务将应用拆分为独立的小服务，每个服务可以独立开发、部署和扩展。但也会引入分布式系统的复杂性。",
+      "assessment_category": "系统设计",
+      "skill_dimension": [
+        "后端架构能力"
+      ]
     },
     {
       "id": 3010,
@@ -399,7 +533,11 @@
         "401 仅限 API 接口使用，403 仅限网页使用"
       ],
       "answer": "401 表示用户身份未认证，403 表示无访问权限",
-      "explanation": "401 Unauthorized 表示用户未登录或认证失败；403 Forbidden 表示用户已登录但没有访问该资源的权限。"
+      "explanation": "401 Unauthorized 表示用户未登录或认证失败；403 Forbidden 表示用户已登录但没有访问该资源的权限。",
+      "assessment_category": "接口设计",
+      "skill_dimension": [
+        "后端架构能力"
+      ]
     },
     {
       "id": 3011,
@@ -410,7 +548,11 @@
       "weight": 1.5,
       "question": "请简述 RESTful API 的核心设计原则。（80字以内）",
       "answer": "1) 资源用URL名词表示；2) 用HTTP方法(GET/POST/PUT/DELETE)表达操作；3) 无状态，每个请求独立；4) 统一接口，返回标准格式如JSON。",
-      "explanation": "评分要点：1) 资源用名词/URL；2) HTTP方法与CRUD对应；3) 无状态原则；4) JSON等标准格式。"
+      "explanation": "评分要点：1) 资源用名词/URL；2) HTTP方法与CRUD对应；3) 无状态原则；4) JSON等标准格式。",
+      "assessment_category": "接口设计",
+      "skill_dimension": [
+        "后端架构能力"
+      ]
     },
     {
       "id": 3012,
@@ -421,7 +563,11 @@
       "weight": 2.0,
       "question": "请解释数据库索引的作用和原理。（80字以内）",
       "answer": "索引类似书的目录，为数据表建立额外的查找结构（如B+树），加速查询但会增加写入开销。应建在经常用于WHERE/JOIN/ORDER BY的列上，避免过多索引。",
-      "explanation": "评分要点：1) 类比目录/加速查询；2) 底层结构如B+树；3) 写入代价和合理使用。"
+      "explanation": "评分要点：1) 类比目录/加速查询；2) 底层结构如B+树；3) 写入代价和合理使用。",
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
+      ]
     },
     {
       "id": 4001,
@@ -438,7 +584,11 @@
         "黑盒仅适用前端测试，白盒仅适用后端"
       ],
       "answer": "黑盒不关注内部实现，白盒基于代码逻辑",
-      "explanation": "黑盒测试只关注输入和输出，不关心内部实现；白盒测试需要了解代码逻辑，设计覆盖分支的测试用例。"
+      "explanation": "黑盒测试只关注输入和输出，不关心内部实现；白盒测试需要了解代码逻辑，设计覆盖分支的测试用例。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 4002,
@@ -455,7 +605,11 @@
         "数据库连接"
       ],
       "answer": "单个函数或模块",
-      "explanation": "单元测试针对代码的最小可测试单元（如函数、方法），验证其行为是否符合预期。"
+      "explanation": "单元测试针对代码的最小可测试单元（如函数、方法），验证其行为是否符合预期。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 4003,
@@ -476,7 +630,11 @@
         "冒烟测试",
         "压力测试"
       ],
-      "explanation": "回归测试验证修改后原有功能不受影响；冒烟测试快速验证基本功能可用；压力测试测试系统在高负载下的表现。'美学测试'不是标准测试类型。"
+      "explanation": "回归测试验证修改后原有功能不受影响；冒烟测试快速验证基本功能可用；压力测试测试系统在高负载下的表现。'美学测试'不是标准测试类型。",
+      "assessment_category": "测试设计",
+      "skill_dimension": [
+        "测试设计能力"
+      ]
     },
     {
       "id": 4004,
@@ -493,7 +651,11 @@
         "Bug 的截图"
       ],
       "answer": "复现步骤、预期结果和实际结果",
-      "explanation": "复现步骤帮助开发人员重现问题，预期结果和实际结果的对比让问题一目了然。这是最核心的信息。"
+      "explanation": "复现步骤帮助开发人员重现问题，预期结果和实际结果的对比让问题一目了然。这是最核心的信息。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 4005,
@@ -504,7 +666,11 @@
       "weight": 1.0,
       "question": "自动化测试可以完全替代手工测试。",
       "answer": "错误",
-      "explanation": "自动化测试适合重复性、回归类测试，但探索性测试、易用性测试、UI 体验等仍需人工判断，两者互补。"
+      "explanation": "自动化测试适合重复性、回归类测试，但探索性测试、易用性测试、UI 体验等仍需人工判断，两者互补。",
+      "assessment_category": "自动化测试",
+      "skill_dimension": [
+        "工程能力"
+      ]
     },
     {
       "id": 4006,
@@ -521,7 +687,11 @@
         "在开发过程中同步编写测试和业务代码"
       ],
       "answer": "先编写测试用例，再实现代码并重构优化",
-      "explanation": "TDD 遵循'红-绿-重构'循环：先写失败的测试（红），然后写最简代码让测试通过（绿），最后重构优化代码。"
+      "explanation": "TDD 遵循'红-绿-重构'循环：先写失败的测试（红），然后写最简代码让测试通过（绿），最后重构优化代码。",
+      "assessment_category": "测试设计",
+      "skill_dimension": [
+        "测试设计能力"
+      ]
     },
     {
       "id": 4007,
@@ -538,7 +708,11 @@
         "检测代码漏洞和攻击面的安全测试"
       ],
       "answer": "模拟浏览器操作的 Web 端自动化测试",
-      "explanation": "Selenium 是最流行的 Web 浏览器自动化框架，用于模拟用户在浏览器上的操作进行自动化测试。"
+      "explanation": "Selenium 是最流行的 Web 浏览器自动化框架，用于模拟用户在浏览器上的操作进行自动化测试。",
+      "assessment_category": "自动化测试",
+      "skill_dimension": [
+        "工程能力"
+      ]
     },
     {
       "id": 4008,
@@ -555,7 +729,11 @@
         "仅使用输入域的最小值进行测试"
       ],
       "answer": "针对输入范围边界设计用例的测试方法",
-      "explanation": "边界值分析关注输入范围的边界（如最小值、最大值、刚好超出范围的值），因为这些位置最容易出现 Bug。"
+      "explanation": "边界值分析关注输入范围的边界（如最小值、最大值、刚好超出范围的值），因为这些位置最容易出现 Bug。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 4009,
@@ -566,7 +744,11 @@
       "weight": 1.5,
       "question": "请简述黑盒测试和白盒测试的区别。（80字以内）",
       "answer": "黑盒测试不关注代码内部实现，只测试输入输出是否符合预期；白盒测试需要了解代码逻辑，设计用例覆盖所有分支和路径。两者互补，分别从用户和开发者角度验证质量。",
-      "explanation": "评分要点：1) 黑盒忽略内部/关注输入输出；2) 白盒基于代码逻辑；3) 两者互补关系。"
+      "explanation": "评分要点：1) 黑盒忽略内部/关注输入输出；2) 白盒基于代码逻辑；3) 两者互补关系。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 4010,
@@ -577,7 +759,11 @@
       "weight": 2.0,
       "question": "请解释什么是回归测试，为什么它很重要？（80字以内）",
       "answer": "回归测试是在代码修改后重新运行已有测试用例，确保原有功能没有因改动而产生新Bug。它对持续集成至关重要，防止修改引入意外问题，保障软件稳定性。",
-      "explanation": "评分要点：1) 修改后重测已有用例；2) 防止引入新Bug；3) 对CI/CD的重要性。"
+      "explanation": "评分要点：1) 修改后重测已有用例；2) 防止引入新Bug；3) 对CI/CD的重要性。",
+      "assessment_category": "测试设计",
+      "skill_dimension": [
+        "测试设计能力"
+      ]
     },
     {
       "id": 5001,
@@ -594,7 +780,11 @@
         "show"
       ],
       "answer": "ls",
-      "explanation": "ls 是 Linux 中最基本的命令之一，用于列出目录中的文件和子目录。"
+      "explanation": "ls 是 Linux 中最基本的命令之一，用于列出目录中的文件和子目录。",
+      "assessment_category": "Linux",
+      "skill_dimension": [
+        "故障排查能力"
+      ]
     },
     {
       "id": 5002,
@@ -611,7 +801,11 @@
         "在同一目录下创建 777 个文件副本"
       ],
       "answer": "赋予所有人读、写、执行的完整权限",
-      "explanation": "chmod 修改文件权限。777 = rwxrwxrwx，即所有者、用户组、其他用户都有读(4)+写(2)+执行(1)权限。"
+      "explanation": "chmod 修改文件权限。777 = rwxrwxrwx，即所有者、用户组、其他用户都有读(4)+写(2)+执行(1)权限。",
+      "assessment_category": "Linux",
+      "skill_dimension": [
+        "故障排查能力"
+      ]
     },
     {
       "id": 5003,
@@ -628,7 +822,11 @@
         "容器是镜像经压缩打包后的归档文件"
       ],
       "answer": "镜像是只读模板，容器是镜像的运行实例",
-      "explanation": "镜像类似于「类」的定义（只读模板），容器是镜像的实例化运行态，可以启动、停止、删除。类似面向对象中的类和对象。"
+      "explanation": "镜像类似于「类」的定义（只读模板），容器是镜像的实例化运行态，可以启动、停止、删除。类似面向对象中的类和对象。",
+      "assessment_category": "Docker",
+      "skill_dimension": [
+        "部署能力"
+      ]
     },
     {
       "id": 5004,
@@ -639,7 +837,11 @@
       "weight": 1.0,
       "question": "CI/CD 中的 CI 代表持续集成（Continuous Integration）。",
       "answer": "正确",
-      "explanation": "CI（Continuous Integration）持续集成，CD 可以是持续交付（Continuous Delivery）或持续部署（Continuous Deployment）。"
+      "explanation": "CI（Continuous Integration）持续集成，CD 可以是持续交付（Continuous Delivery）或持续部署（Continuous Deployment）。",
+      "assessment_category": "CI/CD",
+      "skill_dimension": [
+        "部署能力"
+      ]
     },
     {
       "id": 5005,
@@ -656,7 +858,11 @@
         "等待一段时间观察负载是否自动下降"
       ],
       "answer": "使用监控工具定位高 CPU 进程并分析原因",
-      "explanation": "不要盲目重启。应先用监控工具定位问题进程，分析是代码死循环、内存不足导致频繁GC、还是正常高负载，再对症处理。"
+      "explanation": "不要盲目重启。应先用监控工具定位问题进程，分析是代码死循环、内存不足导致频繁GC、还是正常高负载，再对症处理。",
+      "assessment_category": "监控",
+      "skill_dimension": [
+        "稳定性意识"
+      ]
     },
     {
       "id": 5006,
@@ -673,7 +879,11 @@
         "替代关系型数据库完成数据存储"
       ],
       "answer": "作为反向代理转发请求并实现负载均衡",
-      "explanation": "反向代理隐藏了后端服务器细节，Nginx 可以分发请求到多台服务器（负载均衡）、缓存静态内容、处理 SSL 等。"
+      "explanation": "反向代理隐藏了后端服务器细节，Nginx 可以分发请求到多台服务器（负载均衡）、缓存静态内容、处理 SSL 等。",
+      "assessment_category": "网络",
+      "skill_dimension": [
+        "故障排查能力"
+      ]
     },
     {
       "id": 5007,
@@ -690,7 +900,11 @@
         "创建目录"
       ],
       "answer": "文本搜索",
-      "explanation": "grep 是强大的文本搜索工具，使用正则表达式在文件中搜索匹配的行。例如 grep 'error' log.txt。"
+      "explanation": "grep 是强大的文本搜索工具，使用正则表达式在文件中搜索匹配的行。例如 grep 'error' log.txt。",
+      "assessment_category": "Linux",
+      "skill_dimension": [
+        "故障排查能力"
+      ]
     },
     {
       "id": 5008,
@@ -711,7 +925,11 @@
         "健康检查",
         "蓝绿部署"
       ],
-      "explanation": "灰度发布逐步放量降低风险；健康检查+自动回滚确保异常时自动恢复；蓝绿部署通过切换流量实现零停机。直接线上改代码是最危险的做法。"
+      "explanation": "灰度发布逐步放量降低风险；健康检查+自动回滚确保异常时自动恢复；蓝绿部署通过切换流量实现零停机。直接线上改代码是最危险的做法。",
+      "assessment_category": "云部署",
+      "skill_dimension": [
+        "部署能力"
+      ]
     },
     {
       "id": 5009,
@@ -722,7 +940,11 @@
       "weight": 1.5,
       "question": "请简述 Docker 和传统虚拟机的区别。（80字以内）",
       "answer": "Docker共享宿主机内核，启动快、资源占用小；虚拟机需完整Guest OS，隔离性更强但资源开销大。Docker更适合微服务和快速部署场景，VM适合强隔离需求。",
-      "explanation": "评分要点：1) Docker共享内核/VM独立OS；2) Docker启动快/资源少；3) 各自适用场景。"
+      "explanation": "评分要点：1) Docker共享内核/VM独立OS；2) Docker启动快/资源少；3) 各自适用场景。",
+      "assessment_category": "Docker",
+      "skill_dimension": [
+        "部署能力"
+      ]
     },
     {
       "id": 5010,
@@ -733,7 +955,11 @@
       "weight": 2.0,
       "question": "什么是负载均衡？请列举两种常见的负载均衡策略。（80字以内）",
       "answer": "负载均衡将请求分发到多台服务器，避免单点过载。常见策略：轮询（依次分配）、加权轮询（按服务器能力分配）、最少连接（优先给连接数最少的服务器）、IP哈希（同一IP固定到同一服务器）。",
-      "explanation": "评分要点：1) 请求分发的概念；2) 能说出至少两种策略并解释；3) 提到避免单点故障/过载。"
+      "explanation": "评分要点：1) 请求分发的概念；2) 能说出至少两种策略并解释；3) 提到避免单点故障/过载。",
+      "assessment_category": "云部署",
+      "skill_dimension": [
+        "部署能力"
+      ]
     },
     {
       "id": 6001,
@@ -750,7 +976,11 @@
         "计数排序在所有情况下的复杂度 O(n²)"
       ],
       "answer": "快速排序在最坏情况下退化为 O(n²)",
-      "explanation": "快速排序在每次选到最大或最小值作为 pivot 时退化为 O(n²)。归并排序和堆排序始终为 O(n log n)。"
+      "explanation": "快速排序在每次选到最大或最小值作为 pivot 时退化为 O(n²)。归并排序和堆排序始终为 O(n log n)。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 6002,
@@ -767,7 +997,11 @@
         "创建 users 表的副本"
       ],
       "answer": "统计 users 表中的行数",
-      "explanation": "COUNT(*) 是聚合函数，用于统计结果集中的行数。"
+      "explanation": "COUNT(*) 是聚合函数，用于统计结果集中的行数。",
+      "assessment_category": "SQL与数据",
+      "skill_dimension": [
+        "SQL与数据处理能力"
+      ]
     },
     {
       "id": 6003,
@@ -784,7 +1018,11 @@
         "限制 SELECT 语句返回的总行数"
       ],
       "answer": "按指定列分组后配合聚合函数统计",
-      "explanation": "GROUP BY 将相同值的行归为一组。HAVING 过滤分组后数据，ORDER BY 排序，LIMIT 限制行数。"
+      "explanation": "GROUP BY 将相同值的行归为一组。HAVING 过滤分组后数据，ORDER BY 排序，LIMIT 限制行数。",
+      "assessment_category": "SQL与数据",
+      "skill_dimension": [
+        "SQL与数据处理能力"
+      ]
     },
     {
       "id": 6004,
@@ -801,7 +1039,11 @@
         "哈希表"
       ],
       "answer": "队列",
-      "explanation": "BFS 逐层遍历，使用队列 FIFO 的特性保证按层访问。DFS（深度优先搜索）使用栈或递归。"
+      "explanation": "BFS 逐层遍历，使用队列 FIFO 的特性保证按层访问。DFS（深度优先搜索）使用栈或递归。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 6005,
@@ -812,7 +1054,11 @@
       "weight": 1.0,
       "question": "数据清洗（Data Cleaning）是数据分析中可有可无的步骤。",
       "answer": "错误",
-      "explanation": "数据清洗是数据分析的关键步骤。原始数据通常存在缺失值、异常值、重复值等问题，不清理会导致分析结果偏差。"
+      "explanation": "数据清洗是数据分析的关键步骤。原始数据通常存在缺失值、异常值、重复值等问题，不清理会导致分析结果偏差。",
+      "assessment_category": "数据分析",
+      "skill_dimension": [
+        "数据分析能力"
+      ]
     },
     {
       "id": 6006,
@@ -829,7 +1075,11 @@
         "每一步都选择当前看起来最优的方案"
       ],
       "answer": "拆分子问题并缓存结果以避免重复计算",
-      "explanation": "动态规划通过记忆化（存储子问题的解）来解决重叠子问题，核心是「最优子结构」和「重叠子问题」。"
+      "explanation": "动态规划通过记忆化（存储子问题的解）来解决重叠子问题，核心是「最优子结构」和「重叠子问题」。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 6007,
@@ -850,7 +1100,11 @@
         "numpy",
         "matplotlib"
       ],
-      "explanation": "pandas 数据处理、numpy 科学计算、matplotlib 数据可视化。vue 是前端框架，与数据分析无关。"
+      "explanation": "pandas 数据处理、numpy 科学计算、matplotlib 数据可视化。vue 是前端框架，与数据分析无关。",
+      "assessment_category": "编程基础",
+      "skill_dimension": [
+        "编程基础能力"
+      ]
     },
     {
       "id": 6008,
@@ -867,7 +1121,11 @@
         "删除最早添加的缓存项"
       ],
       "answer": "淘汰最久未被使用的缓存项",
-      "explanation": "LRU（Least Recently Used）认为最近使用过的数据将来被使用的概率更高，淘汰最久未访问的数据。常见于缓存设计。"
+      "explanation": "LRU（Least Recently Used）认为最近使用过的数据将来被使用的概率更高，淘汰最久未访问的数据。常见于缓存设计。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 6009,
@@ -878,7 +1136,11 @@
       "weight": 1.5,
       "question": "请解释 DFS 和 BFS 的区别，并各举一个应用场景。（80字以内）",
       "answer": "DFS深度优先，用栈/递归，适合路径搜索、拓扑排序；BFS广度优先，用队列，适合最短路径、层级遍历。DFS内存省但可能深度过大，BFS能找到最短路径但空间开销大。",
-      "explanation": "评分要点：1) DFS栈/BFS队列；2) 各举一个应用场景；3) 空间/性能对比。"
+      "explanation": "评分要点：1) DFS栈/BFS队列；2) 各举一个应用场景；3) 空间/性能对比。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 6010,
@@ -889,7 +1151,11 @@
       "weight": 2.0,
       "question": "请解释什么是数据库索引，为什么索引能加速查询？（80字以内）",
       "answer": "索引是为数据表建立的额外数据结构（通常是B+树），类似书的目录。查询时先查索引快速定位数据位置，避免全表扫描。但索引会占用空间且降低写入速度，应合理建索引。",
-      "explanation": "评分要点：1) 额外数据结构/B+树；2) 避免全表扫描；3) 空间和写入代价。"
+      "explanation": "评分要点：1) 额外数据结构/B+树；2) 避免全表扫描；3) 空间和写入代价。",
+      "assessment_category": "SQL与数据",
+      "skill_dimension": [
+        "SQL与数据处理能力"
+      ]
     },
     {
       "id": 7001,
@@ -906,7 +1172,11 @@
         "Agent 与普通调用只是产品名称不同"
       ],
       "answer": "Agent 能自主规划、调用工具并多步执行",
-      "explanation": "普通 LLM 调用是单轮问答，Agent 可以自主规划、调用工具、观察结果、迭代执行，形成一个完整的感知-决策-执行循环。"
+      "explanation": "普通 LLM 调用是单轮问答，Agent 可以自主规划、调用工具、观察结果、迭代执行，形成一个完整的感知-决策-执行循环。",
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
+      ]
     },
     {
       "id": 7002,
@@ -929,7 +1199,11 @@
         "工具模块",
         "推理引擎"
       ],
-      "explanation": "Agent 通常由 LLM（大脑）、规划模块（任务分解）、记忆模块（上下文管理）、工具调用（执行能力）四部分组成。"
+      "explanation": "Agent 通常由 LLM（大脑）、规划模块（任务分解）、记忆模块（上下文管理）、工具调用（执行能力）四部分组成。",
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
+      ]
     },
     {
       "id": 7003,
@@ -946,7 +1220,11 @@
         "Re-Activation，模型的二次激活"
       ],
       "answer": "Reasoning + Acting，推理与行动交替",
-      "explanation": "ReAct = Reasoning + Acting。Agent 先思考（推理）下一步该做什么，然后执行（行动），观察结果后再继续推理，形成循环。这是区别于普通 LLM 的关键。"
+      "explanation": "ReAct = Reasoning + Acting。Agent 先思考（推理）下一步该做什么，然后执行（行动），观察结果后再继续推理，形成循环。这是区别于普通 LLM 的关键。",
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
+      ]
     },
     {
       "id": 7010,
@@ -963,7 +1241,12 @@
         "扩展模型支持更多自然语言的种类"
       ],
       "answer": "通过外部知识检索弥补知识时效和幻觉",
-      "explanation": "RAG 在生成回答前先检索相关文档，将检索结果作为上下文提供给 LLM，有效缓解知识过时和幻觉问题。"
+      "explanation": "RAG 在生成回答前先检索相关文档，将检索结果作为上下文提供给 LLM，有效缓解知识过时和幻觉问题。",
+      "assessment_category": "RAG知识增强",
+      "skill_dimension": [
+        "知识增强理解能力",
+        "AI应用设计能力"
+      ]
     },
     {
       "id": 7011,
@@ -980,7 +1263,11 @@
         "预训练阶段记忆和推理阶段动态记忆"
       ],
       "answer": "短期上下文记忆和长期外部持久化记忆",
-      "explanation": "短期记忆是当前会话的上下文窗口，长期记忆借助向量数据库等持久化历史信息，使 Agent 具备跨会话的连续性。"
+      "explanation": "短期记忆是当前会话的上下文窗口，长期记忆借助向量数据库等持久化历史信息，使 Agent 具备跨会话的连续性。",
+      "assessment_category": "Memory与上下文管理",
+      "skill_dimension": [
+        "Agent设计能力"
+      ]
     },
     {
       "id": 7012,
@@ -997,7 +1284,12 @@
         "FC 能力的实现必须依赖 MCP 协议层"
       ],
       "answer": "FC 是模型调用工具的能力，MCP 是工具接入协议",
-      "explanation": "Function Calling 是模型层面的能力（模型输出结构化参数），MCP 是工具层面的协议（统一工具的发现、调用、权限管理）。两者是互补关系，不是替代关系。"
+      "explanation": "Function Calling 是模型层面的能力（模型输出结构化参数），MCP 是工具层面的协议（统一工具的发现、调用、权限管理）。两者是互补关系，不是替代关系。",
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
+      ]
     },
     {
       "id": 7013,
@@ -1014,7 +1306,12 @@
         "仅依赖一种数据源进行检索的问答系统"
       ],
       "answer": "同时需代码生成、审查和测试的复杂工程",
-      "explanation": "Multi-Agent 适合任务可明确拆分为不同专业领域、需要多角色协作的场景。简单任务用 Single-Agent 更高效，过度设计反而增加复杂度。"
+      "explanation": "Multi-Agent 适合任务可明确拆分为不同专业领域、需要多角色协作的场景。简单任务用 Single-Agent 更高效，过度设计反而增加复杂度。",
+      "assessment_category": "Agent架构与框架",
+      "skill_dimension": [
+        "Agent架构能力",
+        "工程实践能力"
+      ]
     },
     {
       "id": 7014,
@@ -1025,7 +1322,12 @@
       "weight": 1.5,
       "question": "CoT（Chain of Thought）通过在 Prompt 中加入「让我们一步步思考」来引导模型逐步推理，通常能提高复杂问题的回答准确率。",
       "answer": "正确",
-      "explanation": "CoT 通过引导模型展示中间推理步骤，显著提升数学推理、逻辑分析等复杂任务的准确性，但会增加输出 token 消耗和延迟。"
+      "explanation": "CoT 通过引导模型展示中间推理步骤，显著提升数学推理、逻辑分析等复杂任务的准确性，但会增加输出 token 消耗和延迟。",
+      "assessment_category": "Prompt工程",
+      "skill_dimension": [
+        "模型交互能力",
+        "AI应用设计能力"
+      ]
     },
     {
       "id": 7015,
@@ -1048,7 +1350,12 @@
         "重排序",
         "混合检索"
       ],
-      "explanation": "RAG 检索优化包括：Query Rewrite 优化用户输入、多路召回结合向量和关键词、Re-ranking 精排结果、混合检索提升召回率。直接塞整个文档会超出上下文限制。"
+      "explanation": "RAG 检索优化包括：Query Rewrite 优化用户输入、多路召回结合向量和关键词、Re-ranking 精排结果、混合检索提升召回率。直接塞整个文档会超出上下文限制。",
+      "assessment_category": "RAG知识增强",
+      "skill_dimension": [
+        "知识增强理解能力",
+        "AI应用设计能力"
+      ]
     },
     {
       "id": 8002,
@@ -1065,7 +1372,11 @@
         "内嵌注释的书写格式与团队规范不一致"
       ],
       "answer": "将认证凭据等敏感信息硬编码在源码中",
-      "explanation": "将密码等敏感信息硬编码在代码中是常见安全隐患。应使用环境变量或配置中心管理，且不应提交到版本控制。"
+      "explanation": "将密码等敏感信息硬编码在代码中是常见安全隐患。应使用环境变量或配置中心管理，且不应提交到版本控制。",
+      "assessment_category": "代码安全",
+      "skill_dimension": [
+        "安全意识"
+      ]
     },
     {
       "id": 8003,
@@ -1086,7 +1397,11 @@
         "冒充公司客服诱导目标泄露敏感信息",
         "搭建伪造公共热点窃取连接者数据"
       ],
-      "explanation": "社会工程学利用人的心理弱点而非技术漏洞。SQL 注入是纯技术攻击手段，不属于社会工程学范畴。"
+      "explanation": "社会工程学利用人的心理弱点而非技术漏洞。SQL 注入是纯技术攻击手段，不属于社会工程学范畴。",
+      "assessment_category": "社会工程学",
+      "skill_dimension": [
+        "安全意识"
+      ]
     },
     {
       "id": 8018,
@@ -1103,7 +1418,11 @@
         "allSettled 只处理同步，all 专用于异步"
       ],
       "answer": "allSettled 等全部完成返回状态数组，all 遇失败即中断",
-      "explanation": "Promise.all 遇任意一个 reject 立即返回失败；Promise.allSettled 等待所有 Promise 结束（无论成功或失败），返回包含每个状态的数组。"
+      "explanation": "Promise.all 遇任意一个 reject 立即返回失败；Promise.allSettled 等待所有 Promise 结束（无论成功或失败），返回包含每个状态的数组。",
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 8019,
@@ -1114,7 +1433,11 @@
       "weight": 1.5,
       "question": "JavaScript 中 const 声明的对象内容不可修改",
       "answer": "错误",
-      "explanation": "const 保证的是变量的引用不可变，即不能重新赋值。但对象的属性是可以修改的。要完全冻结对象需使用 Object.freeze()。"
+      "explanation": "const 保证的是变量的引用不可变，即不能重新赋值。但对象的属性是可以修改的。要完全冻结对象需使用 Object.freeze()。",
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 8020,
@@ -1131,7 +1454,11 @@
         "将内联样式自动转换为外部样式表"
       ],
       "answer": "解决外边距折叠和清除浮动元素的包裹",
-      "explanation": "BFC 是一个独立的渲染区域，内部元素的布局不会影响外部。它可以解决 margin 折叠、浮动父元素高度塌陷、阻止元素被浮动覆盖等布局问题。"
+      "explanation": "BFC 是一个独立的渲染区域，内部元素的布局不会影响外部。它可以解决 margin 折叠、浮动父元素高度塌陷、阻止元素被浮动覆盖等布局问题。",
+      "assessment_category": "HTML/CSS",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 8021,
@@ -1148,7 +1475,11 @@
         "为每个组件提供独立的全局状态存储空间"
       ],
       "answer": "避免不必要的计算和函数重建，优化渲染性能",
-      "explanation": "useMemo 缓存计算结果，useCallback 缓存函数引用。两者都通过依赖数组控制何时重新计算，避免子组件因父组件的重渲染而不必要地重新渲染。"
+      "explanation": "useMemo 缓存计算结果，useCallback 缓存函数引用。两者都通过依赖数组控制何时重新计算，避免子组件因父组件的重渲染而不必要地重新渲染。",
+      "assessment_category": "框架应用",
+      "skill_dimension": [
+        "工程实践能力"
+      ]
     },
     {
       "id": 8022,
@@ -1171,7 +1502,11 @@
         "useRef 创建跨渲染持久化的可变引用",
         "useContext 消费全局 Context 中的共享数据"
       ],
-      "explanation": "Hooks 必须在组件顶层调用，不能在条件语句、循环或嵌套函数内使用。这是 React Hooks 规则之一，违反会导致渲染不一致。"
+      "explanation": "Hooks 必须在组件顶层调用，不能在条件语句、循环或嵌套函数内使用。这是 React Hooks 规则之一，违反会导致渲染不一致。",
+      "assessment_category": "框架应用",
+      "skill_dimension": [
+        "工程实践能力"
+      ]
     },
     {
       "id": 8023,
@@ -1188,7 +1523,11 @@
         "两者的查询性能差异主要体现在范围查询场景，在等值查询下性能表现基本持平"
       ],
       "answer": "聚簇索引的叶子节点直接存储整行数据记录",
-      "explanation": "聚簇索引的叶子节点包含完整的行数据（数据即索引），因此每张表只能有一个聚簇索引。非聚簇索引叶子节点存储的是主键值，查询时需要回表。"
+      "explanation": "聚簇索引的叶子节点包含完整的行数据（数据即索引），因此每张表只能有一个聚簇索引。非聚簇索引叶子节点存储的是主键值，查询时需要回表。",
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
+      ]
     },
     {
       "id": 8024,
@@ -1205,7 +1544,11 @@
         "在事务启动时通过 Snapshot 机制复制整张表来为每个事务生成独立的数据快照副本"
       ],
       "answer": "通过 Undo Log 构建版本链并结合 ReadView 做可见性判断",
-      "explanation": "MVCC 依赖 Undo Log 中的历史版本链和 ReadView（记录活跃事务列表）来判断某行数据的哪个版本对当前事务可见，从而实现非锁定的一致性读。"
+      "explanation": "MVCC 依赖 Undo Log 中的历史版本链和 ReadView（记录活跃事务列表）来判断某行数据的哪个版本对当前事务可见，从而实现非锁定的一致性读。",
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
+      ]
     },
     {
       "id": 8025,
@@ -1222,7 +1565,11 @@
         "在 MySQL InnoDB 中通过间隙锁一定程度缓解了幻读"
       ],
       "answer": "解决因其他事务插入数据导致的幻读",
-      "explanation": "「可重复读」的核心是保证同一事务内多次读取结果一致（快照读），解决了脏读和不可重复读。但幻读涉及其他事务 INSERT 了新行，可重复读的 MVCC 快照无法感知新插入的数据，因此标准 SQL 定义下不能解决幻读。MySQL InnoDB 的 Next-Key Lock 对此做了额外补偿。"
+      "explanation": "「可重复读」的核心是保证同一事务内多次读取结果一致（快照读），解决了脏读和不可重复读。但幻读涉及其他事务 INSERT 了新行，可重复读的 MVCC 快照无法感知新插入的数据，因此标准 SQL 定义下不能解决幻读。MySQL InnoDB 的 Next-Key Lock 对此做了额外补偿。",
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
+      ]
     },
     {
       "id": 8026,
@@ -1239,7 +1586,11 @@
         "主从节点之间的数据同步延迟过长"
       ],
       "answer": "大量缓存 key 在同一时刻集中过期失效",
-      "explanation": "「热点 key 承受高并发」是缓存击穿（单个热点失效），不是雪崩（大量 key 同时过期）。「key 不存在」是缓存穿透。「主从延迟」影响数据一致性而非雪崩。"
+      "explanation": "「热点 key 承受高并发」是缓存击穿（单个热点失效），不是雪崩（大量 key 同时过期）。「key 不存在」是缓存穿透。「主从延迟」影响数据一致性而非雪崩。",
+      "assessment_category": "缓存",
+      "skill_dimension": [
+        "数据库设计能力"
+      ]
     },
     {
       "id": 8027,
@@ -1256,7 +1607,11 @@
         "AOF 自动执行后台压缩完全不需要人为干预"
       ],
       "answer": "AOF 通过追加写命令实现秒级的数据持久化保障",
-      "explanation": "AOF 文件体积更大（记录每次写命令）、恢复速度更慢（需重放命令），正确优势是数据丢失少（秒级）。错误选项恰好把 AOF 和 RDB 的特点说反了。"
+      "explanation": "AOF 文件体积更大（记录每次写命令）、恢复速度更慢（需重放命令），正确优势是数据丢失少（秒级）。错误选项恰好把 AOF 和 RDB 的特点说反了。",
+      "assessment_category": "缓存",
+      "skill_dimension": [
+        "数据库设计能力"
+      ]
     },
     {
       "id": 8028,
@@ -1277,7 +1632,11 @@
         "使用布隆过滤器在查询前预先判断 key 是否存在",
         "在网关层对非法请求参数进行基础校验和过滤"
       ],
-      "explanation": "缓存穿透是查询不存在的数据导致请求穿透缓存直达数据库。缓存空值、布隆过滤器、参数校验都是常见应对手段。设置相同过期时间会加剧雪崩风险。"
+      "explanation": "缓存穿透是查询不存在的数据导致请求穿透缓存直达数据库。缓存空值、布隆过滤器、参数校验都是常见应对手段。设置相同过期时间会加剧雪崩风险。",
+      "assessment_category": "缓存",
+      "skill_dimension": [
+        "数据库设计能力"
+      ]
     },
     {
       "id": 8029,
@@ -1294,7 +1653,11 @@
         "网络分区只影响 A 不影响 C 的实现"
       ],
       "answer": "网络分区期间系统必须在强一致性与可用性之间二选一",
-      "explanation": "「所有分布式系统可同时满足 C 和 A」是错误的——CAP 就是在网络分区时逼迫二选一。「网络优化可全部实现」违背定理本质。「只影响 A」忽略了 CP 系统选 C 时牺牲 A 的事实。"
+      "explanation": "「所有分布式系统可同时满足 C 和 A」是错误的——CAP 就是在网络分区时逼迫二选一。「网络优化可全部实现」违背定理本质。「只影响 A」忽略了 CP 系统选 C 时牺牲 A 的事实。",
+      "assessment_category": "系统设计",
+      "skill_dimension": [
+        "后端架构能力"
+      ]
     },
     {
       "id": 8030,
@@ -1311,7 +1674,11 @@
         "异步处理"
       ],
       "answer": "取代数据库",
-      "explanation": "「取代数据库」不是消息队列的设计目标。MQ 定位是异步通信中间件，不提供 SQL 查询、事务 ACID、复杂关联等数据库核心能力。其真正的核心作用是：异步解耦生产者与消费者、削峰填谷缓冲流量、保证消息顺序投递。"
+      "explanation": "「取代数据库」不是消息队列的设计目标。MQ 定位是异步通信中间件，不提供 SQL 查询、事务 ACID、复杂关联等数据库核心能力。其真正的核心作用是：异步解耦生产者与消费者、削峰填谷缓冲流量、保证消息顺序投递。",
+      "assessment_category": "系统设计",
+      "skill_dimension": [
+        "后端架构能力"
+      ]
     },
     {
       "id": 8031,
@@ -1328,7 +1695,11 @@
         "基于运行环境的性能测试方法"
       ],
       "answer": "基于输入域划分的黑盒测试方法",
-      "explanation": "等价类划分将输入域划分为若干等价类，从每个类中选取代表值进行测试，不关心代码内部实现，属于经典的黑盒测试用例设计方法。"
+      "explanation": "等价类划分将输入域划分为若干等价类，从每个类中选取代表值进行测试，不关心代码内部实现，属于经典的黑盒测试用例设计方法。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 8032,
@@ -1345,7 +1716,11 @@
         "测试 8、12、16 个字符的用户名"
       ],
       "answer": "测试 5、6、20、21 个字符的用户名",
-      "explanation": "边界值法的精髓在边界相邻：5(n-1)、6(n)、20(m)、21(m+1)。「1和100」离边界太远，「0/10/30」未触及边界，「8/12/16」全在有效范围内无法验证边界逻辑。"
+      "explanation": "边界值法的精髓在边界相邻：5(n-1)、6(n)、20(m)、21(m+1)。「1和100」离边界太远，「0/10/30」未触及边界，「8/12/16」全在有效范围内无法验证边界逻辑。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 8033,
@@ -1356,7 +1731,11 @@
       "weight": 1.0,
       "question": "自动化测试可以完全替代手工测试",
       "answer": "错误",
-      "explanation": "自动化适合重复性、回归性的测试用例，但探索性测试、可用性测试、一次性场景等仍需要人工判断。两者互补而非替代关系。"
+      "explanation": "自动化适合重复性、回归性的测试用例，但探索性测试、可用性测试、一次性场景等仍需要人工判断。两者互补而非替代关系。",
+      "assessment_category": "自动化测试",
+      "skill_dimension": [
+        "工程能力"
+      ]
     },
     {
       "id": 8034,
@@ -1373,7 +1752,11 @@
         "压力测试仅适用于数据库系统而负载测试适用范围更广"
       ],
       "answer": "压力测试寻找系统崩溃的极限，负载测试验证预期性能",
-      "explanation": "负载测试验证系统在预期负载下的性能表现；压力测试持续增加负载直到系统崩溃，目的是找到系统的承载上限和恢复能力。"
+      "explanation": "负载测试验证系统在预期负载下的性能表现；压力测试持续增加负载直到系统崩溃，目的是找到系统的承载上限和恢复能力。",
+      "assessment_category": "性能测试",
+      "skill_dimension": [
+        "工程能力"
+      ]
     },
     {
       "id": 8035,
@@ -1390,7 +1773,11 @@
         "在发现缺陷后立即自行修改代码并提交补丁"
       ],
       "answer": "提供清晰的复现步骤使开发能够准确定位问题",
-      "explanation": "一个缺陷如果无法被开发复现，就等于无法修复。清晰的复现步骤（环境、操作路径、预期/实际结果）是提升缺陷修复效率的关键。"
+      "explanation": "一个缺陷如果无法被开发复现，就等于无法修复。清晰的复现步骤（环境、操作路径、预期/实际结果）是提升缺陷修复效率的关键。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 8036,
@@ -1407,7 +1794,11 @@
         "消除了所有容器之间的安全性风险"
       ],
       "answer": "复用公共层减少磁盘占用和构建时的网络传输",
-      "explanation": "Docker 镜像由多个只读层叠加组成。相同的基础层可以被多个镜像共享，执行 docker pull 时只下载本地缺失的层，节省磁盘空间和网络带宽。"
+      "explanation": "Docker 镜像由多个只读层叠加组成。相同的基础层可以被多个镜像共享，执行 docker pull 时只下载本地缺失的层，节省磁盘空间和网络带宽。",
+      "assessment_category": "Docker",
+      "skill_dimension": [
+        "部署能力"
+      ]
     },
     {
       "id": 8037,
@@ -1424,7 +1815,11 @@
         "在所有环境部署完成后才运行全部测试"
       ],
       "answer": "团队成员频繁将代码合并到主干并自动构建测试",
-      "explanation": "CI 核心理念是开发人员频繁（至少每天一次）将代码提交到共享主干，每次提交触发自动构建和测试，尽早发现集成问题。"
+      "explanation": "CI 核心理念是开发人员频繁（至少每天一次）将代码提交到共享主干，每次提交触发自动构建和测试，尽早发现集成问题。",
+      "assessment_category": "CI/CD",
+      "skill_dimension": [
+        "部署能力"
+      ]
     },
     {
       "id": 8038,
@@ -1441,7 +1836,11 @@
         "键值对缓存，所有指标以 Key-Value 存储"
       ],
       "answer": "时序数据，由指标名和键值对标签唯一标识",
-      "explanation": "Prometheus 不是关系型数据库（无 SQL/表结构），也不是树形存储（如 Zabbix）或简单 KV 缓存。其 TSDB 引擎按时间戳+标签维度组织，专为监控场景的拉取模型设计。"
+      "explanation": "Prometheus 不是关系型数据库（无 SQL/表结构），也不是树形存储（如 Zabbix）或简单 KV 缓存。其 TSDB 引擎按时间戳+标签维度组织，专为监控场景的拉取模型设计。",
+      "assessment_category": "监控",
+      "skill_dimension": [
+        "稳定性意识"
+      ]
     },
     {
       "id": 8039,
@@ -1458,7 +1857,11 @@
         "网络入口、出口、总流量在过去数分钟内的均值"
       ],
       "answer": "过去 1 分钟、5 分钟、15 分钟的平均活跃进程数",
-      "explanation": "load average 不是 CPU/内存/磁盘各自百分比（那是 vmstat/iostat 的活），不是系统启动以来的均值（那无意义），也不是网络流量。它统计的是 R 态+D 态的进程数。"
+      "explanation": "load average 不是 CPU/内存/磁盘各自百分比（那是 vmstat/iostat 的活），不是系统启动以来的均值（那无意义），也不是网络流量。它统计的是 R 态+D 态的进程数。",
+      "assessment_category": "Linux",
+      "skill_dimension": [
+        "故障排查能力"
+      ]
     },
     {
       "id": 8040,
@@ -1469,7 +1872,11 @@
       "weight": 1.0,
       "question": "Kubernetes Service 的 ClusterIP 模式默认只在集群内部可访问",
       "answer": "正确",
-      "explanation": "ClusterIP 是 Service 的默认类型，仅为集群内部提供虚拟 IP 服务。需对外暴露时，应使用 NodePort 或 LoadBalancer 类型，或配置 Ingress。"
+      "explanation": "ClusterIP 是 Service 的默认类型，仅为集群内部提供虚拟 IP 服务。需对外暴露时，应使用 NodePort 或 LoadBalancer 类型，或配置 Ingress。",
+      "assessment_category": "网络",
+      "skill_dimension": [
+        "故障排查能力"
+      ]
     },
     {
       "id": 8041,
@@ -1486,7 +1893,11 @@
         "kubelet 自动从其他节点复制镜像到本地"
       ],
       "answer": "Pod 停留在当前节点并持续重试拉取镜像",
-      "explanation": "Pod 一旦被调度（bound）到某节点就由 kubelet 接管。调度器不会再干预。kubelet 会按 imagePullPolicy 重试拉取，Pod 状态会一直显示 ImagePullBackOff 直到成功或人为删除重建。"
+      "explanation": "Pod 一旦被调度（bound）到某节点就由 kubelet 接管。调度器不会再干预。kubelet 会按 imagePullPolicy 重试拉取，Pod 状态会一直显示 ImagePullBackOff 直到成功或人为删除重建。",
+      "assessment_category": "Docker",
+      "skill_dimension": [
+        "部署能力"
+      ]
     },
     {
       "id": 8042,
@@ -1503,7 +1914,11 @@
         "对原始数据预排序后用二分法定位元素"
       ],
       "answer": "通过多层索引以概率方式将查找复杂度降至 O(log n)",
-      "explanation": "跳表在原始有序链表之上随机构建多层稀疏索引，从最上层开始查找，逐层下降，平均时间复杂度 O(log n)。Redis 的 ZSet 就使用了跳表。"
+      "explanation": "跳表在原始有序链表之上随机构建多层稀疏索引，从最上层开始查找，逐层下降，平均时间复杂度 O(log n)。Redis 的 ZSet 就使用了跳表。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 8043,
@@ -1520,7 +1935,11 @@
         "贪心只能处理线性结构而 DP 适用于非线性"
       ],
       "answer": "贪心每步选局部最优且不回溯，DP 通过全局状态转移求解",
-      "explanation": "「DP 时间复杂度总是更低」是常见误解——贪心通常 O(n log n) 或 O(n)，DP 常为 O(n²) 或更高。贪心不适用的场景才需要 DP。「贪心只能处理线性」也无依据。"
+      "explanation": "「DP 时间复杂度总是更低」是常见误解——贪心通常 O(n log n) 或 O(n)，DP 常为 O(n²) 或更高。贪心不适用的场景才需要 DP。「贪心只能处理线性」也无依据。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 8044,
@@ -1537,7 +1956,11 @@
         "所有哈希冲突解决办法的最坏时间复杂度都是 O(1)"
       ],
       "answer": "链地址法在极端负载因子下会退化为链表遍历",
-      "explanation": "「开放地址法保证常数时间」在低负载时成立，但高负载下探测次数激增，最坏仍是 O(n)。「再哈希法两步定位」没有理论保证。「所有方法都是 O(1)」明显错误。"
+      "explanation": "「开放地址法保证常数时间」在低负载时成立，但高负载下探测次数激增，最坏仍是 O(n)。「再哈希法两步定位」没有理论保证。「所有方法都是 O(1)」明显错误。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 8045,
@@ -1554,7 +1977,11 @@
         "唯一索引中所有列必须按相同顺序查询"
       ],
       "answer": "联合索引中查询条件必须从索引的最左列开始使用",
-      "explanation": "哈希索引不支持范围查询，全文索引用于文本搜索，唯一索引确保值不重复——三者和最左前缀匹配原则均无关。只有联合 B+ 树索引才受列顺序影响。"
+      "explanation": "哈希索引不支持范围查询，全文索引用于文本搜索，唯一索引确保值不重复——三者和最左前缀匹配原则均无关。只有联合 B+ 树索引才受列顺序影响。",
+      "assessment_category": "SQL与数据",
+      "skill_dimension": [
+        "SQL与数据处理能力"
+      ]
     },
     {
       "id": 8046,
@@ -1565,7 +1992,11 @@
       "weight": 1.0,
       "question": "冒泡排序在任何输入情况下的时间复杂度都是 O(n²)",
       "answer": "错误",
-      "explanation": "冒泡排序在最好情况下（输入已有序）通过提前终止标志，只需一趟扫描即可完成，时间复杂度为 O(n)。最坏和平均情况下为 O(n²)。"
+      "explanation": "冒泡排序在最好情况下（输入已有序）通过提前终止标志，只需一趟扫描即可完成，时间复杂度为 O(n)。最坏和平均情况下为 O(n²)。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 8047,
@@ -1588,7 +2019,11 @@
         "覆盖索引是指查询的所有列都在索引中无需回表",
         "使用 LIKE '%keyword' 前导模糊查询无法利用索引"
       ],
-      "explanation": "索引是空间换时间策略。不是越多越好，过多索引会严重拖慢 INSERT/UPDATE/DELETE。覆盖索引可以避免回表。LIKE 前缀模糊会导致索引失效。"
+      "explanation": "索引是空间换时间策略。不是越多越好，过多索引会严重拖慢 INSERT/UPDATE/DELETE。覆盖索引可以避免回表。LIKE 前缀模糊会导致索引失效。",
+      "assessment_category": "SQL与数据",
+      "skill_dimension": [
+        "SQL与数据处理能力"
+      ]
     },
     {
       "id": 8048,
@@ -1605,7 +2040,11 @@
         "知识库中的向量索引因数据量过大而损坏"
       ],
       "answer": "模型生成了看似合理但实际上不准确或虚构的内容",
-      "explanation": "幻觉（Hallucination）指 LLM 产生看似流畅合理但与事实不符的内容。在 Agent 场景中，幻觉可能导致错误决策或向用户传递不实信息。RAG 是缓解幻觉的重要手段。"
+      "explanation": "幻觉（Hallucination）指 LLM 产生看似流畅合理但与事实不符的内容。在 Agent 场景中，幻觉可能导致错误决策或向用户传递不实信息。RAG 是缓解幻觉的重要手段。",
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
+      ]
     },
     {
       "id": 8050,
@@ -1622,7 +2061,12 @@
         "Agent 之间通过直接读写数据库来实现通信"
       ],
       "answer": "Agent 之间通过直接读写数据库来实现通信",
-      "explanation": "「直接读写数据库」不是 Agent 间的标准通信模式。原因有二：1）数据库是持久化存储，不具备实时事件通知能力；2）Agent 之间需低延迟消息传递，走数据库会增加轮询开销和耦合。标准方式包括：消息总线（Pub/Sub）、链式传递（Pipeline）、中心编排（Orchestrator）。"
+      "explanation": "「直接读写数据库」不是 Agent 间的标准通信模式。原因有二：1）数据库是持久化存储，不具备实时事件通知能力；2）Agent 之间需低延迟消息传递，走数据库会增加轮询开销和耦合。标准方式包括：消息总线（Pub/Sub）、链式传递（Pipeline）、中心编排（Orchestrator）。",
+      "assessment_category": "Agent架构与框架",
+      "skill_dimension": [
+        "Agent架构能力",
+        "工程实践能力"
+      ]
     },
     {
       "id": 8051,
@@ -1633,7 +2077,12 @@
       "weight": 1.5,
       "question": "Agent 的 Tool Calling 能力只支持调用预定义的固定函数集合，无法动态扩展",
       "answer": "错误",
-      "explanation": "通过 MCP（Model Context Protocol）等标准协议，Agent 可以在运行时动态发现和接入新的工具服务，实现工具能力的灵活扩展。"
+      "explanation": "通过 MCP（Model Context Protocol）等标准协议，Agent 可以在运行时动态发现和接入新的工具服务，实现工具能力的灵活扩展。",
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
+      ]
     },
     {
       "id": 8054,
@@ -1650,7 +2099,11 @@
         "向数据库发送参数化构造的恶意 SQL 查询语句"
       ],
       "answer": "伪造受信任用户的身份在目标站点执行未授权操作",
-      "explanation": "「注入恶意脚本」是 XSS 攻击。「拦截 HTTPS 数据流」是中间人攻击。「构造恶意 SQL」是 SQL 注入。CSRF 独特之处在于它不窃取数据，而是借用用户已登录身份执行操作。"
+      "explanation": "「注入恶意脚本」是 XSS 攻击。「拦截 HTTPS 数据流」是中间人攻击。「构造恶意 SQL」是 SQL 注入。CSRF 独特之处在于它不窃取数据，而是借用用户已登录身份执行操作。",
+      "assessment_category": "Web安全",
+      "skill_dimension": [
+        "安全意识"
+      ]
     },
     {
       "id": 8055,
@@ -1667,7 +2120,11 @@
         "对所有请求源 IP 做访问频率限制和阻断"
       ],
       "answer": "对所有用户输入做 HTML 实体编码后再输出到页面",
-      "explanation": "「添加验证码」防的是机器人自动化提交而非脚本注入。「内网部署」防外部直接访问但 XSS 攻击来自内部页面渲染。「IP 限流」防 DoS 而非脚本执行。只有输出编码能阻止浏览器将用户输入当作代码执行。"
+      "explanation": "「添加验证码」防的是机器人自动化提交而非脚本注入。「内网部署」防外部直接访问但 XSS 攻击来自内部页面渲染。「IP 限流」防 DoS 而非脚本执行。只有输出编码能阻止浏览器将用户输入当作代码执行。",
+      "assessment_category": "Web安全",
+      "skill_dimension": [
+        "安全意识"
+      ]
     },
     {
       "id": 8057,
@@ -1690,7 +2147,11 @@
         "SSRF，利用服务器功能对内网发起伪造请求",
         "安全配置错误，使用了默认凭证或未关闭调试信息"
       ],
-      "explanation": "OWASP Top 10 涵盖了注入、失效认证、SSRF、安全配置错误、敏感数据泄露等核心风险。引入外部字体文件不属于安全风险分类。"
+      "explanation": "OWASP Top 10 涵盖了注入、失效认证、SSRF、安全配置错误、敏感数据泄露等核心风险。引入外部字体文件不属于安全风险分类。",
+      "assessment_category": "Web安全",
+      "skill_dimension": [
+        "安全意识"
+      ]
     },
     {
       "id": 8058,
@@ -1707,7 +2168,11 @@
         "权限设置只需要关注管理员账户而忽略普通用户"
       ],
       "answer": "仅授予完成任务所需的最少权限且默认拒绝额外权限",
-      "explanation": "「所有用户相同权限」违反最小权限本质。「禁止所有权限」是极端策略而非原则。「只关注管理员」忽略了普通用户权限过大同样危险。最小权限=刚好够用，不多不少。"
+      "explanation": "「所有用户相同权限」违反最小权限本质。「禁止所有权限」是极端策略而非原则。「只关注管理员」忽略了普通用户权限过大同样危险。最小权限=刚好够用，不多不少。",
+      "assessment_category": "数据安全",
+      "skill_dimension": [
+        "安全意识"
+      ]
     },
     {
       "id": 7022,
@@ -1724,7 +2189,11 @@
         "观察 → 行动 → 思考 → 日志"
       ],
       "answer": "观察 → 思考 → 行动 → 观察",
-      "explanation": "Agent Loop 是观察-思考-行动（Observe-Think-Act）的循环。Agent 感知环境、分析推理、执行工具调用，再观察结果决定下一步，形成闭环。"
+      "explanation": "Agent Loop 是观察-思考-行动（Observe-Think-Act）的循环。Agent 感知环境、分析推理、执行工具调用，再观察结果决定下一步，形成闭环。",
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
+      ]
     },
     {
       "id": 7023,
@@ -1741,7 +2210,11 @@
         "Reflexion 不依赖大语言模型"
       ],
       "answer": "Reflexion 在每轮循环后增加了自我反思与策略修正环节",
-      "explanation": "Reflexion 在 ReAct 基础上新增反思阶段：Agent 将执行结果反馈给自己评估，发现错误后调整策略重新尝试。这使其具备自我纠错能力。"
+      "explanation": "Reflexion 在 ReAct 基础上新增反思阶段：Agent 将执行结果反馈给自己评估，发现错误后调整策略重新尝试。这使其具备自我纠错能力。",
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
+      ]
     },
     {
       "id": 7024,
@@ -1762,7 +2235,11 @@
         "令牌（Token）预算限制",
         "连续无效操作检测自动中断"
       ],
-      "explanation": "「完全禁用工具调用」等同于废掉 Agent 的核心能力。正确策略是：硬上限（最大步数/Token 数）+ 软检测（识别循环中的重复操作并中断）。"
+      "explanation": "「完全禁用工具调用」等同于废掉 Agent 的核心能力。正确策略是：硬上限（最大步数/Token 数）+ 软检测（识别循环中的重复操作并中断）。",
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
+      ]
     },
     {
       "id": 7025,
@@ -1779,7 +2256,12 @@
         "持久化存储完整对话历史并将文本内容转换为向量嵌入索引"
       ],
       "answer": "暴露工具和资源的标准化接口供 Client 发现和调用",
-      "explanation": "MCP Server 负责注册工具/资源/提示模板，通过标准化协议暴露给 Client。Client 发现后可将这些能力注入 LLM，由模型决定何时调用。"
+      "explanation": "MCP Server 负责注册工具/资源/提示模板，通过标准化协议暴露给 Client。Client 发现后可将这些能力注入 LLM，由模型决定何时调用。",
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
+      ]
     },
     {
       "id": 7026,
@@ -1796,7 +2278,12 @@
         "模型训练时的数据同步"
       ],
       "answer": "多个 Agent 之间的发现、通信与协作",
-      "explanation": "A2A（Agent-to-Agent）协议定义 Agent 间的互操作标准，包括 Agent 发现（Agent Card）、任务委托、状态同步，使多 Agent 系统能协同完成复杂任务。"
+      "explanation": "A2A（Agent-to-Agent）协议定义 Agent 间的互操作标准，包括 Agent 发现（Agent Card）、任务委托、状态同步，使多 Agent 系统能协同完成复杂任务。",
+      "assessment_category": "Agent架构与框架",
+      "skill_dimension": [
+        "Agent架构能力",
+        "工程实践能力"
+      ]
     },
     {
       "id": 7027,
@@ -1813,7 +2300,12 @@
         "负责对 Agent 之间传输的所有通信数据进行端到端加密保护"
       ],
       "answer": "描述 Agent 的能力、接口和端点信息供其他 Agent 发现",
-      "explanation": "Agent Card 类似服务注册中心的元数据：声明该 Agent 的技能、支持的输入输出格式、API 端点，使其他 Agent 可以自动发现并调用它。"
+      "explanation": "Agent Card 类似服务注册中心的元数据：声明该 Agent 的技能、支持的输入输出格式、API 端点，使其他 Agent 可以自动发现并调用它。",
+      "assessment_category": "Agent架构与框架",
+      "skill_dimension": [
+        "Agent架构能力",
+        "工程实践能力"
+      ]
     },
     {
       "id": 7029,
@@ -1830,7 +2322,11 @@
         "Agent 内置了预设任务模板，不需要用户编写任何提示词即可完成工作"
       ],
       "answer": "Agent 具备自主感知环境、制定计划并调用工具执行的能力",
-      "explanation": "LLM 是单纯「输入→输出」的文本生成器。Agent 叠加了感知、规划、工具调用、记忆和循环执行层，让模型从「对话」变为「行动」。"
+      "explanation": "LLM 是单纯「输入→输出」的文本生成器。Agent 叠加了感知、规划、工具调用、记忆和循环执行层，让模型从「对话」变为「行动」。",
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
+      ]
     },
     {
       "id": 7030,
@@ -1851,7 +2347,12 @@
         "辩论模式（Debate）",
         "并行模式（Parallel）"
       ],
-      "explanation": "「轮询模式」是网络负载均衡策略而非 Agent 编排模式。常见的多 Agent 编排包括：顺序流水线、并行分解、辩论协作、层级调度。"
+      "explanation": "「轮询模式」是网络负载均衡策略而非 Agent 编排模式。常见的多 Agent 编排包括：顺序流水线、并行分解、辩论协作、层级调度。",
+      "assessment_category": "Agent架构与框架",
+      "skill_dimension": [
+        "Agent架构能力",
+        "工程实践能力"
+      ]
     },
     {
       "id": 7033,
@@ -1868,7 +2369,12 @@
         "Function Calling 和 MCP 是完全一致的概念"
       ],
       "answer": "Function Calling 是厂商特定的工具调用接口 / MCP 是跨厂商的标准化协议",
-      "explanation": "Function Calling 是各 LLM 厂商（OpenAI、Anthropic）各自的工具调用实现方式；MCP 则提供独立于模型供应商的标准化工具协议，一次开发多处复用。"
+      "explanation": "Function Calling 是各 LLM 厂商（OpenAI、Anthropic）各自的工具调用实现方式；MCP 则提供独立于模型供应商的标准化工具协议，一次开发多处复用。",
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
+      ]
     },
     {
       "id": 3021,
@@ -1885,7 +2391,11 @@
         "冗余字段设计避免跨库关联"
       ],
       "answer": "将所有数据合并回一张表",
-      "explanation": "合并回单表等于放弃分库分表的扩展性收益。正确方案：应用层聚合、冗余字段减少跨库、异构数据源（ES）做搜索、或用分库中间件（ShardingSphere）。"
+      "explanation": "合并回单表等于放弃分库分表的扩展性收益。正确方案：应用层聚合、冗余字段减少跨库、异构数据源（ES）做搜索、或用分库中间件（ShardingSphere）。",
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
+      ]
     },
     {
       "id": 3022,
@@ -1902,7 +2412,11 @@
         "RedLock 比 SET NX EX 配置更简单"
       ],
       "answer": "SET NX EX 解决单机互斥 / RedLock 解决主从切换后锁丢失问题",
-      "explanation": "SET NX EX 在单 Redis 实例上保证原子加锁+超时。但主从异步复制时，主挂后从升主可能丢掉锁记录。RedLock 向多数独立节点加锁来规避此问题。"
+      "explanation": "SET NX EX 在单 Redis 实例上保证原子加锁+超时。但主从异步复制时，主挂后从升主可能丢掉锁记录。RedLock 向多数独立节点加锁来规避此问题。",
+      "assessment_category": "缓存",
+      "skill_dimension": [
+        "数据库设计能力"
+      ]
     },
     {
       "id": 3023,
@@ -1919,7 +2433,11 @@
         "两者都用于限制栈内存大小"
       ],
       "answer": "CorePoolSize 控制常驻线程数 / MaxPoolSize 是峰值时最大线程数",
-      "explanation": "CorePoolSize：线程池保底线程数（即便空闲也不回收）。MaxPoolSize：任务队列满后可扩展的最大线程数。超出核心数的空闲线程会在 keepAliveTime 后回收。"
+      "explanation": "CorePoolSize：线程池保底线程数（即便空闲也不回收）。MaxPoolSize：任务队列满后可扩展的最大线程数。超出核心数的空闲线程会在 keepAliveTime 后回收。",
+      "assessment_category": "语言基础",
+      "skill_dimension": [
+        "编码能力"
+      ]
     },
     {
       "id": 3024,
@@ -1936,7 +2454,11 @@
         "通过 JDK/CGLIB 动态代理在运行时拦截方法并注入依赖"
       ],
       "answer": "依赖注入（DI）",
-      "explanation": "IoC（控制反转）的核心是 DI：容器在 Bean 创建时自动注入其声明的依赖，不需要 Bean 自己查找或创建依赖对象，降低耦合。"
+      "explanation": "IoC（控制反转）的核心是 DI：容器在 Bean 创建时自动注入其声明的依赖，不需要 Bean 自己查找或创建依赖对象，降低耦合。",
+      "assessment_category": "语言基础",
+      "skill_dimension": [
+        "编码能力"
+      ]
     },
     {
       "id": 3025,
@@ -1953,7 +2475,11 @@
         "同一接口每秒钟只能调用一次"
       ],
       "answer": "同一请求执行一次和执行多次对系统产生相同的副作用",
-      "explanation": "幂等关注的是副作用而非返回值。例如支付接口：重复请求不应重复扣款。实现方式通常包括唯一请求 ID + 业务状态机校验。"
+      "explanation": "幂等关注的是副作用而非返回值。例如支付接口：重复请求不应重复扣款。实现方式通常包括唯一请求 ID + 业务状态机校验。",
+      "assessment_category": "接口设计",
+      "skill_dimension": [
+        "后端架构能力"
+      ]
     },
     {
       "id": 2018,
@@ -1970,7 +2496,11 @@
         "元素的 margin 外边界宽度"
       ],
       "answer": "内容区域（content）的宽度",
-      "explanation": "标准盒模型（box-sizing: content-box）下，width 仅指内容区。实际占据宽度 = content + padding + border + margin。IE 盒模型（border-box）则包含到 border。"
+      "explanation": "标准盒模型（box-sizing: content-box）下，width 仅指内容区。实际占据宽度 = content + padding + border + margin。IE 盒模型（border-box）则包含到 border。",
+      "assessment_category": "HTML/CSS",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 2019,
@@ -1987,7 +2517,11 @@
         "同步代码、宏任务、微任务三者随机执行"
       ],
       "answer": "同步代码 → 微任务 → 宏任务 → 微任务 → ...",
-      "explanation": "每次事件循环：先执行一个宏任务（script/main）、清空所有微任务（Promise/MutationObserver）、再取下一个宏任务（setTimeout/I/O）、再清空微任务，循环往复。"
+      "explanation": "每次事件循环：先执行一个宏任务（script/main）、清空所有微任务（Promise/MutationObserver）、再取下一个宏任务（setTimeout/I/O）、再清空微任务，循环往复。",
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 2020,
@@ -2004,7 +2538,11 @@
         "key 用于路由跳转时传递参数"
       ],
       "answer": "key 帮助 React 识别每个元素的身份，避免不必要的销毁重建",
-      "explanation": "无 key 时，React 按索引对比元素，数据顺序变化会导致大量 DOM 重建。有唯一 key 后，React 能精确复用已有 DOM 节点，仅移动位置而非销毁重建。"
+      "explanation": "无 key 时，React 按索引对比元素，数据顺序变化会导致大量 DOM 重建。有唯一 key 后，React 能精确复用已有 DOM 节点，仅移动位置而非销毁重建。",
+      "assessment_category": "框架应用",
+      "skill_dimension": [
+        "工程实践能力"
+      ]
     },
     {
       "id": 2021,
@@ -2025,7 +2563,11 @@
         "JSONP",
         "Nginx 反向代理"
       ],
-      "explanation": "跨域是浏览器的同源策略限制。CORS、JSONP、反向代理都是标准解法。「修改 User-Agent」只改变请求头标识，无法绕过同源策略。"
+      "explanation": "跨域是浏览器的同源策略限制。CORS、JSONP、反向代理都是标准解法。「修改 User-Agent」只改变请求头标识，无法绕过同源策略。",
+      "assessment_category": "浏览器原理",
+      "skill_dimension": [
+        "工程实践能力"
+      ]
     },
     {
       "id": 2022,
@@ -2040,7 +2582,11 @@
         "错误"
       ],
       "answer": "正确",
-      "explanation": "TypeScript 是编译时类型系统，泛型仅在编译阶段做类型检查。编译成 JS 后泛型信息被完全擦除，运行时无任何泛型约束。"
+      "explanation": "TypeScript 是编译时类型系统，泛型仅在编译阶段做类型检查。编译成 JS 后泛型信息被完全擦除，运行时无任何泛型约束。",
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 4018,
@@ -2057,7 +2603,11 @@
         "单元测试需要数据库 / 集成测试不需要数据库"
       ],
       "answer": "单元测试验证单个模块的函数或类 / 集成测试验证多个模块之间的交互",
-      "explanation": "单元测试关注最小可测单元（函数、方法），通常 mock 外部依赖。集成测试验证模块间接口协作（数据库+服务+API），更接近真实运行场景。"
+      "explanation": "单元测试关注最小可测单元（函数、方法），通常 mock 外部依赖。集成测试验证模块间接口协作（数据库+服务+API），更接近真实运行场景。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 4019,
@@ -2074,7 +2624,11 @@
         "Mock 和 Stub 是相同的概念"
       ],
       "answer": "Mock 验证行为 / Stub 仅提供预设返回值",
-      "explanation": "Stub 是「给你一个假数据」不关心如何被调用。Mock 是「监视交互」——验证方法被调用了几次、传了什么参数、调用顺序是否正确。"
+      "explanation": "Stub 是「给你一个假数据」不关心如何被调用。Mock 是「监视交互」——验证方法被调用了几次、传了什么参数、调用顺序是否正确。",
+      "assessment_category": "测试设计",
+      "skill_dimension": [
+        "测试设计能力"
+      ]
     },
     {
       "id": 4020,
@@ -2095,7 +2649,11 @@
         "平均响应时间和 P99 延迟",
         "错误率"
       ],
-      "explanation": "TPS/QPS 衡量吞吐量，响应时间/P99 衡量延迟表现，错误率衡量稳定性。「代码行数覆盖率」是单元测试的度量，与性能测试无关。"
+      "explanation": "TPS/QPS 衡量吞吐量，响应时间/P99 衡量延迟表现，错误率衡量稳定性。「代码行数覆盖率」是单元测试的度量，与性能测试无关。",
+      "assessment_category": "性能测试",
+      "skill_dimension": [
+        "工程能力"
+      ]
     },
     {
       "id": 4021,
@@ -2110,7 +2668,11 @@
         "错误"
       ],
       "answer": "正确",
-      "explanation": "冒烟测试是快速验证版本「是否能跑起来」的准入门槛——基本流程走不通就没必要投入完整测试资源。通常在每日构建后或提测前执行。"
+      "explanation": "冒烟测试是快速验证版本「是否能跑起来」的准入门槛——基本流程走不通就没必要投入完整测试资源。通常在每日构建后或提测前执行。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 5019,
@@ -2127,7 +2689,11 @@
         "Init → Exec → Wait → Exit"
       ],
       "answer": "Pending → Running → Succeeded/Failed",
-      "explanation": "Pod 生命周期：Pending（调度中/拉镜像）→ Running（至少一容器运行）→ Succeeded（正常退出码 0）或 Failed（异常退出）。Building/Deploying 不是 Pod 阶段名称。"
+      "explanation": "Pod 生命周期：Pending（调度中/拉镜像）→ Running（至少一容器运行）→ Succeeded（正常退出码 0）或 Failed（异常退出）。Building/Deploying 不是 Pod 阶段名称。",
+      "assessment_category": "Docker",
+      "skill_dimension": [
+        "部署能力"
+      ]
     },
     {
       "id": 5020,
@@ -2144,7 +2710,11 @@
         "基于配置的限流策略限制单个客户端 IP 的并发连接请求数"
       ],
       "answer": "将客户端请求转发到指定的后端服务器，并将响应返回给客户端",
-      "explanation": "反向代理的核心：客户端不知道后端服务器的存在，Nginx 作为中间人转发请求和响应。配合 upstream 可做负载均衡。静态缓存、SSL、限流是其他模块的职责。"
+      "explanation": "反向代理的核心：客户端不知道后端服务器的存在，Nginx 作为中间人转发请求和响应。配合 upstream 可做负载均衡。静态缓存、SSL、限流是其他模块的职责。",
+      "assessment_category": "网络",
+      "skill_dimension": [
+        "故障排查能力"
+      ]
     },
     {
       "id": 5021,
@@ -2165,7 +2735,11 @@
         "Logstash（日志处理管道，可解析、过滤和转换日志）",
         "Elasticsearch（分布式搜索引擎，存储和索引日志数据）"
       ],
-      "explanation": "经典 ELK 栈：Filebeat 轻量采集 → Logstash 或 Kafka 缓冲/处理 → Elasticsearch 存储索引 → Kibana 可视化。Redis 在此栈中作用有限。"
+      "explanation": "经典 ELK 栈：Filebeat 轻量采集 → Logstash 或 Kafka 缓冲/处理 → Elasticsearch 存储索引 → Kibana 可视化。Redis 在此栈中作用有限。",
+      "assessment_category": "监控",
+      "skill_dimension": [
+        "稳定性意识"
+      ]
     },
     {
       "id": 5022,
@@ -2182,7 +2756,11 @@
         "两者是完全相同的概念"
       ],
       "answer": "蓝绿部署同时维护两套完整环境切换 / 滚动部署逐步替换实例",
-      "explanation": "蓝绿部署：准备两套完全独立的环境（蓝=当前/绿=新版），流量一次性切到新版。滚动部署：逐台替换旧实例，逐步过渡。蓝绿的优点是秒级回滚，代价是双倍资源。"
+      "explanation": "蓝绿部署：准备两套完全独立的环境（蓝=当前/绿=新版），流量一次性切到新版。滚动部署：逐台替换旧实例，逐步过渡。蓝绿的优点是秒级回滚，代价是双倍资源。",
+      "assessment_category": "云部署",
+      "skill_dimension": [
+        "部署能力"
+      ]
     },
     {
       "id": 6019,
@@ -2199,7 +2777,11 @@
         "动态规划自顶向下，分治法自底向上"
       ],
       "answer": "动态规划的子问题有重叠，通过记忆化避免重复计算；分治法的子问题相互独立",
-      "explanation": "分治法（如归并排序）：子问题无重叠，各自独立求解后合并。DP（如斐波那契）：子问题大量重叠，用数组/哈希表缓存中间结果避免重复计算。"
+      "explanation": "分治法（如归并排序）：子问题无重叠，各自独立求解后合并。DP（如斐波那契）：子问题大量重叠，用数组/哈希表缓存中间结果避免重复计算。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 6020,
@@ -2216,7 +2798,11 @@
         "O(n) / O(n log n)"
       ],
       "answer": "O(n log n) / O(n)",
-      "explanation": "归并排序每次二分 O(log n) 层，每层合并 O(n) → O(n log n)。合并需要临时数组存放左右子数组 → O(n) 额外空间。"
+      "explanation": "归并排序每次二分 O(log n) 层，每层合并 O(n) → O(n log n)。合并需要临时数组存放左右子数组 → O(n) 额外空间。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 6021,
@@ -2233,7 +2819,11 @@
         "两者都使用栈（Stack）作为遍历时存储节点的数据结构"
       ],
       "answer": "BFS 用队列（Queue）/ DFS 用栈（Stack）",
-      "explanation": "BFS 逐层扩展 → 先进先出（队列）。DFS 一路到底再回溯 → 先进后出（栈，或递归调用栈）。两种数据结构的特性直接决定了搜索顺序。"
+      "explanation": "BFS 逐层扩展 → 先进先出（队列）。DFS 一路到底再回溯 → 先进后出（栈，或递归调用栈）。两种数据结构的特性直接决定了搜索顺序。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 6022,
@@ -2253,7 +2843,11 @@
         "O(1) < O(log n) < O(n) < O(n log n) < O(n²)",
         "O(n!) 和 O(2ⁿ) 都属于指数/阶乘级，远超多项式"
       ],
-      "explanation": "常见复杂度递增：O(1)常数 < O(log n)对数 < O(n)线性 < O(n log n)线性对数 < O(n²)平方 < O(2ⁿ)指数 < O(n!)阶乘。指数/阶乘级在 n>20 时已不可用。"
+      "explanation": "常见复杂度递增：O(1)常数 < O(log n)对数 < O(n)线性 < O(n log n)线性对数 < O(n²)平方 < O(2ⁿ)指数 < O(n!)阶乘。指数/阶乘级在 n>20 时已不可用。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 8059,
@@ -2270,7 +2864,11 @@
         "SSRF 和 CSRF 本质上是同一种攻击方式，只是命名习惯不同"
       ],
       "answer": "SSRF 利用服务端发起伪造请求访问内部系统 / CSRF 利用用户已登录态发起伪造请求",
-      "explanation": "SSRF 的攻击目标是服务器：让服务器代攻击者访问内网资源（如 http://169.254.169.254/ ）。CSRF 的攻击目标是用户：借用用户身份执行操作。"
+      "explanation": "SSRF 的攻击目标是服务器：让服务器代攻击者访问内网资源（如 http://169.254.169.254/ ）。CSRF 的攻击目标是用户：借用用户身份执行操作。",
+      "assessment_category": "Web安全",
+      "skill_dimension": [
+        "安全意识"
+      ]
     },
     {
       "id": 8060,
@@ -2285,7 +2883,11 @@
         "错误"
       ],
       "answer": "错误",
-      "explanation": "JWT 的 Payload 仅 Base64 编码（非加密），任何人都可以解码查看内容。安全性依赖签名（Signature）防篡改，不依赖内容保密。敏感信息绝对不应放入 JWT。"
+      "explanation": "JWT 的 Payload 仅 Base64 编码（非加密），任何人都可以解码查看内容。安全性依赖签名（Signature）防篡改，不依赖内容保密。敏感信息绝对不应放入 JWT。",
+      "assessment_category": "认证安全",
+      "skill_dimension": [
+        "安全意识"
+      ]
     },
     {
       "id": 8061,
@@ -2302,7 +2904,11 @@
         "零信任使用单点登录 / 传统模型使用多因素认证"
       ],
       "answer": "零信任默认不信任任何请求（内外网一视同仁）/ 传统模型信任内网流量",
-      "explanation": "传统模型是「城堡+护城河」——进入内网就安全。零信任是「永不信任，始终验证」——每次访问都需认证和授权，不论来自内外网。"
+      "explanation": "传统模型是「城堡+护城河」——进入内网就安全。零信任是「永不信任，始终验证」——每次访问都需认证和授权，不论来自内外网。",
+      "assessment_category": "安全架构",
+      "skill_dimension": [
+        "安全意识"
+      ]
     },
     {
       "id": 1001,
@@ -2319,7 +2925,11 @@
         "443"
       ],
       "answer": "80",
-      "explanation": "HTTP 默认端口 80，HTTPS 默认端口 443。21 是 FTP，25 是 SMTP。"
+      "explanation": "HTTP 默认端口 80，HTTPS 默认端口 443。21 是 FTP，25 是 SMTP。",
+      "assessment_category": "计算机网络",
+      "skill_dimension": [
+        "计算机网络基础"
+      ]
     },
     {
       "id": 1002,
@@ -2330,7 +2940,11 @@
       "weight": 1.0,
       "question": "HTTPS 比 HTTP 更安全，因为它对传输数据进行了加密。",
       "answer": "正确",
-      "explanation": "HTTPS 通过 SSL/TLS 协议加密数据传输，防止中间人攻击和数据泄露。"
+      "explanation": "HTTPS 通过 SSL/TLS 协议加密数据传输，防止中间人攻击和数据泄露。",
+      "assessment_category": "计算机网络",
+      "skill_dimension": [
+        "计算机网络基础"
+      ]
     },
     {
       "id": 1011,
@@ -2347,7 +2961,11 @@
         "按优先级出队"
       ],
       "answer": "先进后出",
-      "explanation": "栈是先进后出（LIFO）的数据结构。队列（Queue）才是先进先出（FIFO）。"
+      "explanation": "栈是先进后出（LIFO）的数据结构。队列（Queue）才是先进先出（FIFO）。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "数据结构与算法基础"
+      ]
     },
     {
       "id": 1040,
@@ -2368,7 +2986,11 @@
         "浏览器前进后退（配合另一个栈）",
         "表达式求值和括号匹配检查"
       ],
-      "explanation": "栈的 LIFO 特性天然适合函数调用、撤销/回退、括号匹配。「LRU 缓存淘汰」需要快速定位+顺序维护，通常用哈希表+双向链表，非栈场景。"
+      "explanation": "栈的 LIFO 特性天然适合函数调用、撤销/回退、括号匹配。「LRU 缓存淘汰」需要快速定位+顺序维护，通常用哈希表+双向链表，非栈场景。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "数据结构与算法基础"
+      ]
     },
     {
       "id": 1003,
@@ -2385,7 +3007,11 @@
         "建立 TCP 连接"
       ],
       "answer": "DNS 解析",
-      "explanation": "浏览器首先需要将域名解析为 IP 地址（DNS 解析），然后才能建立 TCP 连接和发送请求。"
+      "explanation": "浏览器首先需要将域名解析为 IP 地址（DNS 解析），然后才能建立 TCP 连接和发送请求。",
+      "assessment_category": "计算机网络",
+      "skill_dimension": [
+        "计算机网络基础"
+      ]
     },
     {
       "id": 1005,
@@ -2406,7 +3032,11 @@
         "POST",
         "DELETE"
       ],
-      "explanation": "GET、POST、DELETE 都是 HTTP 标准请求方法。SEND 不是标准 HTTP 方法。常见方法还包括 PUT、PATCH、HEAD 等。"
+      "explanation": "GET、POST、DELETE 都是 HTTP 标准请求方法。SEND 不是标准 HTTP 方法。常见方法还包括 PUT、PATCH、HEAD 等。",
+      "assessment_category": "计算机网络",
+      "skill_dimension": [
+        "计算机网络基础"
+      ]
     },
     {
       "id": 1007,
@@ -2423,7 +3053,11 @@
         "数据链路层"
       ],
       "answer": "网络层",
-      "explanation": "OSI七层从下到上：物理层→数据链路层→网络层→传输层→会话层→表示层→应用层。网络层负责IP寻址和路由。"
+      "explanation": "OSI七层从下到上：物理层→数据链路层→网络层→传输层→会话层→表示层→应用层。网络层负责IP寻址和路由。",
+      "assessment_category": "计算机网络",
+      "skill_dimension": [
+        "计算机网络基础"
+      ]
     },
     {
       "id": 1008,
@@ -2440,7 +3074,11 @@
         "请求成功"
       ],
       "answer": "客户端错误",
-      "explanation": "2xx成功、3xx重定向、4xx客户端错误（如404未找到、400请求错误）、5xx服务器错误。"
+      "explanation": "2xx成功、3xx重定向、4xx客户端错误（如404未找到、400请求错误）、5xx服务器错误。",
+      "assessment_category": "计算机网络",
+      "skill_dimension": [
+        "计算机网络基础"
+      ]
     },
     {
       "id": 1009,
@@ -2457,7 +3095,11 @@
         "进程与线程在功能上没有实质差别"
       ],
       "answer": "同一进程内的线程共享内存空间",
-      "explanation": "进程是资源分配的最小单位，线程是 CPU 调度的最小单位。同一进程内的线程共享内存空间，这使得线程间通信更高效。"
+      "explanation": "进程是资源分配的最小单位，线程是 CPU 调度的最小单位。同一进程内的线程共享内存空间，这使得线程间通信更高效。",
+      "assessment_category": "操作系统",
+      "skill_dimension": [
+        "操作系统基础"
+      ]
     },
     {
       "id": 1012,
@@ -2474,7 +3116,11 @@
         "数据必须是整数"
       ],
       "answer": "数据必须是有序的",
-      "explanation": "二分查找每次将搜索范围减半，要求数据有序才能正确判断目标在左半还是右半部分。"
+      "explanation": "二分查找每次将搜索范围减半，要求数据有序才能正确判断目标在左半还是右半部分。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "数据结构与算法基础"
+      ]
     },
     {
       "id": 1014,
@@ -2485,7 +3131,11 @@
       "weight": 1.5,
       "question": "哈希表（Hash Table）的查找操作在理想情况下时间复杂度为 O(1)。",
       "answer": "正确",
-      "explanation": "在哈希函数分布均匀、冲突较少的情况下，哈希表查找、插入、删除的平均时间复杂度均为 O(1)。"
+      "explanation": "在哈希函数分布均匀、冲突较少的情况下，哈希表查找、插入、删除的平均时间复杂度均为 O(1)。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "数据结构与算法基础"
+      ]
     },
     {
       "id": 1015,
@@ -2506,7 +3156,11 @@
         "二叉树",
         "堆"
       ],
-      "explanation": "链表、二叉树、堆都是常见数据结构。路由器是网络设备，不是数据结构。"
+      "explanation": "链表、二叉树、堆都是常见数据结构。路由器是网络设备，不是数据结构。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "数据结构与算法基础"
+      ]
     },
     {
       "id": 1016,
@@ -2523,7 +3177,11 @@
         "链表通常比数组更节省内存空间"
       ],
       "answer": "数组支持随机访问，链表插入删除更快",
-      "explanation": "数组连续存储，O(1)随机访问但插入删除需移动元素；链表非连续存储，不支持随机访问但插入删除只需改指针。"
+      "explanation": "数组连续存储，O(1)随机访问但插入删除需移动元素；链表非连续存储，不支持随机访问但插入删除只需改指针。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "数据结构与算法基础"
+      ]
     },
     {
       "id": 1017,
@@ -2544,7 +3202,11 @@
         "SVN",
         "Mercurial"
       ],
-      "explanation": "Git、SVN、Mercurial 都是版本控制工具。Docker 是容器化平台。"
+      "explanation": "Git、SVN、Mercurial 都是版本控制工具。Docker 是容器化平台。",
+      "assessment_category": "编程基础",
+      "skill_dimension": [
+        "编程基础能力"
+      ]
     },
     {
       "id": 1019,
@@ -2561,7 +3223,11 @@
         "PATCH"
       ],
       "answer": "POST",
-      "explanation": "RESTful 规范中：GET 读取、POST 创建、PUT 全量更新、PATCH 部分更新、DELETE 删除。"
+      "explanation": "RESTful 规范中：GET 读取、POST 创建、PUT 全量更新、PATCH 部分更新、DELETE 删除。",
+      "assessment_category": "编程基础",
+      "skill_dimension": [
+        "编程基础能力"
+      ]
     },
     {
       "id": 1021,
@@ -2572,7 +3238,11 @@
       "weight": 1.5,
       "question": "请简要解释 DNS 的作用和工作原理。（80字以内）",
       "answer": "DNS（域名系统）将域名解析为IP地址。用户输入域名后，浏览器向DNS服务器发起查询，DNS服务器逐级查找（递归/迭代），最终返回对应的IP地址，从而建立连接。",
-      "explanation": "评分要点：1) 域名→IP的映射；2) 查询过程（递归或迭代）；3) 使网络访问更便捷。"
+      "explanation": "评分要点：1) 域名→IP的映射；2) 查询过程（递归或迭代）；3) 使网络访问更便捷。",
+      "assessment_category": "计算机网络",
+      "skill_dimension": [
+        "计算机网络基础"
+      ]
     },
     {
       "id": 1022,
@@ -2583,7 +3253,11 @@
       "weight": 1.5,
       "question": "请简述进程（Process）和线程（Thread）的区别。（80字以内）",
       "answer": "进程是资源分配的最小单位，拥有独立内存空间；线程是CPU调度的最小单位。一个进程可包含多个线程，同一进程内的线程共享内存，切换开销比进程小。",
-      "explanation": "评分要点：1) 进程是资源分配单位/线程是调度单位；2) 线程共享进程内存；3) 线程切换开销更小。"
+      "explanation": "评分要点：1) 进程是资源分配单位/线程是调度单位；2) 线程共享进程内存；3) 线程切换开销更小。",
+      "assessment_category": "操作系统",
+      "skill_dimension": [
+        "操作系统基础"
+      ]
     },
     {
       "id": 8006,
@@ -2600,7 +3274,11 @@
         "默认使用 UDP 协议提升传输速度"
       ],
       "answer": "默认使用 UDP 协议提升传输速度",
-      "explanation": "HTTP/1.0、1.1、2 均基于 TCP 协议。HTTP/3 才引入 QUIC（基于 UDP）。多路复用、头部压缩、服务端推送均为 HTTP/2 相比 1.1 新增的特性。"
+      "explanation": "HTTP/1.0、1.1、2 均基于 TCP 协议。HTTP/3 才引入 QUIC（基于 UDP）。多路复用、头部压缩、服务端推送均为 HTTP/2 相比 1.1 新增的特性。",
+      "assessment_category": "计算机网络",
+      "skill_dimension": [
+        "计算机网络基础"
+      ]
     },
     {
       "id": 8007,
@@ -2617,7 +3295,11 @@
         "快重传和快恢复算法"
       ],
       "answer": "接收方滑动窗口的大小通告",
-      "explanation": "流量控制由接收方通过 TCP 头部的 window 字段通告自身的接收窗口大小来实现。拥塞窗口和慢启动等属于拥塞控制。"
+      "explanation": "流量控制由接收方通过 TCP 头部的 window 字段通告自身的接收窗口大小来实现。拥塞窗口和慢启动等属于拥塞控制。",
+      "assessment_category": "计算机网络",
+      "skill_dimension": [
+        "计算机网络基础"
+      ]
     },
     {
       "id": 8008,
@@ -2634,7 +3316,11 @@
         "证书的有效期是否超过 10 年以上"
       ],
       "answer": "证书是否由客户端预置的受信任 CA 签发",
-      "explanation": "浏览器用内置的受信任 CA 根证书验证服务器证书的签发链。加密强度、域名匹配、有效期也是检查项，但最核心的是信任链验证。"
+      "explanation": "浏览器用内置的受信任 CA 根证书验证服务器证书的签发链。加密强度、域名匹配、有效期也是检查项，但最核心的是信任链验证。",
+      "assessment_category": "计算机网络",
+      "skill_dimension": [
+        "计算机网络基础"
+      ]
     },
     {
       "id": 8013,
@@ -2651,7 +3337,11 @@
         "省略所有内存分配操作和指针传递"
       ],
       "answer": "减少 CPU 在用户态和内核态之间拷贝数据的次数",
-      "explanation": "零拷贝通过 sendfile、mmap 等技术让 DMA 直接在文件描述符和网络套接字之间传输数据，避免 CPU 参与多次用户态-内核态拷贝。"
+      "explanation": "零拷贝通过 sendfile、mmap 等技术让 DMA 直接在文件描述符和网络套接字之间传输数据，避免 CPU 参与多次用户态-内核态拷贝。",
+      "assessment_category": "操作系统",
+      "skill_dimension": [
+        "操作系统基础"
+      ]
     },
     {
       "id": 8014,
@@ -2668,7 +3358,11 @@
         "B+ 树比 B 树使用更少的磁盘空间存储数据"
       ],
       "answer": "B+ 树叶子节点形成链表，便于范围查询和排序",
-      "explanation": "B+ 树的叶子节点通过指针串联成有序链表，非常适合范围扫描和排序查询。B 树的数据分散在所有节点中，范围查询效率低。"
+      "explanation": "B+ 树的叶子节点通过指针串联成有序链表，非常适合范围扫描和排序查询。B 树的数据分散在所有节点中，范围查询效率低。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "数据结构与算法基础"
+      ]
     },
     {
       "id": 8100,
@@ -2685,6 +3379,10 @@
         "AI Agent 是 LLM + 感知/决策/执行/记忆循环的完整系统，LLM 是其核心推理引擎",
         "AI Agent 与 LLM 完全无关，Agent 使用规则引擎而非大模型",
         "LLM 只能作为 Agent 的对话前端，无法承担决策功能"
+      ],
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
       ]
     },
     {
@@ -2702,6 +3400,10 @@
         "感知（Observe）→推理（Reason）→行动（Act）→观察结果→循环",
         "编写代码并编译（Compile）→ 运行程序验证功能（Test）→ 根据结果调试修复错误（Debug）→ 发布上线版本（Release）",
         "大规模语料预训练（Pre-training）→ 针对下游任务进行微调（Fine-tuning）→ 基于人类反馈的强化学习对齐（RLHF）→ 部署到生产环境推理（Inference）"
+      ],
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
       ]
     },
     {
@@ -2719,6 +3421,10 @@
         "交替生成 Thought（思考）和 Action（行动），并根据 Observation（观察）调整下一步",
         "跳过 Thought 阶段，直接根据用户输入选择并执行工具，仅依赖工具返回结果做后续决策",
         "Agent 先以随机策略探索环境并收集反馈数据，然后通过深度神经网络从经验中学习最优行动策略"
+      ],
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
       ]
     },
     {
@@ -2736,6 +3442,10 @@
         "Plan-and-Execute 先生成完整执行计划，再按计划逐步执行，执行过程中可根据反馈重新规划",
         "Plan-and-Execute 完全不需要 LLM，只用传统规划算法",
         "Plan-and-Execute 与 ReAct 完全等价，只是名称不同"
+      ],
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
       ]
     },
     {
@@ -2753,6 +3463,11 @@
         "LLM 根据用户意图生成结构化参数（如 JSON），由外部系统实际调用函数并将结果返回给 LLM 继续推理",
         "用户需要自己编写完整的函数调用代码，LLM 仅作为代码补全工具辅助生成函数名和参数",
         "Function Calling 本质上就是对 API 文档库进行向量检索，根据查询匹配最相关的函数说明文档"
+      ],
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
       ]
     },
     {
@@ -2770,6 +3485,11 @@
         "Client-Server 架构，Host 通过 MCP Client 连接一个或多个 MCP Server",
         "采用发布-订阅消息队列架构，Server 将能力发布到消息中间件，Client 通过订阅主题获取可用工具",
         "采用主从复制数据库集群架构，主节点处理工具调用请求，从节点同步数据用于故障切换和负载均衡"
+      ],
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
       ]
     },
     {
@@ -2787,6 +3507,11 @@
         "仅支持 WebSocket 全双工长连接通信，Client 和 Server 之间维持一条持久化的双向消息通道",
         "支持 stdio（标准输入输出）和 HTTP+SSE（Server-Sent Events）两种传输方式",
         "仅支持基于 HTTP/2 的 gRPC 远程过程调用协议，使用 Protocol Buffers 进行消息序列化"
+      ],
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
       ]
     },
     {
@@ -2804,6 +3529,11 @@
         "Function Calling 是 LLM 厂商定义的模型级能力，MCP 是独立于模型的开放协议，提供统一的工具/资源/提示发现与管理",
         "MCP 可以替代 Function Calling，使用 MCP 后不再需要 Function Calling",
         "Function Calling 比 MCP 更灵活，因为 MCP 只能使用 stdio 传输"
+      ],
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
       ]
     },
     {
@@ -2821,6 +3551,11 @@
         "作为 Agent 的自描述元数据卡片，声明 Agent 的能力、端点、技能和接口，供其他 Agent 发现和调用",
         "持久化存储 Agent 在历次对话中产生的全部交互记录与中间推理过程，便于后续的审计回溯和性能分析",
         "负责 Agent 之间通信链路的密钥协商、身份认证以及所有传输数据的端到端加解密保护"
+      ],
+      "assessment_category": "Agent架构与框架",
+      "skill_dimension": [
+        "Agent架构能力",
+        "工程实践能力"
       ]
     },
     {
@@ -2838,6 +3573,11 @@
         "A2A 用于 Agent 之间的互操作与协作（Agent 发现、任务委派），MCP 用于 Agent 与工具/资源的连接，两者解决不同层次的问题，可以配合使用",
         "A2A 是 MCP 协议的轻量扩展，其能力范围主要聚焦在 Agent 之间的安全身份认证与授权层面",
         "MCP 协议已经涵盖 Agent 间协作的大部分典型场景，通常不需要额外引入 A2A 协议来增加复杂度"
+      ],
+      "assessment_category": "Agent架构与框架",
+      "skill_dimension": [
+        "Agent架构能力",
+        "工程实践能力"
       ]
     },
     {
@@ -2855,6 +3595,11 @@
         "多个 Agent 按固定顺序依次执行，前一个 Agent 的输出作为后一个 Agent 的输入",
         "多个 Agent 对同一问题进行多轮辩论和相互质疑，直到通过协商达成一致结论",
         "由一个主控 Agent 根据子 Agent 的当前负载随机派发子任务进行调度执行"
+      ],
+      "assessment_category": "Agent架构与框架",
+      "skill_dimension": [
+        "Agent架构能力",
+        "工程实践能力"
       ]
     },
     {
@@ -2872,6 +3617,11 @@
         "多个 Agent 对同一问题给出各自答案并进行多轮互评与反驳，通过辩论迭代提升答案质量，最终由裁判或投票机制决定结果",
         "Agent 与终端用户进行多轮辩论式交互，通过说服用户接受其方案来确认任务完成",
         "一个 Agent 生成初始答案，另一个 Agent 仅负责对答案做语法修正和格式润色后输出"
+      ],
+      "assessment_category": "Agent架构与框架",
+      "skill_dimension": [
+        "Agent架构能力",
+        "工程实践能力"
       ]
     },
     {
@@ -2889,6 +3639,10 @@
         "短期记忆指当前会话上下文窗口内的对话历史，长期记忆指跨会话持久化的信息（向量库/知识图谱等）",
         "短期记忆和长期记忆在工程实现上使用完全相同的存储方案，仅保存时长不同",
         "Agent 的架构设计中不需要独立的记忆机制，每次对话都是无状态的独立交互"
+      ],
+      "assessment_category": "Memory与上下文管理",
+      "skill_dimension": [
+        "Agent设计能力"
       ]
     },
     {
@@ -2906,6 +3660,10 @@
         "摘要策略（将历史对话压缩为摘要）",
         "向量检索策略（根据当前查询检索相关历史片段）",
         "以上都可能导致信息丢失，取决于具体实现和参数设置"
+      ],
+      "assessment_category": "Memory与上下文管理",
+      "skill_dimension": [
+        "Agent设计能力"
       ]
     },
     {
@@ -2923,6 +3681,10 @@
         "Agent 在每次执行后生成「自我反思」文本，分析失败原因并作为长期记忆保存，供后续尝试参考",
         "Agent 基于内置安全规则反射性地识别并拒绝执行任何可能产生危害的危险操作",
         "依赖终端用户逐步骤监控和手工纠正 Agent 在执行过程中出现的每一个错误"
+      ],
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
       ]
     },
     {
@@ -2940,6 +3702,11 @@
         "Agent 可以将 RAG 作为工具之一，根据任务需要动态检索知识库，将检索结果注入上下文辅助推理和决策",
         "Agent 必须将所有领域知识预先编码到模型参数中，RAG 的外部知识检索没有额外价值",
         "引入 RAG 后 Agent 不再需要自身的推理和决策能力，检索结果可以完全替代 LLM 的思考过程"
+      ],
+      "assessment_category": "RAG知识增强",
+      "skill_dimension": [
+        "知识增强理解能力",
+        "AI应用设计能力"
       ]
     },
     {
@@ -2957,6 +3724,11 @@
         "工具滥用：Agent 因误判调用敏感工具造成损害",
         "上下文污染：恶意内容混入检索结果或工具返回影响 Agent 行为",
         "梯度反向传播攻击：通过对抗样本直接修改模型权重"
+      ],
+      "assessment_category": "Agent安全",
+      "skill_dimension": [
+        "安全意识",
+        "工程规范能力"
       ]
     },
     {
@@ -2974,6 +3746,10 @@
         "设置最大迭代步数（Max Steps）硬限制 + 预算感知（Token/时间/金钱预算） + 终止条件检测（检测连续无进展）",
         "只限制工具调用返回错误时的重试次数，只要每次工具调用都返回成功状态就允许 Agent 无限次继续调用",
         "在 Agent 的每一步工具调用执行后都暂停流程，弹出确认对话框要求终端用户手动判断是否需要继续下一步"
+      ],
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
       ]
     },
     {
@@ -2991,6 +3767,11 @@
         "通过缓存常见工具调用结果 + 根据任务复杂度动态选择模型（路由）+ 限制每任务的 Token 预算上限来综合控制成本",
         "成本控制的唯一有效手段是统一使用参数量最小的廉价模型来处理所有类型的任务请求",
         "将每任务的 Token 消耗预算设为无上限，让 Agent 有充分的探索空间以获取最优结果"
+      ],
+      "assessment_category": "Agent工程实践",
+      "skill_dimension": [
+        "工程落地能力",
+        "系统运维能力"
       ]
     },
     {
@@ -3008,6 +3789,11 @@
         "Skill 是比 MCP Tool 更高层次的抽象，一个 Skill 可能封装了多个 MCP Tool + Prompt + 工作流逻辑，可以在不同 Agent 间共享和复用",
         "Skill 是设计用来补充 MCP 协议的新一代能力封装标准，未来在部分场景中 MCP 协议可能逐步让位于 Skill 概念",
         "Skill 的工程实现通常依赖 MCP Server 作为底层载体，而 MCP Server 的主要用途之一也正是承载和运行 Skill"
+      ],
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
       ]
     },
     {
@@ -3025,6 +3811,11 @@
         "Agent 评估需从多个维度综合考察：任务完成率（端到端成功率）、工具调用准确率、推理轨迹质量、执行效率（步数/Token）、鲁棒性等",
         "Agent 评估的指标体系、评测方法和基准测试与普通 LLM 文本生成任务的评估标准完全相同，无需任何差异化的设计",
         "Agent 的评估流程可以做到全自动化执行，完全不需要引入任何人工标注、人工评判或人工制定的参考标准"
+      ],
+      "assessment_category": "Agent工程实践",
+      "skill_dimension": [
+        "工程落地能力",
+        "系统运维能力"
       ]
     },
     {
@@ -3042,6 +3833,10 @@
         "当前任务执行过程中的中间状态，包括当前子目标、已收集的中间结果、工具调用返回的最新数据等",
         "大语言模型在预训练和微调阶段通过反向传播计算和更新的模型参数梯度信息",
         "计算机操作系统为运行中的进程临时分配的虚拟内存地址空间和物理页面"
+      ],
+      "assessment_category": "Memory与上下文管理",
+      "skill_dimension": [
+        "Agent设计能力"
       ]
     },
     {
@@ -3059,6 +3854,11 @@
         "存在一个「管理者」Agent 负责接收任务、分解子任务、分派给「执行者」Agent、收集结果并汇总，形成管理-执行层级",
         "Agent 之间没有固定的调用关系，每个 Agent 根据自身状态随机选择其他 Agent 发起调用",
         "每个 Agent 独立接收并处理同一任务，各自产生完整结果后通过少数服从多数的投票机制决定最终输出"
+      ],
+      "assessment_category": "Agent架构与框架",
+      "skill_dimension": [
+        "Agent架构能力",
+        "工程实践能力"
       ]
     },
     {
@@ -3076,6 +3876,11 @@
         "name（函数名）、description（功能描述）、parameters（参数 JSON Schema，含类型、描述、是否必填）",
         "仅需提供函数名称和参数类型的简单扁平列表，不需要额外的功能描述和参数 Schema 约束定义",
         "仅需定义 function_name 字符串和 return_type 返回值类型枚举两个最基础的字段即可满足调用需求"
+      ],
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
       ]
     },
     {
@@ -3099,6 +3904,10 @@
         "记忆管理模块（Memory）",
         "感知/输入模块（Perception）",
         "GPU 显存管理模块"
+      ],
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
       ]
     },
     {
@@ -3122,6 +3931,11 @@
         "Prompts（提示模板）：预定义的提示词模板",
         "Sampling（采样）：Server 请求 LLM 进行推理补全",
         "Training（训练）：Server 可以对模型进行在线微调"
+      ],
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
       ]
     },
     {
@@ -3143,6 +3957,10 @@
         "推理过程与实际行动交织，可根据行动反馈动态修正推理",
         "减少了推理所需的 Token 数量",
         "更适合需要与外部环境交互的任务（如信息检索、代码执行）"
+      ],
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
       ]
     },
     {
@@ -3166,6 +3984,10 @@
         "向量检索（Vector Retrieval）：根据当前查询从历史记忆中检索最相关的片段",
         "模型蒸馏（Knowledge Distillation）：将大模型知识压缩到小模型",
         "结构化笔记（Structured Notes）：将关键信息提取为结构化的事实记录"
+      ],
+      "assessment_category": "Memory与上下文管理",
+      "skill_dimension": [
+        "Agent设计能力"
       ]
     },
     {
@@ -3186,6 +4008,10 @@
         "需要与用户进行高频实时交互的聊天场景",
         "对可观测性要求高，需要在执行前审查完整计划的场景",
         "任务完全独立、单步可完成的简单查询"
+      ],
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
       ]
     },
     {
@@ -3209,6 +4035,10 @@
         "全文搜索引擎（如 Elasticsearch）：对记忆文本建立倒排索引，支持关键词检索",
         "将所有历史对话原封不动地拼接在 Prompt 中",
         "关系数据库：将结构化事实存储为表记录，按需查询"
+      ],
+      "assessment_category": "Memory与上下文管理",
+      "skill_dimension": [
+        "Agent设计能力"
       ]
     },
     {
@@ -3230,6 +4060,11 @@
         "传输层可插拔：支持 stdio、HTTP+SSE 等多种传输方式",
         "渐进式发现：Client 可以动态发现 Server 的能力（Tools/Resources/Prompts）",
         "协议实现层面推荐所有 MCP Server 和 Client 优先使用 Python 语言进行开发，以获得最好的社区生态支持"
+      ],
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
       ]
     },
     {
@@ -3245,6 +4080,11 @@
       "options": [
         "正确",
         "错误"
+      ],
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
       ]
     },
     {
@@ -3260,6 +4100,10 @@
       "options": [
         "正确",
         "错误"
+      ],
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
       ]
     },
     {
@@ -3275,6 +4119,11 @@
       "options": [
         "正确",
         "错误"
+      ],
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
       ]
     },
     {
@@ -3290,6 +4139,10 @@
       "options": [
         "正确",
         "错误"
+      ],
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
       ]
     },
     {
@@ -3305,6 +4158,11 @@
       "options": [
         "正确",
         "错误"
+      ],
+      "assessment_category": "Agent架构与框架",
+      "skill_dimension": [
+        "Agent架构能力",
+        "工程实践能力"
       ]
     },
     {
@@ -3316,7 +4174,11 @@
       "weight": 2.0,
       "question": "请阐述 Reflexion 机制的工作流程，并说明它与简单的 「出错-重试」模式有什么本质区别。",
       "answer": "",
-      "explanation": "评分要点：1. Reflexion 工作流程：执行任务→检测失败→生成反思文本（分析失败原因和下次改进策略）→将反思存入长期记忆→重试时检索相关反思并注入上下文→基于反思调整策略（4分）。2. 本质区别：简单重试是盲目重复相同行为，不改变策略；Reflexion 是元认知层面的自我改进，利用自然语言反思作为「梯度信号」引导行为变化，具有学习和适应能力（4分）。3. 能举例说明（如代码生成失败的反思示例）额外加分（2分）。满分10分。"
+      "explanation": "评分要点：1. Reflexion 工作流程：执行任务→检测失败→生成反思文本（分析失败原因和下次改进策略）→将反思存入长期记忆→重试时检索相关反思并注入上下文→基于反思调整策略（4分）。2. 本质区别：简单重试是盲目重复相同行为，不改变策略；Reflexion 是元认知层面的自我改进，利用自然语言反思作为「梯度信号」引导行为变化，具有学习和适应能力（4分）。3. 能举例说明（如代码生成失败的反思示例）额外加分（2分）。满分10分。",
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
+      ]
     },
     {
       "id": 8144,
@@ -3327,7 +4189,12 @@
       "weight": 2.0,
       "question": "请说明 MCP 协议中 Tools、Resources、Prompts 三种原语的区别和各自的使用场景，并给出每种原语的一个具体示例。",
       "answer": "",
-      "explanation": "评分要点（每种原语约3分，1分整体理解，共10分）：1. Tools（工具）：模型可调用的可执行操作（有副作用），如「search_web(query)」「send_email(to, body)」，适合需要执行动作的场景。2. Resources（资源）：模型可读取的只读数据（无副作用），如「file://project/readme.md」「postgres://users/table」，适合暴露数据给模型。3. Prompts（提示模板）：预定义的提示模板，如「/summarize {text}」，提供可复用的交互模板。关键区别：Tools=可执行、Resources=可读取、Prompts=可复用模板。"
+      "explanation": "评分要点（每种原语约3分，1分整体理解，共10分）：1. Tools（工具）：模型可调用的可执行操作（有副作用），如「search_web(query)」「send_email(to, body)」，适合需要执行动作的场景。2. Resources（资源）：模型可读取的只读数据（无副作用），如「file://project/readme.md」「postgres://users/table」，适合暴露数据给模型。3. Prompts（提示模板）：预定义的提示模板，如「/summarize {text}」，提供可复用的交互模板。关键区别：Tools=可执行、Resources=可读取、Prompts=可复用模板。",
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
+      ]
     },
     {
       "id": 8145,
@@ -3338,7 +4205,12 @@
       "weight": 2.0,
       "question": "请描述 A2A 协议的 Agent Card 应包含哪些关键字段，并说明在多 Agent 协作场景中 Agent 发现和任务委派的完整流程。",
       "answer": "",
-      "explanation": "评分要点：1. Agent Card 关键字段（5分）：name（名称）、description（能力描述）、url（服务端点）、capabilities/skills（能力列表，每项含描述和输入输出Schema）、version（版本）、authentication（认证方式）。2. 发现与委派流程（5分）：a) Agent 通过注册中心或已知端点获取目标 Agent 的 Agent Card；b) 解析 Card 中的能力描述，判断是否匹配当前子任务；c) 根据 Card 中的 API 规范构造任务请求；d) 发送任务并异步等待结果或轮询状态；e) 收到结果后根据 Card 中的输出 Schema 解析并集成到自身工作流。满分10分。"
+      "explanation": "评分要点：1. Agent Card 关键字段（5分）：name（名称）、description（能力描述）、url（服务端点）、capabilities/skills（能力列表，每项含描述和输入输出Schema）、version（版本）、authentication（认证方式）。2. 发现与委派流程（5分）：a) Agent 通过注册中心或已知端点获取目标 Agent 的 Agent Card；b) 解析 Card 中的能力描述，判断是否匹配当前子任务；c) 根据 Card 中的 API 规范构造任务请求；d) 发送任务并异步等待结果或轮询状态；e) 收到结果后根据 Card 中的输出 Schema 解析并集成到自身工作流。满分10分。",
+      "assessment_category": "Agent架构与框架",
+      "skill_dimension": [
+        "Agent架构能力",
+        "工程实践能力"
+      ]
     },
     {
       "id": 8150,
@@ -3355,7 +4227,11 @@
         "API 调用时服务端返回的请求标识"
       ],
       "answer": "模型处理文本的最小计量单元",
-      "explanation": "Token 是大模型理解和生成文本的最小单位，API 调用按 Token 计费。中文中约 1 个汉字 ≈ 1~2 Token，英文中约 1 个单词 ≈ 1~1.5 Token。上下文窗口也是以 Token 为单位度量的。"
+      "explanation": "Token 是大模型理解和生成文本的最小单位，API 调用按 Token 计费。中文中约 1 个汉字 ≈ 1~2 Token，英文中约 1 个单词 ≈ 1~1.5 Token。上下文窗口也是以 Token 为单位度量的。",
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
+      ]
     },
     {
       "id": 8151,
@@ -3372,7 +4248,11 @@
         "模型 API 允许的最大并发请求数量限制"
       ],
       "answer": "模型一次能处理的文本总量上限，单位是 Token",
-      "explanation": "上下文窗口决定了模型在一次调用中能「看到」的文本总量，包括系统提示词、历史对话和当前输入。超过窗口限制的早期内容会被截断或遗忘。主流模型目前已支持 128K 甚至 1M Token 的上下文窗口。"
+      "explanation": "上下文窗口决定了模型在一次调用中能「看到」的文本总量，包括系统提示词、历史对话和当前输入。超过窗口限制的早期内容会被截断或遗忘。主流模型目前已支持 128K 甚至 1M Token 的上下文窗口。",
+      "assessment_category": "Memory与上下文管理",
+      "skill_dimension": [
+        "Agent设计能力"
+      ]
     },
     {
       "id": 8152,
@@ -3389,7 +4269,11 @@
         "调节模型参数量以在精度与速度之间做取舍"
       ],
       "answer": "控制模型输出的随机性和创造性程度",
-      "explanation": "Temperature 越低（如 0~0.3），输出越确定稳定，适合 RAG 问答和代码生成；Temperature 越高（如 0.7~1.0），输出越有创造性和多样性，适合创意写作。Agent 场景中通常设为较低值以保证稳定性。"
+      "explanation": "Temperature 越低（如 0~0.3），输出越确定稳定，适合 RAG 问答和代码生成；Temperature 越高（如 0.7~1.0），输出越有创造性和多样性，适合创意写作。Agent 场景中通常设为较低值以保证稳定性。",
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
+      ]
     },
     {
       "id": 8153,
@@ -3406,7 +4290,11 @@
         "训练使用 CPU 计算，推理使用 GPU 计算"
       ],
       "answer": "训练在海量数据上学习规律，推理用学到的知识生成回答",
-      "explanation": "训练阶段模型从海量文本中学习语言规律和知识（调整参数）；推理阶段模型只根据输入预测下一个 Token（不更新参数）。开发者通过 API 调用时使用的是推理能力。"
+      "explanation": "训练阶段模型从海量文本中学习语言规律和知识（调整参数）；推理阶段模型只根据输入预测下一个 Token（不更新参数）。开发者通过 API 调用时使用的是推理能力。",
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
+      ]
     },
     {
       "id": 8154,
@@ -3417,7 +4305,12 @@
       "weight": 1.0,
       "question": "Prompt 是用户与大模型沟通的唯一方式，好的 Prompt 能显著提升模型回答质量。",
       "answer": "正确",
-      "explanation": "Prompt 是输入给模型的文本指令，直接影响模型的理解和输出质量。好的 Prompt 通常包含角色定义、任务说明、约束条件和输出格式要求。Prompt 设计是 AI 应用开发的核心技能之一。"
+      "explanation": "Prompt 是输入给模型的文本指令，直接影响模型的理解和输出质量。好的 Prompt 通常包含角色定义、任务说明、约束条件和输出格式要求。Prompt 设计是 AI 应用开发的核心技能之一。",
+      "assessment_category": "Prompt工程",
+      "skill_dimension": [
+        "模型交互能力",
+        "AI应用设计能力"
+      ]
     },
     {
       "id": 8155,
@@ -3434,7 +4327,12 @@
         "一种在模型输出后对文本进行语法纠错的后期处理方案"
       ],
       "answer": "先检索相关文档，再将检索结果提供给模型生成回答",
-      "explanation": "RAG = Retrieval-Augmented Generation。核心流程：用户提问 → 从知识库检索相关内容 → 将检索到的文档片段和问题一起发给大模型 → 模型基于参考资料生成回答。它有效缓解了幻觉和知识过时问题。"
+      "explanation": "RAG = Retrieval-Augmented Generation。核心流程：用户提问 → 从知识库检索相关内容 → 将检索到的文档片段和问题一起发给大模型 → 模型基于参考资料生成回答。它有效缓解了幻觉和知识过时问题。",
+      "assessment_category": "RAG知识增强",
+      "skill_dimension": [
+        "知识增强理解能力",
+        "AI应用设计能力"
+      ]
     },
     {
       "id": 8156,
@@ -3451,7 +4349,12 @@
         "多语言翻译中语义不对齐的质量问题"
       ],
       "answer": "模型不具备私有知识和知识过时导致幻觉",
-      "explanation": "大模型的知识冻结在训练截止日期，且无法访问企业内部文档。RAG 通过实时检索外部知识库，让模型能回答私有领域问题并引用最新信息，有效缓解幻觉和知识时效性问题。"
+      "explanation": "大模型的知识冻结在训练截止日期，且无法访问企业内部文档。RAG 通过实时检索外部知识库，让模型能回答私有领域问题并引用最新信息，有效缓解幻觉和知识时效性问题。",
+      "assessment_category": "RAG知识增强",
+      "skill_dimension": [
+        "知识增强理解能力",
+        "AI应用设计能力"
+      ]
     },
     {
       "id": 8157,
@@ -3468,7 +4371,12 @@
         "将用户问题拆分成多个子问题提高检索覆盖面"
       ],
       "answer": "将文本转换为数字向量，使语义相近的文本向量距离也近",
-      "explanation": "Embedding（向量化）是 RAG 的核心：用专门的 Embedding 模型将文本映射为高维向量。语义相近的文本（如「退货」和「不想要了」）向量距离近，搜索时通过向量相似度匹配找回相关内容。"
+      "explanation": "Embedding（向量化）是 RAG 的核心：用专门的 Embedding 模型将文本映射为高维向量。语义相近的文本（如「退货」和「不想要了」）向量距离近，搜索时通过向量相似度匹配找回相关内容。",
+      "assessment_category": "RAG知识增强",
+      "skill_dimension": [
+        "知识增强理解能力",
+        "AI应用设计能力"
+      ]
     },
     {
       "id": 8158,
@@ -3485,7 +4393,12 @@
         "将用户问题拆解为多个关键词以提高数据库搜索效率"
       ],
       "answer": "将长文档切分成适合检索的短片段并尽量保持语义完整",
-      "explanation": "长文档直接塞给模型会超出上下文窗口。分块将文档切成适中的片段（通常 200~1000 字符），块之间设置重叠（overlap）防止语义被切断。分块质量直接影响后续检索和回答的准确性。"
+      "explanation": "长文档直接塞给模型会超出上下文窗口。分块将文档切成适中的片段（通常 200~1000 字符），块之间设置重叠（overlap）防止语义被切断。分块质量直接影响后续检索和回答的准确性。",
+      "assessment_category": "RAG知识增强",
+      "skill_dimension": [
+        "知识增强理解能力",
+        "AI应用设计能力"
+      ]
     },
     {
       "id": 8159,
@@ -3502,7 +4415,12 @@
         "对用户历史提问记录排序以优先回答高频问题"
       ],
       "answer": "对初步检索结果进行二次精排，把最相关的片段排在前面",
-      "explanation": "初步检索（如向量搜索）召回 Top-K 个片段后，Reranking 用更精确的模型（如 Cross-Encoder）对召回结果重新打分排序，将最相关的排在前面。这是提升 RAG 回答质量的重要优化手段。"
+      "explanation": "初步检索（如向量搜索）召回 Top-K 个片段后，Reranking 用更精确的模型（如 Cross-Encoder）对召回结果重新打分排序，将最相关的排在前面。这是提升 RAG 回答质量的重要优化手段。",
+      "assessment_category": "RAG知识增强",
+      "skill_dimension": [
+        "知识增强理解能力",
+        "AI应用设计能力"
+      ]
     },
     {
       "id": 8160,
@@ -3528,7 +4446,12 @@
         "检索（Retrieve）",
         "生成回答（Answer）"
       ],
-      "explanation": "RAG 全链路为：Ingest（导入文档）→ Chunk（切块）→ Embed（向量化）→ Index（存入向量库）→ Retrieve（检索）→ Answer（生成回答）。前四步是离线准备，后两步在线执行。"
+      "explanation": "RAG 全链路为：Ingest（导入文档）→ Chunk（切块）→ Embed（向量化）→ Index（存入向量库）→ Retrieve（检索）→ Answer（生成回答）。前四步是离线准备，后两步在线执行。",
+      "assessment_category": "RAG知识增强",
+      "skill_dimension": [
+        "知识增强理解能力",
+        "AI应用设计能力"
+      ]
     },
     {
       "id": 8161,
@@ -3545,7 +4468,11 @@
         "Query → Embed → Search（查询-向量化-搜索）"
       ],
       "answer": "Thought → Action → Observation（思考-行动-观察）",
-      "explanation": "ReAct = Reasoning + Acting。Agent 在每一轮循环中：先思考下一步该做什么（Thought），然后调用工具执行（Action），观察工具返回结果（Observation），再进入下一轮思考。这个循环直到任务完成才结束。"
+      "explanation": "ReAct = Reasoning + Acting。Agent 在每一轮循环中：先思考下一步该做什么（Thought），然后调用工具执行（Action），观察工具返回结果（Observation），再进入下一轮思考。这个循环直到任务完成才结束。",
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
+      ]
     },
     {
       "id": 8162,
@@ -3562,7 +4489,11 @@
         "ReAct 的响应速度比纯 CoT 快很多倍无需等待"
       ],
       "answer": "ReAct 能调用工具获取真实数据，推理建立在事实之上",
-      "explanation": "纯 CoT 虽然推理链条清晰，但无法获取外部数据，遇到需要真实信息时会「编造」。ReAct 把推理和行动交替进行：推理指导行动，行动为推理提供真实数据反馈，形成正循环。"
+      "explanation": "纯 CoT 虽然推理链条清晰，但无法获取外部数据，遇到需要真实信息时会「编造」。ReAct 把推理和行动交替进行：推理指导行动，行动为推理提供真实数据反馈，形成正循环。",
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
+      ]
     },
     {
       "id": 8163,
@@ -3579,7 +4510,12 @@
         "用 YAML 配置文件列出所有可能的输入输出组合"
       ],
       "answer": "用 JSON Schema 精确定义字段名、类型、是否必填等",
-      "explanation": "JSON Schema 能精确描述参数结构：字段名（驼峰/下划线）、类型（string/number/boolean）、是否必填（required）、描述和示例。这比自然语言描述更精确，避免大模型「猜」参数格式导致的错误。"
+      "explanation": "JSON Schema 能精确描述参数结构：字段名（驼峰/下划线）、类型（string/number/boolean）、是否必填（required）、描述和示例。这比自然语言描述更精确，避免大模型「猜」参数格式导致的错误。",
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
+      ]
     },
     {
       "id": 8164,
@@ -3590,7 +4526,12 @@
       "weight": 1.0,
       "question": "Function Calling 是让模型通过 API 直接执行函数的机制，模型会自己完成函数调用。",
       "answer": "错误",
-      "explanation": "Function Calling 中模型并不执行函数——它只是告诉你应该调哪个工具、传什么参数。你的代码负责解析模型的 tool_calls 响应，实际调用工具，再把结果回传给模型。模型是「建议」调用，真正执行的是你的代码。"
+      "explanation": "Function Calling 中模型并不执行函数——它只是告诉你应该调哪个工具、传什么参数。你的代码负责解析模型的 tool_calls 响应，实际调用工具，再把结果回传给模型。模型是「建议」调用，真正执行的是你的代码。",
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
+      ]
     },
     {
       "id": 8165,
@@ -3607,7 +4548,11 @@
         "用户手动点击浏览器刷新按钮重新加载页面"
       ],
       "answer": "用户手动点击浏览器刷新按钮重新加载页面",
-      "explanation": "Agent 循环的终止条件通常包括：模型自己输出最终答复、Token 预算耗尽、最大步数兜底、重复调用检测、无进展检测。用户刷新页面不是 Agent 内部的终止机制。"
+      "explanation": "Agent 循环的终止条件通常包括：模型自己输出最终答复、Token 预算耗尽、最大步数兜底、重复调用检测、无进展检测。用户刷新页面不是 Agent 内部的终止机制。",
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
+      ]
     },
     {
       "id": 8166,
@@ -3624,7 +4569,11 @@
         "两者在实现原理和任务处理流程上没有本质区别"
       ],
       "answer": "Plan-and-Execute 先生成完整计划再逐步执行，ReAct 走一步算一步",
-      "explanation": "ReAct 的规划是隐式的——每轮思考决定下一步，灵活但可能绕弯路。Plan-and-Execute 先由 Planner 生成完整计划，再由 Executor 逐步执行，全局视野好但计划可能与现实脱节。两种模式适合不同场景。"
+      "explanation": "ReAct 的规划是隐式的——每轮思考决定下一步，灵活但可能绕弯路。Plan-and-Execute 先由 Planner 生成完整计划，再由 Executor 逐步执行，全局视野好但计划可能与现实脱节。两种模式适合不同场景。",
+      "assessment_category": "Agent基础",
+      "skill_dimension": [
+        "AI基础理解能力"
+      ]
     },
     {
       "id": 8167,
@@ -3641,7 +4590,12 @@
         "一种数据库协议，专门用于大模型训练数据的分布式存储"
       ],
       "answer": "一种标准化的工具接入协议，统一大模型与外部工具的通信方式",
-      "explanation": "MCP 由 Anthropic 于 2024 年发布，被比喻为「大模型世界的 USB 接口」。它定义了统一的 Client-Server 协议，让任何实现了 MCP 的工具都能被任何支持 MCP 的 AI 应用即插即用。"
+      "explanation": "MCP 由 Anthropic 于 2024 年发布，被比喻为「大模型世界的 USB 接口」。它定义了统一的 Client-Server 协议，让任何实现了 MCP 的工具都能被任何支持 MCP 的 AI 应用即插即用。",
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
+      ]
     },
     {
       "id": 8168,
@@ -3658,7 +4612,12 @@
         "MCP 使用二进制编码替代文本传输，数据体积缩小十倍以上"
       ],
       "answer": "MCP 提供了统一的工具发现、参数定义和权限管理标准化方案",
-      "explanation": "HTTP API 只是传输层，不解决工具定义管理、动态发现、跨语言互操作等工程问题。MCP 在 Function Calling 之上提供了标准化的工具注册、发现、调用和权限控制，避免每个工具手写 JSON Schema 和适配代码。"
+      "explanation": "HTTP API 只是传输层，不解决工具定义管理、动态发现、跨语言互操作等工程问题。MCP 在 Function Calling 之上提供了标准化的工具注册、发现、调用和权限控制，避免每个工具手写 JSON Schema 和适配代码。",
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
+      ]
     },
     {
       "id": 8169,
@@ -3675,7 +4634,12 @@
         "Master（主节点）和 Worker（工作节点）"
       ],
       "answer": "Client（客户端）和 Server（服务端）",
-      "explanation": "MCP 采用 Client-Server 架构。Server 端暴露工具和资源，Client 端连接 Server 并发起调用。AI 应用（如 Claude Desktop、Cursor）作为 MCP Client，工具提供方实现 MCP Server。"
+      "explanation": "MCP 采用 Client-Server 架构。Server 端暴露工具和资源，Client 端连接 Server 并发起调用。AI 应用（如 Claude Desktop、Cursor）作为 MCP Client，工具提供方实现 MCP Server。",
+      "assessment_category": "Tool Calling与MCP",
+      "skill_dimension": [
+        "Agent工程能力",
+        "系统设计能力"
+      ]
     },
     {
       "id": 8200,
@@ -3692,6 +4656,10 @@
         "3 3 3",
         "undefined undefined undefined",
         "0 0 0"
+      ],
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
       ]
     },
     {
@@ -3709,6 +4677,10 @@
         "1 3 5 4 2",
         "1 3 5 2 4",
         "1 5 3 2 4"
+      ],
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
       ]
     },
     {
@@ -3724,6 +4696,10 @@
       "options": [
         "正确",
         "错误"
+      ],
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
       ]
     },
     {
@@ -3745,6 +4721,10 @@
         "Promise.all() 只要有一个 Promise 被 reject，整体就会 reject",
         "Promise.race() 返回第一个完成的 Promise 的结果，无论是 fulfilled 还是 rejected",
         "Promise.allSettled() 在所有 Promise 完成后返回，但只返回 fulfilled 的结果"
+      ],
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
       ]
     },
     {
@@ -3762,6 +4742,10 @@
         "justify-content: center",
         "align-self: center",
         "place-items: center"
+      ],
+      "assessment_category": "HTML/CSS",
+      "skill_dimension": [
+        "前端基础能力"
       ]
     },
     {
@@ -3779,6 +4763,10 @@
         "设置 display: inline-block",
         "设置 float: none",
         "设置 overflow: visible"
+      ],
+      "assessment_category": "HTML/CSS",
+      "skill_dimension": [
+        "前端基础能力"
       ]
     },
     {
@@ -3800,6 +4788,10 @@
         "grid-area 属性可用于 grid-template-areas 布局中为元素指定区域",
         "grid-column-gap 已被废弃，应使用 column-gap 代替",
         "display: grid 会使所有直接子元素成为网格项，包括伪元素"
+      ],
+      "assessment_category": "HTML/CSS",
+      "skill_dimension": [
+        "前端基础能力"
       ]
     },
     {
@@ -3817,6 +4809,10 @@
         "@media screen and (min-width: 768px) or (max-width: 1024px)",
         "@media screen and (min-width: 768px) and (max-width: 1024px)",
         "@media screen and (width >= 768px && width <= 1024px)"
+      ],
+      "assessment_category": "HTML/CSS",
+      "skill_dimension": [
+        "前端基础能力"
       ]
     },
     {
@@ -3834,6 +4830,10 @@
         "可以检测到数组索引和 length 的变化（Proxy 可拦截数组索引赋值和 length 修改）",
         "提升了大型嵌套对象的初始化性能（Proxy 采用惰性代理 lazy proxy，按需递归劫持）",
         "兼容 IE11 等老旧浏览器"
+      ],
+      "assessment_category": "框架应用",
+      "skill_dimension": [
+        "工程实践能力"
       ]
     },
     {
@@ -3851,6 +4851,10 @@
         "5",
         "undefined",
         "0 或 5，取决于 React 版本"
+      ],
+      "assessment_category": "框架应用",
+      "skill_dimension": [
+        "工程实践能力"
       ]
     },
     {
@@ -3866,6 +4870,10 @@
       "options": [
         "正确",
         "错误"
+      ],
+      "assessment_category": "框架应用",
+      "skill_dimension": [
+        "工程实践能力"
       ]
     },
     {
@@ -3877,7 +4885,11 @@
       "weight": 3.0,
       "question": "请列举前端组件间通信的常见方式，并简要说明每种方式的适用场景。",
       "answer": "评分要点（答出5种及以上且说明场景得满分）：\n1. Props / Emits（父→子传 props，子→父通过 emit 事件）—— 适用于直接父子组件通信\n2. Provide / Inject —— 适用于祖先向后代跨层级传递数据，避免 props 逐层透传\n3. 全局状态管理（Vuex / Pinia / Redux）—— 适用于中大型应用中跨组件共享状态\n4. EventBus / 发布订阅 —— 适用于无直接关系的组件间通信（Vue 3 已移除实例 EventBus，推荐使用 mitt 等库）\n5. $refs / ref —— 父组件直接访问子组件实例或 DOM\n6. $parent / $root —— 访问父组件或根实例（不推荐，耦合度高）\n7. 浏览器存储（localStorage / sessionStorage）—— 适用于跨页面/跨标签页的数据共享\n8. URL 参数 / 路由传参 —— 适用于页面跳转时的数据传递",
-      "explanation": "组件通信是前端面试高频考点，考察候选人对不同场景下通信方案选择的工程判断力。"
+      "explanation": "组件通信是前端面试高频考点，考察候选人对不同场景下通信方案选择的工程判断力。",
+      "assessment_category": "框架应用",
+      "skill_dimension": [
+        "工程实践能力"
+      ]
     },
     {
       "id": 8212,
@@ -3894,6 +4906,10 @@
         "1 → 2 → 3 → 4 → 5",
         "2 → 1 → 3 → 4 → 5",
         "1 → 2 → 4 → 3 → 5"
+      ],
+      "assessment_category": "浏览器原理",
+      "skill_dimension": [
+        "前端基础能力"
       ]
     },
     {
@@ -3911,6 +4927,10 @@
         "修改元素的 visibility 属性",
         "修改元素的 width 属性",
         "修改元素的 outline 属性"
+      ],
+      "assessment_category": "浏览器原理",
+      "skill_dimension": [
+        "前端基础能力"
       ]
     },
     {
@@ -3932,6 +4952,10 @@
         "ETag 和 Last-Modified 同时存在时，ETag 优先级更高",
         "强缓存命中时，状态码返回 200 (from disk cache) 或 200 (from memory cache)",
         "Cache-Control: no-store 表示不缓存任何内容，每次必须向服务器验证"
+      ],
+      "assessment_category": "浏览器原理",
+      "skill_dimension": [
+        "前端基础能力"
       ]
     },
     {
@@ -3943,7 +4967,11 @@
       "weight": 3.0,
       "question": "请简述跨域问题的产生原因，并列举至少四种解决跨域的方法及其原理。",
       "answer": "评分要点：\n原因（2分）：浏览器同源策略限制——协议、域名、端口号任一不同即为跨域，是浏览器的安全机制。\n\n解决方案（每种1分，答出4种及以上得满分）：\n1. CORS：服务器设置 Access-Control-Allow-Origin 等响应头，是最正规的跨域解决方案\n2. JSONP：利用 script 标签不受同源策略限制，通过回调函数获取数据，仅支持 GET 请求\n3. 代理服务器（Proxy）：开发环境通过 devServer proxy 转发请求，生产环境通过 Nginx 反向代理\n4. WebSocket：不受同源策略限制，支持全双工通信\n5. postMessage：HTML5 API，允许不同窗口/iframe 间安全通信\n6. document.domain + iframe：仅适用于主域相同、子域不同的场景\n7. window.name + iframe：利用 window.name 在页面跳转后不变化的特性",
-      "explanation": "跨域是浏览器安全的核心概念，考察候选人对多种跨域方案的原理理解和工程选型能力。"
+      "explanation": "跨域是浏览器安全的核心概念，考察候选人对多种跨域方案的原理理解和工程选型能力。",
+      "assessment_category": "浏览器原理",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 8216,
@@ -3960,6 +4988,10 @@
         "Loader 运行在 Node.js 环境，Plugin 运行在浏览器环境",
         "Loader 只能处理 JavaScript 文件，Plugin 可以处理任意文件",
         "Loader 是同步的，Plugin 是异步的"
+      ],
+      "assessment_category": "工程化",
+      "skill_dimension": [
+        "工程实践能力"
       ]
     },
     {
@@ -3975,6 +5007,10 @@
       "options": [
         "正确",
         "错误"
+      ],
+      "assessment_category": "工程化",
+      "skill_dimension": [
+        "工程实践能力"
       ]
     },
     {
@@ -3996,6 +5032,10 @@
         "CommonJS 是 Node.js 默认的模块规范，使用 require/module.exports",
         "AMD 规范的代表实现是 RequireJS，主要用于服务端环境",
         "UMD 是一种兼容 AMD、CommonJS 和全局变量的通用模块格式"
+      ],
+      "assessment_category": "工程化",
+      "skill_dimension": [
+        "工程实践能力"
       ]
     },
     {
@@ -4007,7 +5047,11 @@
       "weight": 3.0,
       "question": "请对比 Webpack 和 Vite 在开发模式和构建模式下的核心差异，并分析 Vite 为什么在开发环境下更快。",
       "answer": "评分要点：\n\n一、开发模式差异（3分）：\n1. Webpack 开发模式：将所有模块打包成 bundle，启动时需先构建整个应用，项目越大启动越慢\n2. Vite 开发模式：基于原生 ES Module，利用浏览器直接加载模块，按需编译，无需打包\n3. Vite 利用 esbuild 预构建依赖（将 CommonJS/UMD 转为 ESM），esbuild 使用 Go 编写，速度极快\n\n二、构建模式差异（1分）：\n1. Webpack 使用自身打包器进行生产构建\n2. Vite 生产构建基于 Rollup，利用其成熟的打包优化能力\n\n三、Vite 开发快的核心原因（2分）：\n1. 按需编译：只编译浏览器当前请求的模块，而非全量打包\n2. esbuild 预构建：比传统 JS 打包器快 10-100 倍\n3. 冷启动无需构建整个应用，热更新速度与模块数量无关",
-      "explanation": "Vite vs Webpack 是当前前端工程化领域最热门的话题之一，考察候选人对构建工具底层原理的理解深度。"
+      "explanation": "Vite vs Webpack 是当前前端工程化领域最热门的话题之一，考察候选人对构建工具底层原理的理解深度。",
+      "assessment_category": "工程化",
+      "skill_dimension": [
+        "工程实践能力"
+      ]
     },
     {
       "id": 8220,
@@ -4024,6 +5068,10 @@
         "{ name?: string }",
         "{ name: string; age: number }",
         "{ name: string; age?: number }"
+      ],
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
       ]
     },
     {
@@ -4045,6 +5093,10 @@
         "泛型默认值语法为 <T = DefaultType>，调用时如不传入则使用默认类型",
         "泛型只能在函数（function）和类（class）中使用，不能在接口（interface）和类型别名（type）中使用",
         "条件类型结合泛型可实现类型层面的逻辑判断，如 T extends U ? X : Y"
+      ],
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
       ]
     },
     {
@@ -4062,6 +5114,10 @@
         "unknown 是类型安全的，使用前必须进行类型断言或类型守卫；any 则绕过了类型检查",
         "unknown 只能用于函数返回值，any 可用于任何地方",
         "unknown 是 any 的子类型，比 any 更灵活"
+      ],
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
       ]
     },
     {
@@ -4073,7 +5129,11 @@
       "weight": 3.0,
       "question": "请实现一个 TypeScript 工具类型 DeepReadonly<T>，使得对象类型的所有嵌套属性都变为只读。并以一个具体的对象类型为例说明用法。",
       "answer": "评分要点：\n\n1. 基本递归定义（3分）：\ntype DeepReadonly<T> = {\n  readonly [K in keyof T]: T[K] extends object\n    ? T[K] extends Function\n      ? T[K]\n      : DeepReadonly<T[K]>\n    : T[K];\n};\n\n关键点：\n- 使用映射类型 [K in keyof T] 遍历属性\n- readonly 修饰符\n- 递归调用 DeepReadonly 处理嵌套对象\n- 排除 Function 类型（函数不需要递归处理）\n\n2. 示例说明（1分）：\ninterface User { name: string; address: { city: string; zip: number } }\ntype ReadonlyUser = DeepReadonly<User>;\n// ReadonlyUser 中 name、address、address.city、address.zip 全部 readonly\n\n3. 进阶考虑（加分项）：\n- 处理数组类型\n- 处理 Date、RegExp 等内置对象（不需要深层只读）",
-      "explanation": "DeepReadonly 是 TypeScript 高级工具类型的经典面试题，考察映射类型、条件类型、递归类型的综合运用能力。"
+      "explanation": "DeepReadonly 是 TypeScript 高级工具类型的经典面试题，考察映射类型、条件类型、递归类型的综合运用能力。",
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 8300,
@@ -4090,6 +5150,10 @@
         "READ COMMITTED（读已提交）",
         "REPEATABLE READ（可重复读）",
         "SERIALIZABLE（串行化）"
+      ],
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
       ]
     },
     {
@@ -4107,6 +5171,10 @@
         "跳表 + 哈希表",
         "红黑树 + 数组",
         "B+树 + 哈希表"
+      ],
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
       ]
     },
     {
@@ -4124,6 +5192,10 @@
         "201 Created",
         "204 No Content",
         "202 Accepted"
+      ],
+      "assessment_category": "接口设计",
+      "skill_dimension": [
+        "后端架构能力"
       ]
     },
     {
@@ -4141,6 +5213,10 @@
         "Issuer.Subject.Expiration",
         "Token.Type.Claims",
         "PublicKey.PrivateKey.Certificate"
+      ],
+      "assessment_category": "安全",
+      "skill_dimension": [
+        "工程规范能力"
       ]
     },
     {
@@ -4158,6 +5234,10 @@
         "await 关键字只能在 async 函数内部使用",
         "asyncio.run() 可以嵌套调用",
         "async 函数中不能使用 for 循环"
+      ],
+      "assessment_category": "Web框架",
+      "skill_dimension": [
+        "编码能力"
       ]
     },
     {
@@ -4175,6 +5255,10 @@
         "WHERE a = 1 AND c = 3",
         "WHERE a = 1 AND b = 2 AND c = 3",
         "WHERE c = 3 AND b = 2"
+      ],
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
       ]
     },
     {
@@ -4192,6 +5276,10 @@
         "性能（Performance）和安全性（Security）",
         "持久性（Durability）和隔离性（Isolation）",
         "吞吐量（Throughput）和延迟（Latency）"
+      ],
+      "assessment_category": "系统设计",
+      "skill_dimension": [
+        "后端架构能力"
       ]
     },
     {
@@ -4209,6 +5297,10 @@
         "先读缓存，缓存未命中则读数据库并回写缓存",
         "先读数据库再删除缓存",
         "同时读取缓存和数据库，取最新的一条数据"
+      ],
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
       ]
     },
     {
@@ -4226,6 +5318,10 @@
         "Inject",
         "Provider",
         "Autowired"
+      ],
+      "assessment_category": "Web框架",
+      "skill_dimension": [
+        "编码能力"
       ]
     },
     {
@@ -4243,6 +5339,10 @@
         "每个消费者分配到 1~2 个分区，8 个分区全部都会被消费",
         "只有 5 个分区被消费，剩余 3 个分区的数据会丢失",
         "Kafka 会拒绝第 5 个之后的消费者加入该消费者组"
+      ],
+      "assessment_category": "系统设计",
+      "skill_dimension": [
+        "后端架构能力"
       ]
     },
     {
@@ -4260,6 +5360,10 @@
         "Access Token 和可选的 Refresh Token",
         "客户端自身的 Client ID 和 Client Secret",
         "用户完整的身份信息（如姓名、邮箱等）"
+      ],
+      "assessment_category": "安全",
+      "skill_dimension": [
+        "工程规范能力"
       ]
     },
     {
@@ -4277,6 +5381,10 @@
         "DB_TABLE_ID、DB_PAGE_ID、DB_SLOT_ID",
         "DB_TIMESTAMP、DB_VERSION、DB_LOCK",
         "DB_KEY、DB_VALUE、DB_CHECKSUM"
+      ],
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
       ]
     },
     {
@@ -4298,6 +5406,10 @@
         "AOF 记录的是每一条写命令，数据安全性比 RDB 更高",
         "Redis 4.0+ 的混合持久化结合了 RDB 和 AOF 的优点",
         "AOF 文件永远比 RDB 文件小"
+      ],
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
       ]
     },
     {
@@ -4319,6 +5431,10 @@
         "服务间通过轻量级通信机制（如 HTTP/RPC）进行交互",
         "所有微服务共享同一个数据库（Shared Database）以保持数据一致性",
         "服务围绕业务能力（而非技术层）进行组织划分"
+      ],
+      "assessment_category": "系统设计",
+      "skill_dimension": [
+        "后端架构能力"
       ]
     },
     {
@@ -4340,6 +5456,10 @@
         "内置 ORM，可直接操作数据库",
         "原生支持 async/await 异步编程",
         "自动进行请求参数校验和数据序列化"
+      ],
+      "assessment_category": "Web框架",
+      "skill_dimension": [
+        "编码能力"
       ]
     },
     {
@@ -4361,6 +5481,10 @@
         "一致性（Consistency）指事务执行前后数据库都必须处于满足所有约束的有效状态",
         "隔离性（Isolation）指并发执行的事务之间完全不可见，互相无任何影响",
         "持久性（Durability）指事务一旦提交成功，其对数据库的修改就是永久性的"
+      ],
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
       ]
     },
     {
@@ -4382,6 +5506,10 @@
         "gRPC 基于 HTTP/2 协议，原生支持双向流式通信",
         "gRPC 可以直接在浏览器端通过 fetch API 调用",
         "gRPC 支持一元调用、服务端流、客户端流和双向流共四种通信模式"
+      ],
+      "assessment_category": "接口设计",
+      "skill_dimension": [
+        "后端架构能力"
       ]
     },
     {
@@ -4397,6 +5525,10 @@
       "options": [
         "正确",
         "错误"
+      ],
+      "assessment_category": "接口设计",
+      "skill_dimension": [
+        "后端架构能力"
       ]
     },
     {
@@ -4412,6 +5544,10 @@
       "options": [
         "正确",
         "错误"
+      ],
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
       ]
     },
     {
@@ -4427,6 +5563,10 @@
       "options": [
         "正确",
         "错误"
+      ],
+      "assessment_category": "安全",
+      "skill_dimension": [
+        "工程规范能力"
       ]
     },
     {
@@ -4438,7 +5578,11 @@
       "weight": 2.0,
       "question": "请阐述分布式事务的三种常见解决方案：两阶段提交（2PC）、TCC（Try-Confirm-Cancel）和 Saga 模式的核心思想，并分别分析其优缺点及适用场景。",
       "answer": "评分要点：\n1. 两阶段提交（2PC）：\n   - 核心思想：准备阶段（协调者向所有参与者发送 Prepare 请求，参与者预执行并锁定资源）+ 提交阶段（根据所有参与者反馈决定 Commit 或 Rollback）。\n   - 优点：强一致性，实现简单（数据库层面支持）。\n   - 缺点：同步阻塞（锁定资源时间长）、单点故障（协调者宕机导致资源无法释放）、部分参与者提交失败时出现数据不一致。\n   - 适用场景：对一致性要求极高的单体或少量服务间的事务，如银行转账。\n2. TCC（Try-Confirm-Cancel）：\n   - 核心思想：Try 阶段预留并校验资源，Confirm 阶段确认执行业务操作，Cancel 阶段释放预留资源并回滚。\n   - 优点：不长时间锁定数据库资源，性能好，业务层可控。\n   - 缺点：代码侵入性强（每个接口需实现 Try/Confirm/Cancel 三个逻辑），需保证幂等性和空回滚处理。\n   - 适用场景：资金交易、库存扣减等对一致性要求高但允许最终一致的场景。\n3. Saga 模式：\n   - 核心思想：将长事务拆分为多个本地事务序列，每个本地事务有对应的补偿操作（逆向操作），出错时逆序执行补偿。\n   - 优点：无锁、高并发、适合长事务，本地事务各自独立提交。\n   - 缺点：只保证最终一致性，补偿逻辑设计复杂（需考虑业务语义），隔离性弱。\n   - 适用场景：跨多个微服务的长时间业务流程，如订单创建→支付→发货。\n4. 加分项：能对比三种方案的一致性级别（强一致 vs 最终一致）和复杂度的权衡。",
-      "explanation": "分布式事务是微服务架构的核心难题。2PC 是数据库层面方案（如 XA 协议），TCC 和 Saga 是业务层面方案。实际选型需根据业务对一致性的容忍度、性能要求和开发复杂度综合决策。"
+      "explanation": "分布式事务是微服务架构的核心难题。2PC 是数据库层面方案（如 XA 协议），TCC 和 Saga 是业务层面方案。实际选型需根据业务对一致性的容忍度、性能要求和开发复杂度综合决策。",
+      "assessment_category": "系统设计",
+      "skill_dimension": [
+        "后端架构能力"
+      ]
     },
     {
       "id": 8321,
@@ -4449,7 +5593,11 @@
       "weight": 2.0,
       "question": "请设计一个 API 接口限流方案，要求：（1）列举至少三种常见的限流算法并说明各自优缺点；（2）给出基于 Redis 实现滑动窗口限流的具体思路。",
       "answer": "评分要点：\n1. 常见限流算法（至少列三种）：\n   - 固定窗口计数器：按固定时间窗口计数，超限拒绝。优点：实现简单。缺点：窗口边界存在临界突刺问题（前窗口末尾和后窗口开头集中发请求，实际瞬间流量可达 2 倍阈值）。\n   - 滑动窗口日志：记录每个请求的时间戳，统计窗口内请求数。优点：精确。缺点：内存占用大，不适合高并发。\n   - 滑动窗口计数器：将窗口分为多个子窗口，滑动统计。优点：兼顾精确性和性能。缺点：仍有微小误差。\n   - 令牌桶：以固定速率向桶中放入令牌，请求需获取令牌。优点：允许一定突发流量。缺点：实现略复杂。\n   - 漏桶：请求进桶，按固定速率流出处理。优点：严格的流量整形。缺点：无法应对突发流量，多余请求直接丢弃。\n2. 基于 Redis 实现滑动窗口限流思路：\n   - 使用 Redis ZSET，key 为用户/接口标识，score 为请求时间戳（毫秒），member 为请求唯一ID（如 UUID）。\n   - 每次请求时执行 Lua 脚本保证原子性：先 ZREMRANGEBYSCORE 删除窗口外的记录，再 ZCARD 统计窗口内请求数，若超出阈值则拒绝，否则 ZADD 添加当前请求记录并设置 key 的过期时间。\n   - 也可使用 Redis 的 INCR + EXPIRE 实现简化版固定窗口。\n3. 加分项：提及分布式限流（Redis Cluster）、降级策略（限流返回友好提示而非直接报错）、监控告警。",
-      "explanation": "API 限流是保护后端服务、防止恶意刷接口的重要手段。面试中常见的追问是各算法的临界场景和分布式实现细节。"
+      "explanation": "API 限流是保护后端服务、防止恶意刷接口的重要手段。面试中常见的追问是各算法的临界场景和分布式实现细节。",
+      "assessment_category": "接口设计",
+      "skill_dimension": [
+        "后端架构能力"
+      ]
     },
     {
       "id": 8322,
@@ -4460,7 +5608,11 @@
       "weight": 2.0,
       "question": "请分别解释缓存穿透、缓存击穿和缓存雪崩的含义、产生原因，并针对每种问题给出至少两种解决方案。",
       "answer": "评分要点：\n1. 缓存穿透：\n   - 含义：查询一个数据库中也不存在的数据（如查询 id=-1），缓存始终不命中，请求直接穿透到数据库。\n   - 解决方案：① 缓存空值/默认值并设较短过期时间；② 布隆过滤器（Bloom Filter）预先过滤不存在的 key；③ 接口层做参数校验（如 id 必须大于 0）。\n2. 缓存击穿：\n   - 含义：某个热点 key 在过期瞬间，大量并发请求同时打到数据库，造成数据库瞬时压力过大。\n   - 解决方案：① 互斥锁（分布式锁），只让一个请求去加载数据并回写缓存，其余请求等待；② \"逻辑过期\"，key 物理不删除，值中记录逻辑过期时间，后台异步更新；③ 热点数据永不过期，通过消息队列异步刷新。\n3. 缓存雪崩：\n   - 含义：大量缓存 key 在同一时间段集中过期，或缓存服务宕机，所有请求直接打到数据库。\n   - 解决方案：① 过期时间加随机偏移量（如 base + random(0, 300s)），打散过期时间避免同时过期；② 缓存高可用架构（Redis 主从/哨兵/集群），避免单点故障；③ 本地缓存（如 Caffeine）做多级缓存兜底；④ 限流降级，数据库压力过大时返回降级数据或友好提示。\n4. 加分项：能清晰区分三者的核心差异——穿透查的是\"不存在的数据\"，击穿是\"热点 key 刚好过期\"，雪崩是\"大量 key 同时过期或服务宕机\"。",
-      "explanation": "这三种缓存异常问题是后端开发面试中的高频考题，也是实际生产环境中常见的故障场景。理解其区别和应对策略是合格后端工程师的基本功。"
+      "explanation": "这三种缓存异常问题是后端开发面试中的高频考题，也是实际生产环境中常见的故障场景。理解其区别和应对策略是合格后端工程师的基本功。",
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
+      ]
     },
     {
       "id": 8323,
@@ -4471,7 +5623,11 @@
       "weight": 2.0,
       "question": "请对比 JWT Token 认证和传统 Session 认证机制的优缺点，并说明各自最适合的业务场景。",
       "answer": "评分要点：\n1. Session 认证：\n   - 原理：服务端生成并存储 Session，客户端通过 Cookie 传递 Session ID。\n   - 优点：服务端完全可控（可随时踢人下线、修改权限立即生效）、敏感信息不暴露给客户端、实现简单。\n   - 缺点：服务端需存储会话状态（内存/Redis 开销）、分布式环境需 Session 共享（如 Spring Session / Redis）、不利于水平扩展、跨域支持差。\n   - 适用场景：传统服务端渲染应用、内部管理系统、对安全性和实时权限控制要求高的系统。\n2. JWT 认证：\n   - 原理：服务端签发自包含令牌（含用户信息和过期时间），客户端每次请求携带令牌。\n   - 优点：无状态（服务端无需存储，天然支持分布式和微服务）、跨域友好、适合移动端和前后端分离。\n   - 缺点：令牌签发后无法主动失效（需配合黑名单/版本号方案）、Payload 不可存敏感信息（仅 Base64 编码）、令牌体积大影响请求效率。\n   - 适用场景：前后端分离的 SPA 应用、微服务架构中的服务间认证、移动端 App。\n3. 混合方案（加分项）：\n   - JWT Access Token（短期 15min）+ Refresh Token 实现自动续期。\n   - JWT + Redis 黑名单机制实现主动失效。\n   - 内部服务间用 mTLS 或 API Key，外部用户用 JWT/Session。",
-      "explanation": "JWT 和 Session 并无绝对优劣之分，关键取决于业务场景对扩展性、安全性和开发复杂度的不同要求。实际项目中常采用混合方案取长补短。"
+      "explanation": "JWT 和 Session 并无绝对优劣之分，关键取决于业务场景对扩展性、安全性和开发复杂度的不同要求。实际项目中常采用混合方案取长补短。",
+      "assessment_category": "安全",
+      "skill_dimension": [
+        "工程规范能力"
+      ]
     },
     {
       "id": 8400,
@@ -4488,6 +5644,10 @@
         "B. 1, 50, 100, 0, 101",
         "C. 0, 50, 100",
         "D. -1, 1, 50, 100, 200"
+      ],
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
       ]
     },
     {
@@ -4505,6 +5665,10 @@
         "B. 边界值分析通常与等价类划分结合使用，测试边界值及其±1的值",
         "C. 边界值分析仅适用于数值型输入，不适用于日期、字符串等类型",
         "D. 边界值分析属于白盒测试方法"
+      ],
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
       ]
     },
     {
@@ -4522,6 +5686,10 @@
         "B. 2个",
         "C. 3个",
         "D. 4个"
+      ],
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
       ]
     },
     {
@@ -4539,6 +5707,10 @@
         "B. driver.manage().timeouts().implicitlyWait() 为所有元素查找设置全局等待超时",
         "C. new WebDriverWait().until(ExpectedConditions.visibilityOfElementLocated()) 显式等待",
         "D. 通过 while 循环反复调用 driver.findElement() 轮询查找，直到找到或超时"
+      ],
+      "assessment_category": "自动化测试",
+      "skill_dimension": [
+        "工程能力"
       ]
     },
     {
@@ -4556,6 +5728,10 @@
         "B. assertThrows() 可以验证方法是否抛出了预期的异常",
         "C. assertTimeout() 可以验证代码在指定时间内执行完成",
         "D. assertAll() 中的所有断言是顺序执行的，遇到第一个失败即停止"
+      ],
+      "assessment_category": "自动化测试",
+      "skill_dimension": [
+        "工程能力"
       ]
     },
     {
@@ -4573,6 +5749,10 @@
         "B. Thread Group(1) + Loop Controller(100) + HTTP Request(登录+页面)",
         "C. Thread Group(100) + CSV Data Set Config + HTTP Request + 定时器",
         "D. Thread Group(100) + Once Only Controller(登录) + HTTP Request(页面) 置于其外"
+      ],
+      "assessment_category": "性能测试",
+      "skill_dimension": [
+        "工程能力"
       ]
     },
     {
@@ -4590,6 +5770,10 @@
         "B. 数据库连接池配置过小导致线程排队等待获取数据库连接",
         "C. 外部依赖（如第三方接口）响应慢导致线程阻塞",
         "D. 网络带宽瓶颈导致请求或响应数据在传输层发生积压"
+      ],
+      "assessment_category": "性能测试",
+      "skill_dimension": [
+        "工程能力"
       ]
     },
     {
@@ -4607,6 +5791,10 @@
         "B. PUT — 全量更新资源，PATCH — 部分更新资源",
         "C. DELETE — 更新资源，POST — 删除资源",
         "D. PATCH — 创建资源，PUT — 部分更新资源"
+      ],
+      "assessment_category": "接口测试",
+      "skill_dimension": [
+        "测试设计能力"
       ]
     },
     {
@@ -4624,6 +5812,10 @@
         "B. 仅对支付模块执行全面的功能测试",
         "C. 冒烟测试 → 支付模块回归测试 → 周边关联模块回归测试",
         "D. 探索性测试，自由探索可能存在的问题"
+      ],
+      "assessment_category": "测试设计",
+      "skill_dimension": [
+        "测试设计能力"
       ]
     },
     {
@@ -4641,6 +5833,10 @@
         "B. 严重性由开发人员定义，优先级由测试人员定义",
         "C. 严重性描述缺陷对系统的影响程度，优先级描述修复的紧急程度",
         "D. 优先级高的缺陷一定严重性高"
+      ],
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
       ]
     },
     {
@@ -4666,6 +5862,10 @@
         "D. 预期结果",
         "E. 开发人员的姓名",
         "F. 用例的执行环境说明"
+      ],
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
       ]
     },
     {
@@ -4688,6 +5888,10 @@
         "C. 生产环境上线后的实时监控",
         "D. 避免测试过程中产生真实的费用交易",
         "E. 替代所有真实接口的测试，不必再做集成测试"
+      ],
+      "assessment_category": "接口测试",
+      "skill_dimension": [
+        "测试设计能力"
       ]
     },
     {
@@ -4713,6 +5917,10 @@
         "D. 已修复（Fixed）",
         "E. 已关闭（Closed）",
         "F. 已忽略（Ignored）— 开发人员可永久跳过该 Bug"
+      ],
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
       ]
     },
     {
@@ -4728,6 +5936,10 @@
       "options": [
         "正确",
         "错误"
+      ],
+      "assessment_category": "测试设计",
+      "skill_dimension": [
+        "测试设计能力"
       ]
     },
     {
@@ -4743,6 +5955,10 @@
       "options": [
         "正确",
         "错误"
+      ],
+      "assessment_category": "自动化测试",
+      "skill_dimension": [
+        "工程能力"
       ]
     },
     {
@@ -4758,6 +5974,10 @@
       "options": [
         "正确",
         "错误"
+      ],
+      "assessment_category": "性能测试",
+      "skill_dimension": [
+        "工程能力"
       ]
     },
     {
@@ -4769,7 +5989,11 @@
       "weight": 2.5,
       "question": "请为一个电商系统的'用户登录'功能设计测试用例，要求覆盖以下维度：功能测试、安全测试、兼容性测试。请以表格形式列出至少 8 条用例，每条包含用例编号、测试点、前置条件、输入数据、预期结果。",
       "answer": "评分要点（满分10分）：\n1. 功能测试（4分，至少4条）：正确账号密码登录成功、错误密码登录失败、空账号/空密码校验、账号格式校验（邮箱/手机号）、记住密码功能、验证码错误等。\n2. 安全测试（3分，至少2条）：SQL注入尝试、XSS攻击尝试、暴力破解防护（连续多次错误锁定）、密码传输是否加密、cookie/session安全性。\n3. 兼容性测试（2分，至少2条）：不同浏览器（Chrome/Firefox/Edge）、不同操作系统、移动端响应式。\n4. 用例结构完整性（1分）：编号清晰、前置条件合理、输入数据具体、预期结果可验证。",
-      "explanation": "登录功能是系统安全的关键入口，测试需从功能正确性、安全性、跨平台兼容性等多维度覆盖。优秀的答案还应考虑：密码为空的提示优先级、已登录状态下再次访问登录页的跳转、Session过期后的行为等边界场景。"
+      "explanation": "登录功能是系统安全的关键入口，测试需从功能正确性、安全性、跨平台兼容性等多维度覆盖。优秀的答案还应考虑：密码为空的提示优先级、已登录状态下再次访问登录页的跳转、Session过期后的行为等边界场景。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 8417,
@@ -4780,7 +6004,11 @@
       "weight": 2.5,
       "question": "某团队计划为一个已有2年历史的Web项目引入UI自动化测试框架，该项目页面频繁变更。请回答：\n（1）你会选择 Selenium 还是 Playwright？说明理由（至少3点对比）。\n（2）描述自动化用例的维护策略，如何在页面频繁变更的情况下降低维护成本（至少3条具体措施）。",
       "answer": "评分要点（满分10分）：\n\n第（1）问（4分）：\n- 推荐 Playwright（或 Selenium 并给出合理论证均可），需列举3点以上对比：\n  - 自动等待机制：Playwright 内置自动等待元素可见/可操作，减少显式等待代码；Selenium 需手动处理等待\n  - 执行速度：Playwright 使用 WebSocket 协议通信，比 Selenium 的 HTTP 请求更快\n  - 浏览器支持：Playwright 原生支持 Chromium/Firefox/WebKit，Selenium 需各自驱动\n  - 网络拦截：Playwright 内置 route() API 可轻松 Mock 网络请求，方便隔离外部依赖\n  - 并行与录制：Playwright 的 test runner 天然支持并行和 trace viewer 调试\n\n第（2）问（6分，每条2分）：\n- Page Object 模式：将页面元素定位和操作封装为页面对象，变更时只改一处\n- 使用稳定的定位策略：优先 data-testid、语义化 role 定位，避免依赖易变的 CSS class 和 XPath 层级\n- 用例分层设计：业务逻辑层与页面操作层分离，页面结构变化只影响操作层\n- 视觉回归作为补充：对频繁变动的页面减少精确断言，结合截图对比做回归\n- 定期清理废弃用例：建立用例审核机制，随需求迭代同步更新或废弃用例",
-      "explanation": "此题为开放设计题，重点考察候选人对主流自动化框架的深入理解以及实战中的工程化思维。仅选择工具而无法给出维护策略的答案，说明缺乏大型项目实战经验。"
+      "explanation": "此题为开放设计题，重点考察候选人对主流自动化框架的深入理解以及实战中的工程化思维。仅选择工具而无法给出维护策略的答案，说明缺乏大型项目实战经验。",
+      "assessment_category": "自动化测试",
+      "skill_dimension": [
+        "工程能力"
+      ]
     },
     {
       "id": 8500,
@@ -4797,6 +6025,10 @@
         "rwxrwxrwx",
         "r-xr-xr-x",
         "rw-r--r--"
+      ],
+      "assessment_category": "Linux",
+      "skill_dimension": [
+        "故障排查能力"
       ]
     },
     {
@@ -4814,6 +6046,10 @@
         "SIGTERM(15) 是默认的 kill 信号，允许进程优雅退出",
         "SIGHUP(1) 只能由 init 进程发送",
         "SIGSTOP(19) 可以被进程忽略"
+      ],
+      "assessment_category": "Linux",
+      "skill_dimension": [
+        "故障排查能力"
       ]
     },
     {
@@ -4831,6 +6067,10 @@
         "ENTRYPOINT 会覆盖 CMD 的指令",
         "CMD 的内容作为 ENTRYPOINT 的默认参数",
         "两者独立执行，ENTRYPOINT 先于 CMD 运行"
+      ],
+      "assessment_category": "Docker",
+      "skill_dimension": [
+        "部署能力"
       ]
     },
     {
@@ -4848,6 +6088,10 @@
         "将容器连接到同一个用户自定义的 bridge 网络",
         "修改每个容器的 /etc/hosts 文件",
         "使用 host 网络模式"
+      ],
+      "assessment_category": "Docker",
+      "skill_dimension": [
+        "部署能力"
       ]
     },
     {
@@ -4865,6 +6109,10 @@
         "各 job 名称的字母顺序",
         "各 job 的 stage 属性值按字母排序",
         "各 job 在文件中出现的顺序"
+      ],
+      "assessment_category": "CI/CD",
+      "skill_dimension": [
+        "部署能力"
       ]
     },
     {
@@ -4882,6 +6130,10 @@
         "金丝雀发布是逐步将少量流量切换到新版本，蓝绿部署是一次性切换全部流量",
         "蓝绿部署只能用于 Kubernetes 环境",
         "金丝雀发布切换速度比蓝绿部署更快"
+      ],
+      "assessment_category": "CI/CD",
+      "skill_dimension": [
+        "部署能力"
       ]
     },
     {
@@ -4899,6 +6151,10 @@
         "Gauge",
         "Histogram",
         "String"
+      ],
+      "assessment_category": "监控",
+      "skill_dimension": [
+        "稳定性意识"
       ]
     },
     {
@@ -4916,6 +6172,10 @@
         "两者都返回每秒增长率，只是计算方式不同",
         "rate() 返回 5 分钟总增量，increase() 返回每秒增长率",
         "increase() 是 rate() 乘以 300 秒的精确值"
+      ],
+      "assessment_category": "监控",
+      "skill_dimension": [
+        "稳定性意识"
       ]
     },
     {
@@ -4933,6 +6193,10 @@
         "CNAME 记录",
         "MX 记录",
         "TXT 记录"
+      ],
+      "assessment_category": "网络",
+      "skill_dimension": [
+        "故障排查能力"
       ]
     },
     {
@@ -4950,6 +6214,10 @@
         "带斜杠时会将 location 匹配的部分替换掉，不带则保留完整 URI",
         "带斜杠时强制将 HTTP 请求升级为 HTTPS 协议，不带时保持原协议",
         "带斜杠时启用与后端之间的 Keep-Alive 长连接，不带则每次新建连接"
+      ],
+      "assessment_category": "网络",
+      "skill_dimension": [
+        "故障排查能力"
       ]
     },
     {
@@ -4969,6 +6237,10 @@
         "使用 `set -e` 使脚本在任意命令失败时立即退出",
         "使用 `set -u` 在引用未定义变量时报错",
         "在 shebang 行使用 `#!/bin/bash -xv` 启动详细调试模式"
+      ],
+      "assessment_category": "Linux",
+      "skill_dimension": [
+        "故障排查能力"
       ]
     },
     {
@@ -4988,6 +6260,10 @@
         "`docker-compose down` 会停止并删除容器、网络，但默认保留数据卷",
         "depends_on 可以确保依赖的服务完全就绪后再启动当前服务",
         "Compose 文件中可以通过 `environment` 或 `env_file` 设置环境变量"
+      ],
+      "assessment_category": "Docker",
+      "skill_dimension": [
+        "部署能力"
       ]
     },
     {
@@ -5007,6 +6283,10 @@
         "在合并请求时触发自动化单元测试和集成测试",
         "使用 Git Hooks 在 commit 前运行 lint 检查",
         "直接将代码部署到生产环境后进行人工测试"
+      ],
+      "assessment_category": "CI/CD",
+      "skill_dimension": [
+        "部署能力"
       ]
     },
     {
@@ -5022,6 +6302,10 @@
       "options": [
         "正确",
         "错误"
+      ],
+      "assessment_category": "Linux",
+      "skill_dimension": [
+        "故障排查能力"
       ]
     },
     {
@@ -5037,6 +6321,10 @@
       "options": [
         "正确",
         "错误"
+      ],
+      "assessment_category": "监控",
+      "skill_dimension": [
+        "稳定性意识"
       ]
     },
     {
@@ -5052,6 +6340,10 @@
       "options": [
         "正确",
         "错误"
+      ],
+      "assessment_category": "网络",
+      "skill_dimension": [
+        "故障排查能力"
       ]
     },
     {
@@ -5063,7 +6355,11 @@
       "weight": 2.5,
       "question": "请设计一个完整的 CI/CD 流水线，用于将代码从开发分支部署到 Kubernetes 生产环境。需要描述每个阶段的作用、关键步骤和注意事项。",
       "answer": "评分要点：\n1. 代码提交阶段：代码合并到主干/发布分支，触发 pipeline\n2. 构建阶段：编译/打包，生成 Docker 镜像，tag 使用 commit SHA 或版本号（非 latest）\n3. 测试阶段：单元测试 → 集成测试 → 安全扫描（镜像漏洞扫描）\n4. 部署到非生产环境：先部署到 dev/staging，执行冒烟测试\n5. 审批关卡：生产发布需要人工审批\n6. 生产部署：使用滚动更新或金丝雀发布，配置健康检查和资源限制\n7. 回滚策略：保留最近 N 个版本的镜像和 Helm release 历史\n8. 注意事项：敏感信息使用 Secret 管理（非硬编码），镜像推送到私有仓库，配置与代码分离",
-      "explanation": "完整的 CI/CD 流水线应覆盖从代码提交到生产部署的全流程，强调自动化测试、安全扫描、渐进式部署和可回滚能力。"
+      "explanation": "完整的 CI/CD 流水线应覆盖从代码提交到生产部署的全流程，强调自动化测试、安全扫描、渐进式部署和可回滚能力。",
+      "assessment_category": "CI/CD",
+      "skill_dimension": [
+        "部署能力"
+      ]
     },
     {
       "id": 8517,
@@ -5074,7 +6370,11 @@
       "weight": 2.0,
       "question": "生产环境中一个 Docker 容器频繁重启（CrashLoopBackOff），请列出至少 5 种可能的排查思路和对应的排障命令。",
       "answer": "评分要点（答出 5 条及以上得满分）：\n1. 查看容器日志：docker logs <container> [--tail 100 -f]，检查应用启动报错\n2. 查看容器退出码：docker ps -a 或 docker inspect，根据退出码判断原因（OOM、信号等）\n3. 检查资源限制：docker stats 查看 CPU/内存使用，检查是否 OOMKilled\n4. 检查健康检查配置：docker inspect 查看 HealthCheck 配置是否合理（间隔、超时、重试次数）\n5. 检查挂载卷和文件权限：容器内应用是否有权读写挂载的目录/文件\n6. 检查环境变量和配置：docker inspect 查看 Env 是否正确传递\n7. 进入容器调试：docker run --entrypoint /bin/sh 覆盖启动命令进入交互式排查\n8. 检查依赖服务可达性：数据库、缓存等外部依赖是否能正常连接",
-      "explanation": "容器频繁重启需要从日志、资源、配置、依赖等多个维度进行系统性排查，逐层排除问题根因。"
+      "explanation": "容器频繁重启需要从日志、资源、配置、依赖等多个维度进行系统性排查，逐层排除问题根因。",
+      "assessment_category": "Docker",
+      "skill_dimension": [
+        "部署能力"
+      ]
     },
     {
       "id": 8600,
@@ -5091,6 +6391,10 @@
         "B. 双向链表",
         "C. 数组",
         "D. 栈（链表实现）"
+      ],
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
       ]
     },
     {
@@ -5108,6 +6412,10 @@
         "B. O(n/2)",
         "C. O(log n)",
         "D. O(n log n)"
+      ],
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
       ]
     },
     {
@@ -5125,6 +6433,10 @@
         "B. 左表所有行以及右表匹配的行（不匹配的右表列用 NULL 填充）",
         "C. 右表所有行以及左表匹配的行（不匹配的左表列用 NULL 填充）",
         "D. 两个表的笛卡尔积"
+      ],
+      "assessment_category": "SQL与数据",
+      "skill_dimension": [
+        "SQL与数据处理能力"
       ]
     },
     {
@@ -5142,6 +6454,10 @@
         "B. df.pivot()",
         "C. df.groupby()",
         "D. df.concat()"
+      ],
+      "assessment_category": "数据分析",
+      "skill_dimension": [
+        "数据分析能力"
       ]
     },
     {
@@ -5159,6 +6475,10 @@
         "B. 数组已按升序排列，且每次选第一个元素作为基准（pivot）",
         "C. 数组元素全部相同，每次分区所有元素都等于基准值",
         "D. 使用三数取中法（首、尾、中取中值）选择基准元素"
+      ],
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
       ]
     },
     {
@@ -5176,6 +6496,10 @@
         "B. 50",
         "C. 75",
         "D. 99"
+      ],
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
       ]
     },
     {
@@ -5193,6 +6517,10 @@
         "B. 判断无向图中是否存在欧拉回路",
         "C. 0-1 背包问题",
         "D. 判断单链表中是否存在环"
+      ],
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
       ]
     },
     {
@@ -5210,6 +6538,10 @@
         "B. 在每个部门内按工资降序为每行分配唯一且连续的序号",
         "C. 将所有员工按工资降序排列，不分区",
         "D. 统计每个部门的人数"
+      ],
+      "assessment_category": "SQL与数据",
+      "skill_dimension": [
+        "SQL与数据处理能力"
       ]
     },
     {
@@ -5227,6 +6559,10 @@
         "B. 删除包含缺失值（NaN/None）的行或列",
         "C. 用指定的统计量（如均值或中位数）填充缺失值位置",
         "D. 基于 IQR 或 Z-score 等统计方法识别并删除异常数据"
+      ],
+      "assessment_category": "数据分析",
+      "skill_dimension": [
+        "数据分析能力"
       ]
     },
     {
@@ -5244,6 +6580,10 @@
         "B. 两者时间复杂度均为 O(n log n)，但堆排序需要 O(n) 额外空间",
         "C. 归并排序是稳定排序，堆排序是不稳定排序且空间复杂度为 O(1)",
         "D. 当数据基本有序时，堆排序比归并排序更快"
+      ],
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
       ]
     },
     {
@@ -5265,6 +6605,10 @@
         "B. 开放地址法",
         "C. 再哈希法",
         "D. 二分探测法"
+      ],
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
       ]
     },
     {
@@ -5286,6 +6630,10 @@
         "B. 归并排序",
         "C. 冒泡排序",
         "D. 二分查找"
+      ],
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
       ]
     },
     {
@@ -5307,6 +6655,10 @@
         "B. 在 WHERE 子句中对索引列使用函数（如 WHERE YEAR(create_time) = 2024）可能导致索引失效",
         "C. 联合索引（复合索引）遵循最左前缀匹配原则",
         "D. 为每个查询字段（Column）都单独建立索引（Single-Column Index）可以确保查询性能达到最优"
+      ],
+      "assessment_category": "SQL与数据",
+      "skill_dimension": [
+        "SQL与数据处理能力"
       ]
     },
     {
@@ -5318,7 +6670,11 @@
       "weight": 1.0,
       "question": "栈（Stack）是一种先进先出（FIFO）的数据结构。",
       "answer": "错误",
-      "explanation": "栈是后进先出（LIFO，Last In First Out）的数据结构，最后入栈的元素最先出栈。先进先出（FIFO）是队列（Queue）的特点，最先入队的元素最先出队。"
+      "explanation": "栈是后进先出（LIFO，Last In First Out）的数据结构，最后入栈的元素最先出栈。先进先出（FIFO）是队列（Queue）的特点，最先入队的元素最先出队。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 8614,
@@ -5329,7 +6685,11 @@
       "weight": 1.0,
       "question": "贪心算法在每一步都做出当前看起来最优的选择，因此总能保证得到全局最优解。",
       "answer": "错误",
-      "explanation": "贪心算法的局部最优选择并不总能导向全局最优。只有当问题具有'贪心选择性质'（如最小生成树的 Kruskal/Prim 算法、哈夫曼编码、活动选择问题）时贪心才保证全局最优。反例：0-1 背包问题中，按单位价值贪心选择不一定得到最优解。"
+      "explanation": "贪心算法的局部最优选择并不总能导向全局最优。只有当问题具有'贪心选择性质'（如最小生成树的 Kruskal/Prim 算法、哈夫曼编码、活动选择问题）时贪心才保证全局最优。反例：0-1 背包问题中，按单位价值贪心选择不一定得到最优解。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 8615,
@@ -5340,7 +6700,11 @@
       "weight": 1.0,
       "question": "在数据可视化中，箱线图（Box Plot）可以用来识别数据集中的离群值（Outlier）。",
       "answer": "正确",
-      "explanation": "箱线图通过计算 Q1 - 1.5×IQR（下边界）和 Q3 + 1.5×IQR（上边界）来定义正常数据范围（称为'须'，Whisker），超出此范围的数据点被视为离群值并以散点形式单独绘制。因此箱线图是识别离群值的有效可视化工具。"
+      "explanation": "箱线图通过计算 Q1 - 1.5×IQR（下边界）和 Q3 + 1.5×IQR（上边界）来定义正常数据范围（称为'须'，Whisker），超出此范围的数据点被视为离群值并以散点形式单独绘制。因此箱线图是识别离群值的有效可视化工具。",
+      "assessment_category": "数据分析",
+      "skill_dimension": [
+        "数据分析能力"
+      ]
     },
     {
       "id": 8616,
@@ -5351,7 +6715,11 @@
       "weight": 3.0,
       "question": "请阐述动态规划（Dynamic Programming）的核心思想，说明它与分治算法的主要区别。并以'最长公共子序列（LCS）'问题为例，完整描述动态规划的解题四步：定义状态、建立状态转移方程、给出初始条件、确定计算顺序。",
       "answer": "见评分要点",
-      "explanation": "【评分要点，共 10 分】\n1. 核心思想（3 分）：\n   - 最优子结构：问题的最优解包含子问题的最优解（1 分）\n   - 重叠子问题：不同决策路径会重复求解相同的子问题，通过记忆化/填表避免重复计算（1 分）\n   - 状态转移：用数学方程描述状态之间的递推关系（1 分）\n\n2. 与分治的区别（2 分）：\n   - 分治的子问题相互独立、无重叠（如归并排序左右子数组互不影响）；DP 的子问题高度重叠（如 LCS 中 dp[i][j] 被多次引用）（1 分）\n   - 分治通常自顶向下递归，DP 常自底向上填表（或自顶向下加备忘录）（1 分）\n\n3. LCS 示例（5 分）：\n   - 状态定义（1 分）：dp[i][j] 表示序列 X 的前 i 个字符与序列 Y 的前 j 个字符的最长公共子序列长度\n   - 转移方程（2 分）：若 X[i]==Y[j]，dp[i][j] = dp[i-1][j-1] + 1；否则 dp[i][j] = max(dp[i-1][j], dp[i][j-1])\n   - 初始条件（1 分）：dp[0][j] = 0，dp[i][0] = 0（空序列的 LCS 为 0）\n   - 计算顺序（1 分）：i 从 1 到 m，j 从 1 到 n，双重循环填表"
+      "explanation": "【评分要点，共 10 分】\n1. 核心思想（3 分）：\n   - 最优子结构：问题的最优解包含子问题的最优解（1 分）\n   - 重叠子问题：不同决策路径会重复求解相同的子问题，通过记忆化/填表避免重复计算（1 分）\n   - 状态转移：用数学方程描述状态之间的递推关系（1 分）\n\n2. 与分治的区别（2 分）：\n   - 分治的子问题相互独立、无重叠（如归并排序左右子数组互不影响）；DP 的子问题高度重叠（如 LCS 中 dp[i][j] 被多次引用）（1 分）\n   - 分治通常自顶向下递归，DP 常自底向上填表（或自顶向下加备忘录）（1 分）\n\n3. LCS 示例（5 分）：\n   - 状态定义（1 分）：dp[i][j] 表示序列 X 的前 i 个字符与序列 Y 的前 j 个字符的最长公共子序列长度\n   - 转移方程（2 分）：若 X[i]==Y[j]，dp[i][j] = dp[i-1][j-1] + 1；否则 dp[i][j] = max(dp[i-1][j], dp[i][j-1])\n   - 初始条件（1 分）：dp[0][j] = 0，dp[i][0] = 0（空序列的 LCS 为 0）\n   - 计算顺序（1 分）：i 从 1 到 m，j 从 1 到 n，双重循环填表",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 8617,
@@ -5362,7 +6730,11 @@
       "weight": 2.5,
       "question": "某电商数据库中有 orders 表（order_id, customer_id, order_date, amount）和 customers 表（customer_id, name, city）。请写出 SQL 查询：找出 2024 年每个城市订单总金额排名前 3 的客户姓名及其订单总金额。若订单总金额相同，应并列显示。此外，简要说明当数据量达到千万级别时，你会如何优化这个查询。",
       "answer": "见评分要点",
-      "explanation": "【评分要点，共 10 分】\n\n1. SQL 查询（7 分）：\n\n参考 SQL：\n```sql\nWITH city_customer_amt AS (\n  SELECT c.city, c.name, SUM(o.amount) AS total_amount\n  FROM orders o\n  JOIN customers c ON o.customer_id = c.customer_id\n  WHERE o.order_date >= '2024-01-01' AND o.order_date < '2025-01-01'\n  GROUP BY c.city, c.customer_id, c.name\n)\nSELECT city, name, total_amount\nFROM (\n  SELECT city, name, total_amount,\n    DENSE_RANK() OVER (PARTITION BY city ORDER BY total_amount DESC) AS rnk\n  FROM city_customer_amt\n) t\nWHERE rnk <= 3\nORDER BY city, rnk;\n```\n\n评分点：\n- 正确 JOIN 两表（1 分）\n- 正确筛选 2024 年数据（1 分）（注意使用范围条件而非 YEAR() 函数，避免索引失效）\n- 正确按城市和客户分组聚合（1 分）\n- 使用窗口函数 DENSE_RANK() 而非 ROW_NUMBER()（并列要求，1 分）\n- 正确使用 PARTITION BY city（1 分）\n- 外层筛选 rnk <= 3（1 分）\n- SQL 整体可运行、逻辑正确（1 分）\n\n2. 优化建议（3 分），每点 1 分，答出 3 点即可：\n- 在 orders.order_date 上建立索引以加速时间范围过滤\n- 在 orders.customer_id 和 customers.customer_id 上建立索引加速 JOIN\n- 考虑在 (city, customer_id) 上建立联合索引\n- 若表极大，可对 orders 按年份做分区（PARTITION BY RANGE）\n- 可考虑对聚合结果建立物化视图或汇总表定期预计算\n- 使用 EXPLAIN 分析执行计划，检查是否出现全表扫描或 filesort"
+      "explanation": "【评分要点，共 10 分】\n\n1. SQL 查询（7 分）：\n\n参考 SQL：\n```sql\nWITH city_customer_amt AS (\n  SELECT c.city, c.name, SUM(o.amount) AS total_amount\n  FROM orders o\n  JOIN customers c ON o.customer_id = c.customer_id\n  WHERE o.order_date >= '2024-01-01' AND o.order_date < '2025-01-01'\n  GROUP BY c.city, c.customer_id, c.name\n)\nSELECT city, name, total_amount\nFROM (\n  SELECT city, name, total_amount,\n    DENSE_RANK() OVER (PARTITION BY city ORDER BY total_amount DESC) AS rnk\n  FROM city_customer_amt\n) t\nWHERE rnk <= 3\nORDER BY city, rnk;\n```\n\n评分点：\n- 正确 JOIN 两表（1 分）\n- 正确筛选 2024 年数据（1 分）（注意使用范围条件而非 YEAR() 函数，避免索引失效）\n- 正确按城市和客户分组聚合（1 分）\n- 使用窗口函数 DENSE_RANK() 而非 ROW_NUMBER()（并列要求，1 分）\n- 正确使用 PARTITION BY city（1 分）\n- 外层筛选 rnk <= 3（1 分）\n- SQL 整体可运行、逻辑正确（1 分）\n\n2. 优化建议（3 分），每点 1 分，答出 3 点即可：\n- 在 orders.order_date 上建立索引以加速时间范围过滤\n- 在 orders.customer_id 和 customers.customer_id 上建立索引加速 JOIN\n- 考虑在 (city, customer_id) 上建立联合索引\n- 若表极大，可对 orders 按年份做分区（PARTITION BY RANGE）\n- 可考虑对聚合结果建立物化视图或汇总表定期预计算\n- 使用 EXPLAIN 分析执行计划，检查是否出现全表扫描或 filesort",
+      "assessment_category": "SQL与数据",
+      "skill_dimension": [
+        "SQL与数据处理能力"
+      ]
     },
     {
       "id": 8700,
@@ -5379,6 +6751,10 @@
         "对用户输入进行 HTML 实体编码后再输出到页面",
         "禁止用户在输入中使用尖括号（< 和 >）",
         "将用户输入的内容存储在加密的 Cookie 中"
+      ],
+      "assessment_category": "Web安全",
+      "skill_dimension": [
+        "安全意识"
       ]
     },
     {
@@ -5396,6 +6772,10 @@
         "MFA 的第二个因素可以是短信验证码、硬件 Token 或生物特征",
         "MFA 主要是为了防止自己忘记密码",
         "只要有 MFA 就绝对安全，不会被攻击"
+      ],
+      "assessment_category": "密码安全",
+      "skill_dimension": [
+        "安全意识"
       ]
     },
     {
@@ -5413,6 +6793,10 @@
         "直接删除整个 Git 仓库并重新初始化建一个新的空仓库",
         "立即在服务商后台吊销该 Key，重新生成新的，并从 Git 历史中彻底清除",
         "将该 API Key 的访问权限改为只读权限即可有效防止滥用"
+      ],
+      "assessment_category": "API安全",
+      "skill_dimension": [
+        "安全意识"
       ]
     },
     {
@@ -5430,6 +6814,10 @@
         "用户在消息中嵌入指令，尝试让 Agent 忽略原有规则并执行非预期的操作",
         "用户反复使用错误或不存在的账号尝试登录，触发多次认证失败",
         "用户故意上传超大文件超出系统处理上限，导致内存溢出或服务崩溃"
+      ],
+      "assessment_category": "Agent安全",
+      "skill_dimension": [
+        "安全意识"
       ]
     },
     {
@@ -5447,6 +6835,10 @@
         "浏览器与网站之间的通信是加密的，传输过程不易被窃听",
         "该网站已经通过了国家相关部门的政府安全认证与备案",
         "该网站经过了严格安全扫描，绝对不会包含任何恶意软件或病毒"
+      ],
+      "assessment_category": "Web安全",
+      "skill_dimension": [
+        "安全意识"
       ]
     },
     {
@@ -5469,6 +6861,10 @@
         "把密码写在便签纸上贴在显示器旁边",
         "开启多因素认证（MFA）作为额外的安全保障",
         "定期更换密码，且不与旧密码重复"
+      ],
+      "assessment_category": "密码安全",
+      "skill_dimension": [
+        "安全意识"
       ]
     },
     {
@@ -5494,6 +6890,10 @@
         "邮件的附件是要求启用宏的 Office 文档",
         "邮件使用了公司内部的统一模板格式",
         "发件时间是正常的工作时间段"
+      ],
+      "assessment_category": "社会工程学",
+      "skill_dimension": [
+        "安全意识"
       ]
     },
     {
@@ -5519,6 +6919,10 @@
         "将 API Key 通过环境变量或密钥管理服务存储",
         "在请求 URL 中直接拼接 API Key 作为查询参数传递",
         "所有 API 接口使用同一个通配符权限的 Key"
+      ],
+      "assessment_category": "API安全",
+      "skill_dimension": [
+        "安全意识"
       ]
     },
     {
@@ -5534,6 +6938,10 @@
       "options": [
         "正确",
         "错误"
+      ],
+      "assessment_category": "Agent安全",
+      "skill_dimension": [
+        "安全意识"
       ]
     },
     {
@@ -5545,7 +6953,11 @@
       "weight": 1.5,
       "question": "你负责开发一个用于查询公司内部数据的 Agent。该 Agent 需要根据用户的自然语言提问，调用数据库查询接口返回结果。请阐述在设计这个 Agent 的系统时，应该采取哪些安全措施来防止数据泄露和权限滥用？",
       "answer": "",
-      "explanation": "评分要点（答出 4 点及以上给满分）：\n1. 最小权限原则：Agent 只能访问其职责所需的最小数据范围，限制可查询的表、列甚至行级别权限，不应拥有数据库的全部读取权限。\n2. 用户身份传递和校验：Agent 调用的接口应传递实际用户的身份，后端根据用户权限进行鉴权，而非使用 Agent 自身的特权账号。\n3. 输入验证与过滤：对用户的自然语言输入进行安全校验，防止提示注入导致 Agent 绕过限制执行危险查询。\n4. 输出审查：对 Agent 返回的结果进行敏感信息检测和脱敏处理，防止返回手机号、身份证号等敏感数据。\n5. 操作审计日志：记录每次查询的'谁、什么时间、查了什么、返回了什么'，便于事后追溯和安全审计。\n6. 查询限制：限制查询的复杂度（如禁止全表扫描）、频率（Rate Limiting）和返回行数，防止滥用。"
+      "explanation": "评分要点（答出 4 点及以上给满分）：\n1. 最小权限原则：Agent 只能访问其职责所需的最小数据范围，限制可查询的表、列甚至行级别权限，不应拥有数据库的全部读取权限。\n2. 用户身份传递和校验：Agent 调用的接口应传递实际用户的身份，后端根据用户权限进行鉴权，而非使用 Agent 自身的特权账号。\n3. 输入验证与过滤：对用户的自然语言输入进行安全校验，防止提示注入导致 Agent 绕过限制执行危险查询。\n4. 输出审查：对 Agent 返回的结果进行敏感信息检测和脱敏处理，防止返回手机号、身份证号等敏感数据。\n5. 操作审计日志：记录每次查询的'谁、什么时间、查了什么、返回了什么'，便于事后追溯和安全审计。\n6. 查询限制：限制查询的复杂度（如禁止全表扫描）、频率（Rate Limiting）和返回行数，防止滥用。",
+      "assessment_category": "Agent安全",
+      "skill_dimension": [
+        "安全意识"
+      ]
     },
     {
       "id": 8714,
@@ -5556,7 +6968,11 @@
       "weight": 1.5,
       "question": "你在日常工作中需要将一个包含客户敏感信息的文件通过互联网传输给合作伙伴。请说明你应该采取哪些安全措施？",
       "answer": "",
-      "explanation": "评分要点（答出 3 点及以上给满分）：\n1. 文件加密：使用强加密算法（如 AES-256）加密文件内容，即使传输被拦截也无法读取。\n2. 安全传输通道：通过加密渠道（如加密邮件、安全文件传输平台 SFTP/HTTPS）发送，而非普通邮件附件。\n3. 密钥单独传输：加密密码应通过另一独立渠道（如电话、即时通讯）告知收件人，不与文件同一渠道发送。\n4. 访问控制与有效期：设置文件的访问密码和下载有效期，限制下载次数，过期自动失效。\n5. 确认接收方身份：发送前通过已知可信渠道核实接收方身份和接收权限，防止被冒充者骗取数据。\n6. 最小化信息：传输前评估是否所有字段都需要发送，去除不必要的敏感字段。"
+      "explanation": "评分要点（答出 3 点及以上给满分）：\n1. 文件加密：使用强加密算法（如 AES-256）加密文件内容，即使传输被拦截也无法读取。\n2. 安全传输通道：通过加密渠道（如加密邮件、安全文件传输平台 SFTP/HTTPS）发送，而非普通邮件附件。\n3. 密钥单独传输：加密密码应通过另一独立渠道（如电话、即时通讯）告知收件人，不与文件同一渠道发送。\n4. 访问控制与有效期：设置文件的访问密码和下载有效期，限制下载次数，过期自动失效。\n5. 确认接收方身份：发送前通过已知可信渠道核实接收方身份和接收权限，防止被冒充者骗取数据。\n6. 最小化信息：传输前评估是否所有字段都需要发送，去除不必要的敏感字段。",
+      "assessment_category": "数据安全",
+      "skill_dimension": [
+        "安全意识"
+      ]
     },
     {
       "id": 1023,
@@ -5573,7 +6989,11 @@
       ],
       "answer": "TCP面向连接、可靠传输；UDP无连接、不可靠传输",
       "weight": 1.0,
-      "explanation": "TCP 是面向连接的可靠传输协议，通过三次握手建立连接，保证数据有序、不丢失。UDP 是无连接的，不保证可靠交付，但传输效率高，适用于视频直播、DNS 查询等实时场景。"
+      "explanation": "TCP 是面向连接的可靠传输协议，通过三次握手建立连接，保证数据有序、不丢失。UDP 是无连接的，不保证可靠交付，但传输效率高，适用于视频直播、DNS 查询等实时场景。",
+      "assessment_category": "计算机网络",
+      "skill_dimension": [
+        "计算机网络基础"
+      ]
     },
     {
       "id": 1024,
@@ -5584,7 +7004,11 @@
       "question": "HTTP 长连接可以在一个 TCP 连接上传输多个 HTTP 请求和响应，减少了TCP连接建立的开销。",
       "answer": "正确",
       "weight": 1.0,
-      "explanation": "HTTP/1.1 默认开启长连接（Connection: keep-alive），允许在同一个 TCP 连接上发送多个请求，避免了频繁的 TCP 三次握手和四次挥手，显著提升性能。"
+      "explanation": "HTTP/1.1 默认开启长连接（Connection: keep-alive），允许在同一个 TCP 连接上发送多个请求，避免了频繁的 TCP 三次握手和四次挥手，显著提升性能。",
+      "assessment_category": "计算机网络",
+      "skill_dimension": [
+        "计算机网络基础"
+      ]
     },
     {
       "id": 1025,
@@ -5601,7 +7025,11 @@
       ],
       "answer": "GET参数在URL中，POST参数在请求体中",
       "weight": 1.0,
-      "explanation": "GET 请求的参数拼接在 URL 的 ? 后面，仅支持 ASCII 字符且有长度限制；POST 请求的参数放在请求体（body）中，可以传输任意格式数据，无大小限制。从语义上，GET 常用于获取数据，POST 常用于提交数据。"
+      "explanation": "GET 请求的参数拼接在 URL 的 ? 后面，仅支持 ASCII 字符且有长度限制；POST 请求的参数放在请求体（body）中，可以传输任意格式数据，无大小限制。从语义上，GET 常用于获取数据，POST 常用于提交数据。",
+      "assessment_category": "计算机网络",
+      "skill_dimension": [
+        "计算机网络基础"
+      ]
     },
     {
       "id": 1026,
@@ -5618,7 +7046,11 @@
       ],
       "answer": "队列是FIFO（先进先出），栈是LIFO（后进先出）",
       "weight": 1.0,
-      "explanation": "队列采用先进先出（FIFO），在队尾插入、队首删除，适用于任务调度；栈采用后进先出（LIFO），插入和删除都在栈顶，适用于函数调用栈、括号匹配等场景。"
+      "explanation": "队列采用先进先出（FIFO），在队尾插入、队首删除，适用于任务调度；栈采用后进先出（LIFO），插入和删除都在栈顶，适用于函数调用栈、括号匹配等场景。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "数据结构与算法基础"
+      ]
     },
     {
       "id": 1027,
@@ -5635,7 +7067,11 @@
       ],
       "answer": "冒泡排序法",
       "weight": 1.5,
-      "explanation": "哈希冲突的常见解决方法包括：链地址法（用链表存储冲突元素）、开放地址法（线性探测/二次探测找下一个空位）、再哈希法（用另一个哈希函数重新计算）。冒泡排序是排序算法，与哈希冲突无关。"
+      "explanation": "哈希冲突的常见解决方法包括：链地址法（用链表存储冲突元素）、开放地址法（线性探测/二次探测找下一个空位）、再哈希法（用另一个哈希函数重新计算）。冒泡排序是排序算法，与哈希冲突无关。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "数据结构与算法基础"
+      ]
     },
     {
       "id": 1028,
@@ -5658,7 +7094,11 @@
         "循环等待条件"
       ],
       "weight": 1.5,
-      "explanation": "死锁的四个必要条件是：互斥（资源一次只能被一个进程使用）、请求与保持（持有资源的同时请求新资源）、不可抢占（已分配的资源不能被强制剥夺）、循环等待（存在进程资源的循环等待链）。四个条件缺一不可，破坏任一条件即可预防死锁。"
+      "explanation": "死锁的四个必要条件是：互斥（资源一次只能被一个进程使用）、请求与保持（持有资源的同时请求新资源）、不可抢占（已分配的资源不能被强制剥夺）、循环等待（存在进程资源的循环等待链）。四个条件缺一不可，破坏任一条件即可预防死锁。",
+      "assessment_category": "操作系统",
+      "skill_dimension": [
+        "操作系统基础"
+      ]
     },
     {
       "id": 1029,
@@ -5675,7 +7115,11 @@
       ],
       "answer": "让进程可以使用比物理内存更大的地址空间",
       "weight": 1.5,
-      "explanation": "虚拟内存通过页表将虚拟地址映射到物理地址，使进程可以使用超过物理内存的地址空间，不常用的数据被换出到磁盘（swap），使用时再换入。这提供了进程间的内存隔离、更高效的内存利用率。"
+      "explanation": "虚拟内存通过页表将虚拟地址映射到物理地址，使进程可以使用超过物理内存的地址空间，不常用的数据被换出到磁盘（swap），使用时再换入。这提供了进程间的内存隔离、更高效的内存利用率。",
+      "assessment_category": "操作系统",
+      "skill_dimension": [
+        "操作系统基础"
+      ]
     },
     {
       "id": 1030,
@@ -5696,7 +7140,11 @@
         "git branch"
       ],
       "weight": 1.0,
-      "explanation": "Git 常用命令包括：git clone（克隆仓库）、git add（暂存文件）、git commit（提交）、git push（推送）、git pull（拉取）、git branch（分支管理）、git merge（合并分支）。不存在 git delete 命令，删除分支用 git branch -d。"
+      "explanation": "Git 常用命令包括：git clone（克隆仓库）、git add（暂存文件）、git commit（提交）、git push（推送）、git pull（拉取）、git branch（分支管理）、git merge（合并分支）。不存在 git delete 命令，删除分支用 git branch -d。",
+      "assessment_category": "编程基础",
+      "skill_dimension": [
+        "编程基础能力"
+      ]
     },
     {
       "id": 1031,
@@ -5713,7 +7161,11 @@
       ],
       "answer": "API是一组接口规范，SDK是包含了API以及开发工具、文档等的工具包",
       "weight": 1.0,
-      "explanation": "API（Application Programming Interface）是一组定义了如何调用某个服务或功能的接口规范。SDK（Software Development Kit）则是包含 API、开发工具、示例代码、文档等的完整工具包，帮助开发者更方便地集成和使用某个服务。"
+      "explanation": "API（Application Programming Interface）是一组定义了如何调用某个服务或功能的接口规范。SDK（Software Development Kit）则是包含 API、开发工具、示例代码、文档等的完整工具包，帮助开发者更方便地集成和使用某个服务。",
+      "assessment_category": "编程基础",
+      "skill_dimension": [
+        "编程基础能力"
+      ]
     },
     {
       "id": 1032,
@@ -5730,7 +7182,11 @@
       ],
       "answer": "# 标题",
       "weight": 1.0,
-      "explanation": "Markdown 语法中，使用 # 表示标题，# 的数量代表标题级别（# 一级、## 二级、### 三级）。**文字** 表示加粗，> 表示引用块，- 表示无序列表项。"
+      "explanation": "Markdown 语法中，使用 # 表示标题，# 的数量代表标题级别（# 一级、## 二级、### 三级）。**文字** 表示加粗，> 表示引用块，- 表示无序列表项。",
+      "assessment_category": "编程基础",
+      "skill_dimension": [
+        "编程基础能力"
+      ]
     },
     {
       "id": 1033,
@@ -5747,7 +7203,11 @@
       ],
       "answer": "Cookie存储在客户端浏览器，Session存储在服务器端",
       "weight": 1.0,
-      "explanation": "Cookie 是存储在客户端浏览器中的小数据片段，每次请求会自动发送给服务器。Session 是服务器端存储的会话数据，客户端只保存一个 Session ID（通常通过 Cookie 传递）。Session 更安全，适合存储敏感数据。"
+      "explanation": "Cookie 是存储在客户端浏览器中的小数据片段，每次请求会自动发送给服务器。Session 是服务器端存储的会话数据，客户端只保存一个 Session ID（通常通过 Cookie 传递）。Session 更安全，适合存储敏感数据。",
+      "assessment_category": "计算机网络",
+      "skill_dimension": [
+        "计算机网络基础"
+      ]
     },
     {
       "id": 1034,
@@ -5764,7 +7224,11 @@
       ],
       "answer": "状态行、响应头部、空行、响应体",
       "weight": 1.0,
-      "explanation": "HTTP 响应报文由四部分组成：状态行（HTTP版本、状态码、状态描述）、响应头部（Content-Type等元信息）、空行（分隔头部和体）、响应体（实际返回的数据，如HTML、JSON等）。"
+      "explanation": "HTTP 响应报文由四部分组成：状态行（HTTP版本、状态码、状态描述）、响应头部（Content-Type等元信息）、空行（分隔头部和体）、响应体（实际返回的数据，如HTML、JSON等）。",
+      "assessment_category": "计算机网络",
+      "skill_dimension": [
+        "计算机网络基础"
+      ]
     },
     {
       "id": 1035,
@@ -5775,7 +7239,11 @@
       "question": "IP 地址用于标识网络中的主机，MAC 地址用于标识网络接口卡的物理地址，两者都不能被修改。",
       "answer": "错误",
       "weight": 1.0,
-      "explanation": "IP 地址可以通过 DHCP 或手动配置来修改，是逻辑地址。MAC 地址是网卡出厂时烧录的物理地址，理论上不可修改，但实际操作系统层面可以临时修改（MAC 欺骗）。所以'IP地址不能被修改'是错误的。"
+      "explanation": "IP 地址可以通过 DHCP 或手动配置来修改，是逻辑地址。MAC 地址是网卡出厂时烧录的物理地址，理论上不可修改，但实际操作系统层面可以临时修改（MAC 欺骗）。所以'IP地址不能被修改'是错误的。",
+      "assessment_category": "计算机网络",
+      "skill_dimension": [
+        "计算机网络基础"
+      ]
     },
     {
       "id": 8701,
@@ -5792,7 +7260,11 @@
         "<url>"
       ],
       "answer": "<a>",
-      "explanation": "<a>（anchor）标签用于定义超链接，通过 href 属性指定目标 URL。<link> 用于引入外部资源，<href> 和 <url> 不是合法的 HTML 标签。"
+      "explanation": "<a>（anchor）标签用于定义超链接，通过 href 属性指定目标 URL。<link> 用于引入外部资源，<href> 和 <url> 不是合法的 HTML 标签。",
+      "assessment_category": "HTML/CSS",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 8703,
@@ -5809,7 +7281,11 @@
         "type=\"secret\""
       ],
       "answer": "type=\"password\"",
-      "explanation": "type=\"password\" 将输入内容显示为掩码字符（如圆点），保护密码隐私。type=\"text\" 会明文显示，type=\"hidden\" 不可见但不在客户端隐藏，\"secret\" 不是合法的 type 值。"
+      "explanation": "type=\"password\" 将输入内容显示为掩码字符（如圆点），保护密码隐私。type=\"text\" 会明文显示，type=\"hidden\" 不可见但不在客户端隐藏，\"secret\" 不是合法的 type 值。",
+      "assessment_category": "HTML/CSS",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 8710,
@@ -5826,7 +7302,11 @@
         "$"
       ],
       "answer": ".",
-      "explanation": "CSS 类选择器以点号（.）开头，如 .className。井号（#）用于 ID 选择器，@ 用于规则（如 @media），$ 在 CSS 中不是选择器符号。"
+      "explanation": "CSS 类选择器以点号（.）开头，如 .className。井号（#）用于 ID 选择器，@ 用于规则（如 @media），$ 在 CSS 中不是选择器符号。",
+      "assessment_category": "HTML/CSS",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 8712,
@@ -5843,7 +7323,11 @@
         "static"
       ],
       "answer": "const",
-      "explanation": "const 用于声明常量，声明后不能重新赋值。var 和 let 用于声明可变变量，let 有块级作用域而 var 有函数作用域。static 用于定义静态方法或属性。"
+      "explanation": "const 用于声明常量，声明后不能重新赋值。var 和 let 用于声明可变变量，let 有块级作用域而 var 有函数作用域。static 用于定义静态方法或属性。",
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 8715,
@@ -5860,7 +7344,11 @@
         "document.querySelectorAll()"
       ],
       "answer": "document.getElementById()",
-      "explanation": "getElementById() 根据 id 获取页面元素，id 在页面中是唯一的，因此返回单个元素对象。其余三个方法均返回 HTMLCollection 或 NodeList 集合。"
+      "explanation": "getElementById() 根据 id 获取页面元素，id 在页面中是唯一的，因此返回单个元素对象。其余三个方法均返回 HTMLCollection 或 NodeList 集合。",
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 8716,
@@ -5877,7 +7365,11 @@
         "onMounted()"
       ],
       "answer": "ref()",
-      "explanation": "ref() 是 Vue 3 Composition API 中创建响应式数据的基本方法，将值包装成响应式引用。computed() 创建计算属性，watch() 监听数据变化，onMounted() 是生命周期钩子。"
+      "explanation": "ref() 是 Vue 3 Composition API 中创建响应式数据的基本方法，将值包装成响应式引用。computed() 创建计算属性，watch() 监听数据变化，onMounted() 是生命周期钩子。",
+      "assessment_category": "框架应用",
+      "skill_dimension": [
+        "工程实践能力"
+      ]
     },
     {
       "id": 8717,
@@ -5902,7 +7394,11 @@
         "边框（border）",
         "外边距（margin）"
       ],
-      "explanation": "CSS 标准盒模型由四部分组成：从内到外依次是 content（内容）、padding（内边距）、border（边框）、margin（外边距）。float 是布局属性，offset 是定位相关概念，z-index 是层叠上下文属性，三者均不属于盒模型组成部分。"
+      "explanation": "CSS 标准盒模型由四部分组成：从内到外依次是 content（内容）、padding（内边距）、border（边框）、margin（外边距）。float 是布局属性，offset 是定位相关概念，z-index 是层叠上下文属性，三者均不属于盒模型组成部分。",
+      "assessment_category": "HTML/CSS",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 8749,
@@ -5927,7 +7423,11 @@
         "模板字符串",
         "解构赋值"
       ],
-      "explanation": "ES6 引入了箭头函数（=>）、let/const 块级作用域声明、模板字符串（反引号）、解构赋值等核心特性。HTML 解析器、DOM 选择器 API、CSS 动画引擎均不属于 JavaScript 语言特性。"
+      "explanation": "ES6 引入了箭头函数（=>）、let/const 块级作用域声明、模板字符串（反引号）、解构赋值等核心特性。HTML 解析器、DOM 选择器 API、CSS 动画引擎均不属于 JavaScript 语言特性。",
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 8750,
@@ -5938,7 +7438,11 @@
       "weight": 1.0,
       "question": "HTML5 新增了 <header>、<footer>、<article> 等语义化标签，它们有助于提升网页的可访问性和 SEO。",
       "answer": "正确",
-      "explanation": "HTML5 引入了 <header>、<footer>、<article>、<nav>、<section> 等语义化标签，替代了传统的 <div> 堆砌。语义化标签帮助搜索引擎和屏幕阅读器更好地理解页面结构，提升 SEO 和无障碍访问体验。"
+      "explanation": "HTML5 引入了 <header>、<footer>、<article>、<nav>、<section> 等语义化标签，替代了传统的 <div> 堆砌。语义化标签帮助搜索引擎和屏幕阅读器更好地理解页面结构，提升 SEO 和无障碍访问体验。",
+      "assessment_category": "HTML/CSS",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 8751,
@@ -5949,7 +7453,11 @@
       "weight": 1.5,
       "question": "async/await 是 JavaScript 中处理异步操作的方式，它让异步代码看起来像同步代码一样，但它底层仍然是基于 Promise 的。",
       "answer": "正确",
-      "explanation": "async/await 本质上是 Promise 的语法糖，async 函数返回 Promise 对象，await 等待 Promise 解决。它让异步代码的书写更直观，但底层机制没有改变，仍然是异步非阻塞的。"
+      "explanation": "async/await 本质上是 Promise 的语法糖，async 函数返回 Promise 对象，await 等待 Promise 解决。它让异步代码的书写更直观，但底层机制没有改变，仍然是异步非阻塞的。",
+      "assessment_category": "JavaScript基础",
+      "skill_dimension": [
+        "前端基础能力"
+      ]
     },
     {
       "id": 8752,
@@ -5966,7 +7474,11 @@
         "implements"
       ],
       "answer": "interface",
-      "explanation": "interface 关键字用于声明 Java 接口，接口中定义方法签名（Java 8+ 可有默认实现）。class 定义类，abstract 修饰抽象类，implements 用于类实现接口。"
+      "explanation": "interface 关键字用于声明 Java 接口，接口中定义方法签名（Java 8+ 可有默认实现）。class 定义类，abstract 修饰抽象类，implements 用于类实现接口。",
+      "assessment_category": "语言基础",
+      "skill_dimension": [
+        "编码能力"
+      ]
     },
     {
       "id": 8753,
@@ -5983,7 +7495,11 @@
         "Map"
       ],
       "answer": "Set",
-      "explanation": "Set 接口代表不包含重复元素的集合，其实现类包括 HashSet、TreeSet 等。List 允许重复且有序，Map 存储键值对（键不可重复），Queue 是队列接口。"
+      "explanation": "Set 接口代表不包含重复元素的集合，其实现类包括 HashSet、TreeSet 等。List 允许重复且有序，Map 存储键值对（键不可重复），Queue 是队列接口。",
+      "assessment_category": "语言基础",
+      "skill_dimension": [
+        "编码能力"
+      ]
     },
     {
       "id": 8754,
@@ -6000,7 +7516,11 @@
         "SELECT"
       ],
       "answer": "SELECT",
-      "explanation": "SELECT 语句用于从数据库表中查询数据，是最常用的 SQL 语句。INSERT 用于插入数据，UPDATE 用于修改数据，DELETE 用于删除数据。"
+      "explanation": "SELECT 语句用于从数据库表中查询数据，是最常用的 SQL 语句。INSERT 用于插入数据，UPDATE 用于修改数据，DELETE 用于删除数据。",
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
+      ]
     },
     {
       "id": 8755,
@@ -6017,7 +7537,11 @@
         "用于定义数据库实体映射"
       ],
       "answer": "标识该类为 RESTful API 控制器，方法返回值直接写入响应体",
-      "explanation": "@RestController 是 @Controller + @ResponseBody 的组合注解，表示该类中的方法返回值会直接作为 HTTP 响应体（通常为 JSON）。它简化了 RESTful API 的开发。"
+      "explanation": "@RestController 是 @Controller + @ResponseBody 的组合注解，表示该类中的方法返回值会直接作为 HTTP 响应体（通常为 JSON）。它简化了 RESTful API 的开发。",
+      "assessment_category": "系统设计",
+      "skill_dimension": [
+        "后端架构能力"
+      ]
     },
     {
       "id": 8756,
@@ -6042,7 +7566,11 @@
         "finally",
         "throw"
       ],
-      "explanation": "Java 异常处理体系包括：try 块包含可能抛出异常的代码，catch 块捕获并处理异常，finally 块无论是否异常都执行，throw 用于手动抛出异常。assert 用于调试断言，raise 是 Python 的关键字，handle 不是 Java 异常处理关键字。"
+      "explanation": "Java 异常处理体系包括：try 块包含可能抛出异常的代码，catch 块捕获并处理异常，finally 块无论是否异常都执行，throw 用于手动抛出异常。assert 用于调试断言，raise 是 Python 的关键字，handle 不是 Java 异常处理关键字。",
+      "assessment_category": "语言基础",
+      "skill_dimension": [
+        "编码能力"
+      ]
     },
     {
       "id": 8757,
@@ -6067,7 +7595,11 @@
         "建造者模式",
         "原型模式"
       ],
-      "explanation": "GoF 创建型模式包括：单例、工厂方法、抽象工厂、建造者、原型共 5 种模式，都关注对象创建。观察者模式和策略模式属于行为型模式，适配器模式属于结构型模式，三者均不属于创建型模式。"
+      "explanation": "GoF 创建型模式包括：单例、工厂方法、抽象工厂、建造者、原型共 5 种模式，都关注对象创建。观察者模式和策略模式属于行为型模式，适配器模式属于结构型模式，三者均不属于创建型模式。",
+      "assessment_category": "系统设计",
+      "skill_dimension": [
+        "后端架构能力"
+      ]
     },
     {
       "id": 8758,
@@ -6078,7 +7610,11 @@
       "weight": 1.0,
       "question": "数据库事务的 ACID 特性中，I 代表隔离性（Isolation），指的是多个事务并发执行时互不干扰。",
       "answer": "正确",
-      "explanation": "ACID 中的 I（Isolation）即隔离性，确保并发事务的执行互不干扰，如同串行执行。A 是原子性，C 是一致性，D 是持久性，四者共同保证事务的可靠性。"
+      "explanation": "ACID 中的 I（Isolation）即隔离性，确保并发事务的执行互不干扰，如同串行执行。A 是原子性，C 是一致性，D 是持久性，四者共同保证事务的可靠性。",
+      "assessment_category": "数据库",
+      "skill_dimension": [
+        "数据库设计能力"
+      ]
     },
     {
       "id": 8718,
@@ -6095,7 +7631,11 @@
         "蓝盒测试"
       ],
       "answer": "白盒测试",
-      "explanation": "黑盒测试关注输入输出，不考虑内部结构；白盒测试关注代码逻辑和路径覆盖。这两种是最基本的测试分类方法。灰盒测试介于二者之间，红盒、蓝盒不是标准测试术语。"
+      "explanation": "黑盒测试关注输入输出，不考虑内部结构；白盒测试关注代码逻辑和路径覆盖。这两种是最基本的测试分类方法。灰盒测试介于二者之间，红盒、蓝盒不是标准测试术语。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 8719,
@@ -6112,7 +7652,11 @@
         "因果图法"
       ],
       "answer": "边界值分析法",
-      "explanation": "边界值分析法关注输入域的边界位置，通常取 min、min+、nominal、max-、max 这五个值设计测试用例，是黑盒测试中最常用的方法之一。等价类划分关注代表性取值，场景法关注业务流程。"
+      "explanation": "边界值分析法关注输入域的边界位置，通常取 min、min+、nominal、max-、max 这五个值设计测试用例，是黑盒测试中最常用的方法之一。等价类划分关注代表性取值，场景法关注业务流程。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 8720,
@@ -6129,7 +7673,11 @@
         "验收测试"
       ],
       "answer": "单元测试",
-      "explanation": "测试金字塔从下到上依次是：单元测试（最底层、数量最多、速度最快）、集成测试（中间层）、UI/端到端测试（顶层、数量最少、速度最慢）。"
+      "explanation": "测试金字塔从下到上依次是：单元测试（最底层、数量最多、速度最快）、集成测试（中间层）、UI/端到端测试（顶层、数量最少、速度最慢）。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 8721,
@@ -6146,7 +7694,11 @@
         "数据库"
       ],
       "answer": "Web 浏览器",
-      "explanation": "Selenium 是一款开源的 Web 浏览器自动化测试工具，支持 Chrome、Firefox、Edge 等主流浏览器，可模拟用户在浏览器中的各种操作。Appium 用于移动端自动化测试。"
+      "explanation": "Selenium 是一款开源的 Web 浏览器自动化测试工具，支持 Chrome、Firefox、Edge 等主流浏览器，可模拟用户在浏览器中的各种操作。Appium 用于移动端自动化测试。",
+      "assessment_category": "自动化测试",
+      "skill_dimension": [
+        "工程能力"
+      ]
     },
     {
       "id": 8722,
@@ -6163,7 +7715,11 @@
         "系统启动耗时"
       ],
       "answer": "每秒处理的事务数",
-      "explanation": "TPS（Transactions Per Second）是性能测试的核心指标，表示系统每秒能处理的事务数量，用于衡量系统的吞吐能力。QPS（Queries Per Second）类似但通常指查询量。"
+      "explanation": "TPS（Transactions Per Second）是性能测试的核心指标，表示系统每秒能处理的事务数量，用于衡量系统的吞吐能力。QPS（Queries Per Second）类似但通常指查询量。",
+      "assessment_category": "性能测试",
+      "skill_dimension": [
+        "工程能力"
+      ]
     },
     {
       "id": 8723,
@@ -6180,7 +7736,11 @@
         "已关闭（Closed）"
       ],
       "answer": "已关闭（Closed）",
-      "explanation": "Bug 修复并验证通过后，状态应为 Closed（已关闭）。如果验证未通过，应改为 Reopen（重新打开）。New 是初始状态，Assigned 是已分配给开发人员。"
+      "explanation": "Bug 修复并验证通过后，状态应为 Closed（已关闭）。如果验证未通过，应改为 Reopen（重新打开）。New 是初始状态，Assigned 是已分配给开发人员。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 8724,
@@ -6197,7 +7757,11 @@
         "Jest"
       ],
       "answer": "pytest",
-      "explanation": "pytest 是 Python 生态中最流行的测试框架，支持简洁的断言语法、参数化测试和丰富的插件。JUnit 用于 Java，Mocha 和 Jest 用于 JavaScript/Node.js。"
+      "explanation": "pytest 是 Python 生态中最流行的测试框架，支持简洁的断言语法、参数化测试和丰富的插件。JUnit 用于 Java，Mocha 和 Jest 用于 JavaScript/Node.js。",
+      "assessment_category": "自动化测试",
+      "skill_dimension": [
+        "工程能力"
+      ]
     },
     {
       "id": 8725,
@@ -6222,7 +7786,11 @@
         "系统测试",
         "验收测试"
       ],
-      "explanation": "软件测试按阶段分为：单元测试（测试代码单元）、集成测试（测试模块间交互）、系统测试（测试完整系统）、验收测试（用户验收）。编译测试不是标准的测试阶段，需求评审和代码走查属于开发早期的质量控制活动，不属于测试阶段。"
+      "explanation": "软件测试按阶段分为：单元测试（测试代码单元）、集成测试（测试模块间交互）、系统测试（测试完整系统）、验收测试（用户验收）。编译测试不是标准的测试阶段，需求评审和代码走查属于开发早期的质量控制活动，不属于测试阶段。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 8726,
@@ -6243,7 +7811,11 @@
         "有效等价类",
         "无效等价类"
       ],
-      "explanation": "等价类划分法将输入域分为有效等价类（符合要求的合法输入）和无效等价类（不符合要求的非法输入）。从每个等价类中选取代表值设计测试用例即可覆盖该等价类。"
+      "explanation": "等价类划分法将输入域分为有效等价类（符合要求的合法输入）和无效等价类（不符合要求的非法输入）。从每个等价类中选取代表值设计测试用例即可覆盖该等价类。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 8727,
@@ -6267,7 +7839,11 @@
         "兼容性测试",
         "可用性测试"
       ],
-      "explanation": "非功能性测试关注系统的质量属性而非具体功能：性能测试关注响应速度和并发能力，安全测试关注漏洞防护，兼容性测试关注跨平台/浏览器适配，可用性测试关注用户体验。用户验收测试(UAT)和冒烟测试属于功能性测试范畴。"
+      "explanation": "非功能性测试关注系统的质量属性而非具体功能：性能测试关注响应速度和并发能力，安全测试关注漏洞防护，兼容性测试关注跨平台/浏览器适配，可用性测试关注用户体验。用户验收测试(UAT)和冒烟测试属于功能性测试范畴。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 8728,
@@ -6278,7 +7854,11 @@
       "weight": 1.0,
       "question": "回归测试是指在软件修改或更新后，重新执行原有的测试用例以确认修改没有引入新的缺陷。",
       "answer": "正确",
-      "explanation": "回归测试的目的是确保代码变更（如修复 Bug、新增功能）没有破坏原有的正确功能。它是持续集成中非常重要的环节，通常由自动化测试来执行。"
+      "explanation": "回归测试的目的是确保代码变更（如修复 Bug、新增功能）没有破坏原有的正确功能。它是持续集成中非常重要的环节，通常由自动化测试来执行。",
+      "assessment_category": "测试理论",
+      "skill_dimension": [
+        "质量意识"
+      ]
     },
     {
       "id": 8729,
@@ -6295,7 +7875,11 @@
         "pwd"
       ],
       "answer": "ls",
-      "explanation": "ls（list）命令用于列出目录内容。cd 用于切换目录，mkdir 用于创建目录，pwd 用于显示当前工作目录路径。"
+      "explanation": "ls（list）命令用于列出目录内容。cd 用于切换目录，mkdir 用于创建目录，pwd 用于显示当前工作目录路径。",
+      "assessment_category": "Linux",
+      "skill_dimension": [
+        "故障排查能力"
+      ]
     },
     {
       "id": 8730,
@@ -6312,7 +7896,11 @@
         "touch"
       ],
       "answer": "chmod",
-      "explanation": "chmod（change mode）用于修改文件和目录的读写执行权限，如 chmod 755 file。chown 用于修改所有者，chgrp 用于修改所属组，touch 用于创建空文件或更新时间戳。"
+      "explanation": "chmod（change mode）用于修改文件和目录的读写执行权限，如 chmod 755 file。chown 用于修改所有者，chgrp 用于修改所属组，touch 用于创建空文件或更新时间戳。",
+      "assessment_category": "Linux",
+      "skill_dimension": [
+        "故障排查能力"
+      ]
     },
     {
       "id": 8731,
@@ -6329,7 +7917,11 @@
         "docker start"
       ],
       "answer": "docker commit",
-      "explanation": "docker commit 用于将当前容器的修改保存为新镜像。docker run 用于启动容器，docker pull 用于从仓库拉取镜像，docker start 用于启动已停止的容器。"
+      "explanation": "docker commit 用于将当前容器的修改保存为新镜像。docker run 用于启动容器，docker pull 用于从仓库拉取镜像，docker start 用于启动已停止的容器。",
+      "assessment_category": "Docker",
+      "skill_dimension": [
+        "部署能力"
+      ]
     },
     {
       "id": 8732,
@@ -6346,7 +7938,11 @@
         "定义容器启动时执行的命令"
       ],
       "answer": "指定构建镜像的基础镜像",
-      "explanation": "FROM 指令指定基础镜像，是 Dockerfile 的第一条指令，所有后续指令都基于此镜像执行。WORKDIR 设置工作目录，COPY 复制文件，CMD/ENTRYPOINT 定义启动命令。"
+      "explanation": "FROM 指令指定基础镜像，是 Dockerfile 的第一条指令，所有后续指令都基于此镜像执行。WORKDIR 设置工作目录，COPY 复制文件，CMD/ENTRYPOINT 定义启动命令。",
+      "assessment_category": "Docker",
+      "skill_dimension": [
+        "部署能力"
+      ]
     },
     {
       "id": 8733,
@@ -6363,7 +7959,11 @@
         "随机删除（Random Delete）"
       ],
       "answer": "随机删除（Random Delete）",
-      "explanation": "Nginx 的 upstream 模块支持轮询（默认）、加权轮询、IP 哈希（会话保持）、最少连接数等负载均衡策略。随机删除不是合法的负载均衡策略。"
+      "explanation": "Nginx 的 upstream 模块支持轮询（默认）、加权轮询、IP 哈希（会话保持）、最少连接数等负载均衡策略。随机删除不是合法的负载均衡策略。",
+      "assessment_category": "网络",
+      "skill_dimension": [
+        "故障排查能力"
+      ]
     },
     {
       "id": 8734,
@@ -6380,7 +7980,11 @@
         "查看磁盘使用情况"
       ],
       "answer": "显示当前运行的进程状态",
-      "explanation": "ps（process status）用于显示当前系统的进程快照。kill 用于结束进程，chmod 修改权限，df 查看磁盘使用。常配合 ps aux 或 ps -ef 查看所有进程。"
+      "explanation": "ps（process status）用于显示当前系统的进程快照。kill 用于结束进程，chmod 修改权限，df 查看磁盘使用。常配合 ps aux 或 ps -ef 查看所有进程。",
+      "assessment_category": "Linux",
+      "skill_dimension": [
+        "故障排查能力"
+      ]
     },
     {
       "id": 8735,
@@ -6405,7 +8009,11 @@
         "git push",
         "git pull"
       ],
-      "explanation": "Git 基本工作流：git add 将修改加入暂存区，git commit 提交到本地仓库，git push 推送到远程，git pull 拉取远程更新。git delete、git download、git upload 都不是标准 Git 命令（删除应用 git rm 或 git branch -d）。"
+      "explanation": "Git 基本工作流：git add 将修改加入暂存区，git commit 提交到本地仓库，git push 推送到远程，git pull 拉取远程更新。git delete、git download、git upload 都不是标准 Git 命令（删除应用 git rm 或 git branch -d）。",
+      "assessment_category": "CI/CD",
+      "skill_dimension": [
+        "部署能力"
+      ]
     },
     {
       "id": 8736,
@@ -6430,7 +8038,11 @@
         "快速反馈构建结果",
         "每次提交触发构建"
       ],
-      "explanation": "CI 的核心实践包括频繁提交、自动化构建和测试、每次提交触发集成、快速反馈结果，目的是尽早发现集成问题。手动部署、仅在发布日前合并、人工审批合并均与 CI 倡导的频繁集成、自动化理念相悖。"
+      "explanation": "CI 的核心实践包括频繁提交、自动化构建和测试、每次提交触发集成、快速反馈结果，目的是尽早发现集成问题。手动部署、仅在发布日前合并、人工审批合并均与 CI 倡导的频繁集成、自动化理念相悖。",
+      "assessment_category": "CI/CD",
+      "skill_dimension": [
+        "部署能力"
+      ]
     },
     {
       "id": 8737,
@@ -6441,7 +8053,11 @@
       "weight": 1.0,
       "question": "在 Linux 系统中，root 用户拥有最高权限，可以执行任何操作。",
       "answer": "正确",
-      "explanation": "root 是 Linux 的超级管理员账户，UID 为 0，拥有系统的最高权限。出于安全考虑，日常操作不建议直接使用 root，应使用普通用户配合 sudo 提权。"
+      "explanation": "root 是 Linux 的超级管理员账户，UID 为 0，拥有系统的最高权限。出于安全考虑，日常操作不建议直接使用 root，应使用普通用户配合 sudo 提权。",
+      "assessment_category": "Linux",
+      "skill_dimension": [
+        "故障排查能力"
+      ]
     },
     {
       "id": 8738,
@@ -6452,7 +8068,11 @@
       "weight": 1.0,
       "question": "Docker 容器和虚拟机一样，每个容器都包含完整的操作系统内核。",
       "answer": "错误",
-      "explanation": "Docker 容器与宿主机共享操作系统内核，不像虚拟机那样需要独立的完整操作系统。容器只包含应用程序及其依赖，因此启动速度快、资源占用小，这是容器和虚拟机最本质的区别。"
+      "explanation": "Docker 容器与宿主机共享操作系统内核，不像虚拟机那样需要独立的完整操作系统。容器只包含应用程序及其依赖，因此启动速度快、资源占用小，这是容器和虚拟机最本质的区别。",
+      "assessment_category": "Docker",
+      "skill_dimension": [
+        "部署能力"
+      ]
     },
     {
       "id": 8739,
@@ -6469,7 +8089,11 @@
         "二叉树"
       ],
       "answer": "队列",
-      "explanation": "队列（Queue）遵循 FIFO（First In First Out）原则，元素在队尾加入、队首移除。栈遵循 LIFO（后进先出），堆是一种特殊的树形结构，二叉树是树形数据结构。"
+      "explanation": "队列（Queue）遵循 FIFO（First In First Out）原则，元素在队尾加入、队首移除。栈遵循 LIFO（后进先出），堆是一种特殊的树形结构，二叉树是树形数据结构。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 8740,
@@ -6486,7 +8110,11 @@
         "O(n²)"
       ],
       "answer": "O(1)",
-      "explanation": "哈希表在理想情况下（无冲突或冲突较少），通过哈希函数直接计算键的存储位置，插入、删除、查找的平均时间复杂度均为 O(1)，即常数时间。"
+      "explanation": "哈希表在理想情况下（无冲突或冲突较少），通过哈希函数直接计算键的存储位置，插入、删除、查找的平均时间复杂度均为 O(1)，即常数时间。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 8741,
@@ -6503,7 +8131,11 @@
         "从无序元素中随机选择一个作为基准进行分区"
       ],
       "answer": "相邻元素两两比较，将较大元素逐步交换到末尾",
-      "explanation": "冒泡排序通过重复遍历数组，比较相邻元素并交换顺序错误的元素，每轮将最大元素浮到数组末尾。选择排序是每次选最小元素，堆排序使用二叉堆，快速排序使用基准分区。"
+      "explanation": "冒泡排序通过重复遍历数组，比较相邻元素并交换顺序错误的元素，每轮将最大元素浮到数组末尾。选择排序是每次选最小元素，堆排序使用二叉堆，快速排序使用基准分区。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 8742,
@@ -6520,7 +8152,11 @@
         "pd.read_sql()"
       ],
       "answer": "pd.read_csv()",
-      "explanation": "pd.read_csv() 是 Pandas 中读取 CSV 文件的标准方法，返回 DataFrame 对象。read_excel() 读 Excel，read_json() 读 JSON，read_sql() 从数据库读取。"
+      "explanation": "pd.read_csv() 是 Pandas 中读取 CSV 文件的标准方法，返回 DataFrame 对象。read_excel() 读 Excel，read_json() 读 JSON，read_sql() 从数据库读取。",
+      "assessment_category": "数据分析",
+      "skill_dimension": [
+        "数据分析能力"
+      ]
     },
     {
       "id": 8743,
@@ -6537,7 +8173,11 @@
         "INNER JOIN 只能连接两张表，LEFT JOIN 可以连接多张表"
       ],
       "answer": "INNER JOIN 只返回匹配行，LEFT JOIN 返回左表所有行即使右表无匹配",
-      "explanation": "INNER JOIN（内连接）只返回两表匹配的行；LEFT JOIN（左连接）返回左表全部行，右表无匹配时填充 NULL。两者都可以连接多张表，性能差异取决于数据量和索引。"
+      "explanation": "INNER JOIN（内连接）只返回两表匹配的行；LEFT JOIN（左连接）返回左表全部行，右表无匹配时填充 NULL。两者都可以连接多张表，性能差异取决于数据量和索引。",
+      "assessment_category": "SQL与数据",
+      "skill_dimension": [
+        "SQL与数据处理能力"
+      ]
     },
     {
       "id": 8744,
@@ -6554,7 +8194,11 @@
         "数组和链表随机访问都是 O(n)"
       ],
       "answer": "数组通过索引 O(1) 访问，链表需要从头遍历 O(n)",
-      "explanation": "数组在内存中连续存储，通过索引可直接计算地址实现 O(1) 随机访问。链表节点在内存中不连续，只能从头节点开始依次遍历，随机访问时间复杂度为 O(n)。"
+      "explanation": "数组在内存中连续存储，通过索引可直接计算地址实现 O(1) 随机访问。链表节点在内存中不连续，只能从头节点开始依次遍历，随机访问时间复杂度为 O(n)。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 8745,
@@ -6576,7 +8220,11 @@
         "快速排序（平均情况）",
         "堆排序"
       ],
-      "explanation": "归并排序、快速排序（平均情况）、堆排序的时间复杂度均为 O(n log n)，属于高效排序算法。冒泡排序为 O(n²)，希尔排序的时间复杂度介于 O(n) 和 O(n²) 之间，依赖于增量序列。"
+      "explanation": "归并排序、快速排序（平均情况）、堆排序的时间复杂度均为 O(n log n)，属于高效排序算法。冒泡排序为 O(n²)，希尔排序的时间复杂度介于 O(n) 和 O(n²) 之间，依赖于增量序列。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 8746,
@@ -6601,7 +8249,11 @@
         "np.reshape()",
         "np.split()"
       ],
-      "explanation": "np.array() 创建数组，np.mean() 计算均值，np.reshape() 改变数组形状，np.split() 分割数组——都是 NumPy 的常用数组操作。np.load() 用于从文件加载数组、np.parse() 和 np.compile() 不是 NumPy 中存在的函数，均不属于基本数组操作。"
+      "explanation": "np.array() 创建数组，np.mean() 计算均值，np.reshape() 改变数组形状，np.split() 分割数组——都是 NumPy 的常用数组操作。np.load() 用于从文件加载数组、np.parse() 和 np.compile() 不是 NumPy 中存在的函数，均不属于基本数组操作。",
+      "assessment_category": "数据分析",
+      "skill_dimension": [
+        "数据分析能力"
+      ]
     },
     {
       "id": 8747,
@@ -6626,7 +8278,11 @@
         "栈（Stack）",
         "队列（Queue）"
       ],
-      "explanation": "线性数据结构中数据元素之间存在一对一的先后关系。数组、链表、栈（特殊线性表）、队列（特殊线性表）都是线性结构。树、图、堆均为非线性数据结构（树和堆是一对多，图是多对多）。"
+      "explanation": "线性数据结构中数据元素之间存在一对一的先后关系。数组、链表、栈（特殊线性表）、队列（特殊线性表）都是线性结构。树、图、堆均为非线性数据结构（树和堆是一对多，图是多对多）。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     },
     {
       "id": 8748,
@@ -6637,7 +8293,11 @@
       "weight": 1.0,
       "question": "时间复杂度 O(1) 表示算法的执行时间不随输入规模增长而增长，是效率最高的时间复杂度。",
       "answer": "正确",
-      "explanation": "O(1) 称为常数时间复杂度，表示无论输入规模多大，算法的执行时间保持不变。例如直接通过数组下标访问元素就是 O(1) 操作。它是所有时间复杂度中最优的。"
+      "explanation": "O(1) 称为常数时间复杂度，表示无论输入规模多大，算法的执行时间保持不变。例如直接通过数组下标访问元素就是 O(1) 操作。它是所有时间复杂度中最优的。",
+      "assessment_category": "数据结构与算法",
+      "skill_dimension": [
+        "算法与数据结构能力"
+      ]
     }
   ]
 }

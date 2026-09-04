@@ -11,7 +11,7 @@ let selectedSpecialties = [];
 let specialties = {};
 let examRecordId = null;
 
-const pages = ['start', 'specialty', 'exam', 'result', 'history'];
+const pages = ['start', 'specialty', 'exam', 'result', 'history', 'admin'];
 
 function setRoute(page, replace = false) {
   if (!pages.includes(page)) page = 'start';
@@ -34,6 +34,9 @@ function showPage(page) {
   document.getElementById('exam-page').classList.toggle('hidden', page !== 'exam');
   document.getElementById('result-page').classList.toggle('hidden', page !== 'result');
   document.getElementById('history-page').classList.toggle('hidden', page !== 'history');
+  document.getElementById('admin-page').classList.toggle('hidden', page !== 'admin');
+  const ee = document.getElementById('exam-entry-page');
+  if (ee) ee.classList.toggle('hidden', page !== 'exam-entry');
 }
 
 function handleRoute(page) {
@@ -65,22 +68,159 @@ window.addEventListener('popstate', () => {
   handleRoute(getRoutePage());
 });
 
-// ===================== 初始化 =====================
-window.addEventListener('DOMContentLoaded', async () => {
+// ===================== 启动路由 =====================
+let currentJoin = null;   // { exam, candidate_session_id, candidate_name }
+
+// 访客标识：公开自测记录按它归属（无账号体系的轻量隔离）
+function getVisitorId() {
+  let v = localStorage.getItem('visitor_id');
+  if (!v) {
+    v = (crypto.randomUUID ? crypto.randomUUID().replace(/-/g, '')
+      : 'v' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10));
+    localStorage.setItem('visitor_id', v);
+  }
+  return v;
+}
+
+async function loadSpecialtyMap() {
   try {
     const resp = await fetch(API + '/api/specialties');
     const data = await resp.json();
     specialties = data.specialties;
-    if (getRoutePage() === 'specialty') renderSpecialtySelect();
   } catch (e) {
     console.error('加载专业列表失败', e);
   }
-});
+}
+
+// 同步隐藏所有页面区块（用于深链首次加载时避免“闪现首页”）
+function hideAllPages() {
+  ['start-page', 'specialty-page', 'exam-page', 'result-page',
+   'history-page', 'admin-page', 'exam-entry-page'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('hidden');
+  });
+}
+
+async function boot() {
+  getVisitorId();  // 确保访客标识存在
+  const reportMatch = location.hash.match(/^#r\/([0-9a-f]+)/);
+
+  // 考试入口 /exam/join：不依赖专业列表，立即渲染邀请码表单，不闪现首页
+  if (location.pathname.startsWith('/exam/')) {
+    const q = new URLSearchParams(location.search);
+    renderJoinForm(q.get('code') || '');
+    loadSpecialtyMap();  // 后台预加载，供加入后的方向标签使用
+    return;
+  }
+  // 只读报告 /#r/<id>：先隐藏首页，加载到报告后直接展示
+  if (reportMatch) {
+    hideAllPages();
+    await loadSpecialtyMap();
+    await showRecordReport(reportMatch[1]);
+    return;
+  }
+
+  // 其余情况等待专业列表（首页本身无需隐藏，默认即为首页）
+  await loadSpecialtyMap();
+  const hashPage = location.hash.replace('#', '');
+  if (hashPage === 'admin') {
+    history.replaceState({ page: 'admin' }, '', location.pathname + '#admin');
+    showPage('admin');
+  } else {
+    setRoute('start', true);
+    handleRoute('start');
+  }
+}
+
+function renderJoinForm(code = '') {
+  const body = document.getElementById('ee-body');
+  body.innerHTML = `
+    <h1>输入考试邀请码</h1>
+    <p class="subtitle">这是由企业管理员发布的正式考试，请输入邀请码与你的姓名</p>
+    <input id="ee-code" placeholder="邀请码（如 AGENT2026）"
+      value="${escapeHtml(code)}"
+      style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.05);color:#fff;margin-bottom:10px;">
+    <input id="ee-name" placeholder="你的姓名（用于成绩归档）"
+      style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.05);color:#fff;margin-bottom:14px;">
+    <div class="msg" id="ee-msg" style="min-height:18px;color:#ff8a8a;font-size:13px;"></div>
+    <div>
+      <button class="btn btn-primary" onclick="joinExam()">进入考试</button>
+      <button class="btn btn-outline" style="margin-left:10px;" onclick="backToStart()">返回首页</button>
+    </div>
+  `;
+  showPage('exam-entry');
+}
+
+function renderExamCard(exam, stateText, btnLabel, btnFn) {
+  const specLabel = (exam.specialties || [])
+    .map(k => (specialties[k] ? specialties[k].label : k))
+    .join(' / ');
+  const body = document.getElementById('ee-body');
+  body.innerHTML = `
+    <h1>${escapeHtml(exam.title)}</h1>
+    <p class="subtitle">${escapeHtml(stateText)}</p>
+    <div class="info-grid">
+      <div class="info-item"><div class="label">专业方向</div><div class="value">${escapeHtml(specLabel || '通用基础')}</div></div>
+      <div class="info-item"><div class="label">考试时长</div><div class="value">${exam.duration} 分钟</div></div>
+      <div class="info-item"><div class="label">主观题</div><div class="value">${exam.enable_subjective ? '启用' : '关闭'}</div></div>
+    </div>
+    <div style="margin-top:20px;">
+      <button class="btn btn-primary" onclick="${btnFn}">${btnLabel}</button>
+      <button class="btn btn-outline" style="margin-left:10px;" onclick="renderJoinForm()">切换账号</button>
+    </div>
+  `;
+  showPage('exam-entry');
+}
+
+async function joinExam() {
+  const code = (document.getElementById('ee-code').value || '').trim();
+  const name = (document.getElementById('ee-name').value || '').trim();
+  const msg = document.getElementById('ee-msg');
+  if (!code) { msg.textContent = '请输入邀请码'; return; }
+  if (!name) { msg.textContent = '请填写你的姓名'; return; }
+  msg.textContent = '';
+  try {
+    const resp = await fetch(API + '/api/exams/join', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ invite_code: code, candidate_name: name }),
+    });
+    const data = await resp.json();
+    if (!resp.ok) throw new Error(data.detail || '进入失败');
+    currentJoin = {
+      exam: data.exam,
+      candidate_session_id: data.candidate_session_id,
+      candidate_name: name,
+      record_id: data.record_id || null,
+      status: data.status,
+    };
+    if (data.status === 'submitted') {
+      renderExamCard(data.exam, '你已完成该场考试，可查看本次报告', '查看本次报告',
+        `showRecordReport('${data.record_id}')`);
+    } else if (data.status === 'started') {
+      renderExamCard(data.exam, '你有一场进行中的作答，请继续完成', '继续作答',
+        `resumeExam('${data.record_id}')`);
+    } else {
+      renderExamCard(data.exam, '请确认考试信息后开始作答（仅一次作答机会）', '开始考试',
+        'startFromEntry()');
+    }
+  } catch (e) {
+    msg.textContent = e.message;
+  }
+}
+
+function startFromEntry() {
+  if (!currentJoin) return;
+  const exam = currentJoin.exam;
+  startExam(
+    (exam.specialties || []).join(','),
+    exam.id,
+    currentJoin.candidate_name,
+    currentJoin.candidate_session_id,
+  );
+}
 
 // ===================== 专业选择（多选 1~3 个） =====================
-// 每次刷新/全新加载都回到首页
-setRoute('start', true);
-handleRoute('start');
 
 function showSpecialtySelect() {
   setRoute('specialty');
@@ -132,7 +272,7 @@ function confirmSpecialty() {
 }
 
 // ===================== 开始考试 =====================
-async function startExam(specialty) {
+async function startExam(specialty, examId = '', candidateName = '', sessionId = '') {
   setRoute('exam');
   showPage('exam');
 
@@ -140,9 +280,14 @@ async function startExam(specialty) {
   document.getElementById('q-card').innerHTML =
     '<div style="text-align:center;padding:60px;color:#aab;">正在生成试卷...</div>';
 
-  const url = specialty
-    ? API + '/api/exam/start?specialty=' + encodeURIComponent(specialty)
-    : API + '/api/exam/start';
+  const params = new URLSearchParams();
+  if (specialty) params.set('specialty', specialty);
+  if (examId) params.set('exam_id', examId);
+  if (candidateName) params.set('candidate_name', candidateName);
+  if (sessionId) params.set('candidate_session_id', sessionId);
+  // 公开自测记录按访客标识归属
+  if (!examId) params.set('visitor_id', getVisitorId());
+  const url = API + '/api/exam/start' + (params.toString() ? '?' + params.toString() : '');
 
   const resp = await fetch(url);
   examData = await resp.json();
@@ -227,28 +372,35 @@ function renderQuestion() {
 
   const curAns = userAnswers[q.id];
 
+  let opts = null;   // 供下方闭包绑定的选项数组
+  let isMulti = false;
+
   if (q.type === 'single_choice') {
+    opts = q.options;
     html += '<ul class="option-list">';
-    q.options.forEach((opt, i) => {
+    opts.forEach((opt, i) => {
       const sel = curAns === opt ? ' selected' : '';
-      html += `<li class="option-item${sel}" onclick="selectOption('${escapeAttr(opt)}')">
+      html += `<li class="option-item${sel}" data-i="${i}">
         <div class="radio"></div><span>${String.fromCharCode(65+i)}. ${escapeHtml(opt)}</span></li>`;
     });
     html += '</ul>';
   } else if (q.type === 'multi_choice') {
+    opts = q.options;
+    isMulti = true;
     html += '<ul class="option-list">';
-    q.options.forEach((opt, i) => {
+    opts.forEach((opt, i) => {
       const arr = Array.isArray(curAns) ? curAns : [];
       const sel = arr.includes(opt) ? ' selected' : '';
-      html += `<li class="option-item${sel}" onclick="toggleOption('${escapeAttr(opt)}')">
+      html += `<li class="option-item${sel}" data-i="${i}">
         <div class="checkbox"></div><span>${String.fromCharCode(65+i)}. ${escapeHtml(opt)}</span></li>`;
     });
     html += '</ul>';
   } else if (q.type === 'true_false') {
+    opts = ['正确', '错误'];
     html += '<ul class="option-list">';
-    ['正确', '错误'].forEach(opt => {
+    opts.forEach((opt, i) => {
       const sel = curAns === opt ? ' selected' : '';
-      html += `<li class="option-item${sel}" onclick="selectOption('${opt}')">
+      html += `<li class="option-item${sel}" data-i="${i}">
         <div class="radio"></div><span>${opt}</span></li>`;
     });
     html += '</ul>';
@@ -258,6 +410,18 @@ function renderQuestion() {
   }
 
   document.getElementById('q-card').innerHTML = html;
+
+  // 用闭包绑定点击，避免内联 onclick 拼接选项文本带来的转义/引号问题
+  if (opts) {
+    document.querySelectorAll('#q-card .option-item').forEach(li => {
+      li.addEventListener('click', () => {
+        const val = opts[parseInt(li.dataset.i, 10)];
+        if (isMulti) toggleOption(val);
+        else selectOption(val);
+      });
+    });
+  }
+
   renderQuestionNav();
 }
 
@@ -420,10 +584,17 @@ function renderResult(result) {
     </div>
   `;
 
-  // 分类统计
-  if (result.category_stats) {
+  // 高层能力统计：优先 assessment_category；历史记录（无 assessment_stats）回退 category
+  const statSource = result.assessment_stats || result.category_stats;
+  const boxEntries = statSource ? Object.entries(statSource) : [];
+
+  // 能力卡片：只展示 assessment_category，最多 8 个
+  if (boxEntries.length > 0) {
+    const shown = boxEntries.length > 8
+      ? boxEntries.sort((a, b) => b[1].total_count - a[1].total_count).slice(0, 8)
+      : boxEntries;
     html += '<div class="cat-stats">';
-    for (const [cat, stat] of Object.entries(result.category_stats)) {
+    for (const [cat, stat] of shown) {
       html += `<div class="cat-stat">
         <div class="cat-name">${cat}</div>
         <div class="cat-acc">${stat.correct_count}/${stat.total_count}</div>
@@ -431,6 +602,26 @@ function renderResult(result) {
       </div>`;
     }
     html += '</div>';
+  }
+
+  // 雷达图 + AI 总结
+  // 数据来源同能力卡片（assessment_category），维度 >=3 时展示
+  let radarLabels = null, radarValues = null;
+  if (boxEntries.length >= 3) {
+    let entries = boxEntries;
+    // 如果维度太多，按题目权重（total_count）筛选 top 8
+    if (entries.length > 8) {
+      entries = entries.sort((a, b) => b[1].total_count - a[1].total_count).slice(0, 8);
+    }
+    radarLabels = entries.map(([cat]) => cat);
+    radarValues = entries.map(([, s]) => s.accuracy);
+
+    html += '<div class="radar-section">';
+    html += '<div class="radar-box"><canvas id="abilityRadar" width="340" height="340"></canvas></div>';
+    html += '<div class="ai-summary-box">';
+    html += '<div class="ai-summary-label">AI 评估总结</div>';
+    html += `<div class="ai-summary-text">${escapeHtml(result.ai_summary || '正在生成评估...')}</div>`;
+    html += '</div></div>';
   }
 
   // 每题详情
@@ -466,6 +657,41 @@ function renderResult(result) {
   });
 
   document.getElementById('result-content').innerHTML = html;
+
+  // 初始化雷达图
+  const canvas = document.getElementById('abilityRadar');
+  if (canvas && typeof Chart !== 'undefined' && radarLabels) {
+    new Chart(canvas.getContext('2d'), {
+      type: 'radar',
+      data: {
+        labels: radarLabels,
+        datasets: [{
+          label: '正确率 %',
+          data: radarValues,
+          fill: true,
+          backgroundColor: 'rgba(99, 102, 241, 0.25)',
+          borderColor: 'rgba(99, 102, 241, 1)',
+          borderWidth: 2,
+          pointBackgroundColor: 'rgba(99, 102, 241, 1)',
+          pointRadius: 4,
+        }],
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          r: {
+            min: 0,
+            max: 100,
+            ticks: { display: false, stepSize: 20 },
+            pointLabels: { color: '#ccc', font: { size: 12 } },
+            grid: { color: 'rgba(255,255,255,0.1)' },
+            angleLines: { color: 'rgba(255,255,255,0.15)' },
+          },
+        },
+      },
+    });
+  }
 }
 
 async function showHistory() {
@@ -475,12 +701,28 @@ async function showHistory() {
   loadHistory();
 }
 
+function showAdmin() {
+  if (timerInterval) clearInterval(timerInterval);
+  setRoute('admin');
+  showPage('admin');
+}
+
+function verifyAdminToken() {
+  const token = document.getElementById('admin-token-input').value.trim();
+  if (!token) {
+    alert('请输入管理员令牌');
+    return;
+  }
+  localStorage.setItem('adminToken', token);
+  showHistory();
+}
+
 async function loadHistory() {
   const list = document.getElementById('history-list');
   list.innerHTML = '<div style="text-align:center;padding:30px;color:#aab;">正在加载...</div>';
 
   try {
-    const resp = await fetch(API + '/api/records');
+    const resp = await fetch(API + '/api/records?visitor_id=' + encodeURIComponent(getVisitorId()));
     const data = await resp.json();
     renderHistory(data.records || []);
   } catch (e) {
@@ -495,6 +737,7 @@ function renderHistory(records) {
     return;
   }
 
+  // 这里展示的均为当前访客自己的公开自测记录，可删除；考试记录不在此列表
   list.innerHTML = records.map(r => {
     const statusMap = { submitted: '已提交', timeout: '已超时', started: '进行中' };
     const status = statusMap[r.status] || r.status;
@@ -503,7 +746,10 @@ function renderHistory(records) {
     const passed = r.passed === null || r.passed === undefined ? '' : (r.passed ? ' · 通过' : ' · 未通过');
     const startedAt = formatTime(r.started_at);
     const submittedAt = r.submitted_at ? formatTime(r.submitted_at) : '-';
-    const canView = true;
+    const deletable = !r.exam_id;
+    const deleteBtn = deletable
+      ? `<button class="btn btn-outline" style="color:#ff6b6b;border-color:rgba(255,107,107,0.4);margin-top:6px;" onclick="deleteRecord('${escapeAttr(r.id)}')">删除</button>`
+      : '';
     return `
       <div class="history-item">
         <div class="history-main">
@@ -515,7 +761,7 @@ function renderHistory(records) {
         </div>
         <div class="history-actions">
           <button class="btn btn-outline" onclick="viewRecord('${escapeAttr(r.id)}')">查看</button>
-          <button class="btn btn-outline" style="color:#ff6b6b;border-color:rgba(255,107,107,0.4);margin-top:6px;" onclick="deleteRecord('${escapeAttr(r.id)}')">删除</button>
+          ${deleteBtn}
         </div>
       </div>
     `;
@@ -523,10 +769,17 @@ function renderHistory(records) {
 }
 
 function deleteRecord(recordId) {
-  if (!confirm('确定要删除这条考试记录吗？此操作不可撤销。')) return;
+  if (!confirm('确定要删除这条自测记录吗？此操作不可撤销。')) return;
+  const token = localStorage.getItem('adminToken') || localStorage.getItem('admin_token') || '';
   (async () => {
     try {
-      const resp = await fetch(API + '/api/records/' + encodeURIComponent(recordId), { method: 'DELETE' });
+      const headers = {};
+      if (token) headers['X-Admin-Token'] = token;
+      const resp = await fetch(
+        API + '/api/records/' + encodeURIComponent(recordId)
+          + '?visitor_id=' + encodeURIComponent(getVisitorId()),
+        { method: 'DELETE', headers }
+      );
       if (!resp.ok) throw new Error('删除失败');
       loadHistory();
     } catch (e) {
@@ -689,5 +942,38 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 function escapeAttr(str) {
-  return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+  // 先做 JS 单引号字符串层转义，再做 HTML 双引号属性层转义
+  const s = String(str)
+    .replace(/\\/g, '\\\\')
+    .replace(/'/g, "\\'")
+    .replace(/\r?\n/g, '\\n');
+  return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 }
+
+// ===================== 只读报告视图（管理后台/链接直达） =====================
+async function showRecordReport(recordId) {
+  let rec;
+  try {
+    const resp = await fetch(API + '/api/records/' + recordId);
+    if (!resp.ok) throw new Error('not found');
+    rec = await resp.json();
+  } catch (e) {
+    alert('报告不存在或链接无效');
+    backToStart();
+    return;
+  }
+  if (!rec || rec.status !== 'submitted' || !rec.result) {
+    alert('该记录尚未完成提交，无法查看报告');
+    backToStart();
+    return;
+  }
+  if (timerInterval) clearInterval(timerInterval);
+  examRecordId = rec.id;
+  selectedSpecialties = rec.specialty ? rec.specialty.split(',') : [];
+  history.replaceState({ page: 'result' }, '', location.pathname + '#r/' + recordId);
+  renderResult(rec.result);
+  showPage('result');
+}
+
+// 启动路由（脚本位于 body 末尾，DOM 已就绪）
+boot();

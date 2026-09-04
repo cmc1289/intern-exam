@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>入职考核系统</title>
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="/style.css?v=4">
 </head>
 <body>
 
@@ -40,6 +40,13 @@
       </div>
       <button class="btn btn-primary" onclick="showSpecialtySelect()">下一步：选择题库方向</button>
       <button class="btn btn-outline" style="margin-left:10px;" onclick="showHistory()">历史记录</button>
+    </div>
+  </div>
+
+  <!-- ========== 考试入口页（邀请码 + 姓名进入正式考试） ========== -->
+  <div id="exam-entry-page" class="hidden">
+    <div class="start-card">
+      <div id="ee-body"></div>
     </div>
   </div>
 
@@ -90,8 +97,22 @@
     </div>
   </div>
 
+  <!-- ========== 管理员验证页 ========== -->
+  <div id="admin-page" class="hidden">
+    <div class="start-card">
+      <h1>管理员验证</h1>
+      <p class="subtitle">输入管理员令牌以启用删除功能</p>
+      <input type="password" id="admin-token-input" placeholder="输入管理员令牌" class="subjective-input" style="margin-bottom:16px;">
+      <div>
+        <button class="btn btn-primary" onclick="verifyAdminToken()">验证</button>
+        <button class="btn btn-outline" style="margin-left:10px;" onclick="backToStart()">返回</button>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="/script.js?v=16"></script>
 </body>
 </html>

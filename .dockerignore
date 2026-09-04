@@ -1,0 +1,10 @@
+.git
+.env
+deploy_key
+deploy_key.pub
+__pycache__
+*.pyc
+*.sqlite3
+*.db
+data
+deploy

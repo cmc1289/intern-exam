@@ -35,7 +35,11 @@ def get_question_map() -> dict[int, dict]:
     return {q["id"]: q for q in all_questions}
 
 
-def generate_exam(specialty: str = "") -> dict:
+def generate_exam(
+    specialty: str = "",
+    min_subjective: int = 2,
+    max_subjective: int = 4,
+) -> dict:
     allocation = exam_config["question_allocation"]
     selected = []
 
@@ -75,16 +79,31 @@ def generate_exam(specialty: str = "") -> dict:
     else:
         module_needed["通用基础"] += pro_total
 
+    assessment_ratios = exam_config.get("assessment_ratios", {})
+
     for module, need in module_needed.items():
         module_pool = [
             q for q in all_questions
             if q["module"] == module and q not in selected
         ]
         count = min(need, len(module_pool))
-        if count > 0:
+        if count <= 0:
+            continue
+        ratios = assessment_ratios.get(module) or {}
+        # 该模块配置了 assessment_category 权重 → 子方向按比例抽题
+        if ratios:
+            selected.extend(_pick_by_assessment_category(module_pool, count, ratios))
+        # 未配置（如 Agent岗位/未打标模块）→ 保持模块内随机
+        else:
             selected.extend(random.sample(module_pool, count))
 
-    selected = ensure_subjective_range(selected, module_needed)
+    if max_subjective <= 0:
+        # 不启用主观题：仅保留客观题
+        selected = [q for q in selected if q["type"] != "subjective"]
+    else:
+        selected = ensure_subjective_range(
+            selected, module_needed, min_subjective, max_subjective
+        )
     random.shuffle(selected)
 
     questions_out = [to_public_question(q) for q in selected]
@@ -103,6 +122,58 @@ def generate_exam(specialty: str = "") -> dict:
         "specialty": specialty_names or "未选择",
         "module_distribution": module_dist,
     }
+
+
+def _split_by_weights(weights: dict[str, float], total: int) -> dict[str, int]:
+    """按权重把 total 拆成整数份（最大余数法，保证总和等于 total）。"""
+    if total <= 0:
+        return {}
+    sum_w = sum(weights.values())
+    if sum_w <= 0:
+        return {}
+    raw = {k: weights[k] * total / sum_w for k in weights}
+    result = {k: int(v) for k, v in raw.items()}
+    remain = total - sum(result.values())
+    for k in sorted(raw, key=lambda k: raw[k] - result[k], reverse=True)[:remain]:
+        result[k] += 1
+    return result
+
+
+def _pick_by_assessment_category(
+    module_pool: list[dict],
+    need: int,
+    ratios: dict[str, float],
+) -> list[dict]:
+    """在模块池内按 assessment_category 权重抽 need 题。
+
+    - 已配置权重 → 各子方向按比例抽
+    - 权重未覆盖到、但池内存在的子方向 → 按其题量补权重，避免被永久漏抽
+    - 个别子方向题量不足 → 缺口从模块其余题目补齐（绝不失败）
+    """
+    groups: dict[str, list[dict]] = {}
+    for q in module_pool:
+        ac = q.get("assessment_category") or "未分类"
+        groups.setdefault(ac, []).append(q)
+
+    weights = {c: w for c, w in ratios.items() if w > 0}
+    for c, qs in groups.items():
+        weights.setdefault(c, len(qs))
+
+    targets = _split_by_weights(weights, need)
+    picked: list[dict] = []
+    for c, n in targets.items():
+        qs = groups.get(c, [])
+        if n <= 0 or not qs:
+            continue
+        picked.extend(random.sample(qs, min(n, len(qs))))
+
+    # 缺口补齐（如某子方向题量不足）
+    deficit = need - len(picked)
+    if deficit > 0:
+        chosen_ids = {id(q) for q in picked}
+        rest = [q for q in module_pool if id(q) not in chosen_ids]
+        picked.extend(random.sample(rest, min(deficit, len(rest))))
+    return picked
 
 
 def ensure_subjective_range(

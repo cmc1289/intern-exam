@@ -20,3 +20,9 @@ DEEPSEEK_MODEL = os.environ.get("DEEPSEEK_MODEL", "deepseek-chat")
 
 APP_HOST = os.environ.get("APP_HOST", "0.0.0.0")
 APP_PORT = int(os.environ.get("APP_PORT", "8000"))
+
+ADMIN_TOKEN = os.environ.get("ADMIN_TOKEN", "")
+
+# 管理后台登录（演示用）。密码未单独配置时回退到 ADMIN_TOKEN。
+ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME", "admin")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "") or ADMIN_TOKEN or "admin123"

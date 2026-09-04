@@ -8,7 +8,7 @@ from app.services import record_service
 from app.services.question_service import get_exam_config, get_question_map
 
 
-async def submit_exam(request: SubmitRequest) -> dict:
+async def submit_exam(request: SubmitRequest, allow_ai: bool = True) -> dict:
     question_map = get_question_map()
     exam_config = get_exam_config()
 
@@ -39,7 +39,9 @@ async def submit_exam(request: SubmitRequest) -> dict:
         result = await judge_subjective(
             question["question"],
             question["answer"],
+            question.get("explanation", ""),
             str(item.user_answer),
+            use_ai=allow_ai,
         )
         ai_score = result["ai_score"]
         item_score = weight * ai_score
@@ -67,6 +69,13 @@ async def submit_exam(request: SubmitRequest) -> dict:
         "pass_score": exam_config["pass_score"],
         "details": details,
         "category_stats": build_category_stats(details),
+        # 高层展示统计（assessment_category）：卡片 + 雷达图
+        "assessment_stats": build_assessment_stats(details),
+        # 能力维度统计（skill_dimension）：仅供 AI 总结 / 详细报告 / 能力缺陷分析
+        "skill_stats": build_skill_stats(details),
+        "ai_summary": await generate_ai_summary(
+            final_score, passed, details, subjective_tasks, use_ai=allow_ai
+        ),
     }
 
     if request.record_id:
@@ -104,16 +113,18 @@ def judge_objective(question: dict, user_answer: str | list[str]) -> float:
     return 0.0
 
 
-async def judge_subjective(question_text: str, reference_answer: str, user_answer: str) -> dict:
-    if not DEEPSEEK_API_KEY:
+async def judge_subjective(question_text: str, reference_answer: str, explanation: str, user_answer: str, use_ai: bool = True) -> dict:
+    if not DEEPSEEK_API_KEY or not use_ai:
         return fallback_judge(user_answer)
+
+    explanation_block = f"\n【解析说明】{explanation}\n" if explanation else ""
 
     prompt = f"""你是一位专业的入职考核评委。请根据以下信息评判主观题答案：
 
 【题目】{question_text}
 
 【参考答案要点】{reference_answer}
-
+{explanation_block}
 【考生答案】{user_answer}
 
 请从以下维度打分（0-100分）：
@@ -191,6 +202,8 @@ def build_detail(
         "question_id": question["id"],
         "question": question["question"],
         "category": question["category"],
+        "assessment_category": question.get("assessment_category") or question["category"],
+        "skill_dimensions": question.get("skill_dimension", []),
         "type": question["type"],
         "difficulty": question["difficulty"],
         "weight": question["weight"],
@@ -225,3 +238,134 @@ def build_category_stats(details: list[dict]) -> dict:
         }
         for category, value in category_stats.items()
     }
+
+
+def build_assessment_stats(details: list[dict]) -> dict:
+    """按 assessment_category（考试评估分类）聚合，供卡片/雷达图高层展示。"""
+    stats: dict[str, dict] = {}
+    for d in details:
+        ac = d.get("assessment_category") or d["category"]
+        s = stats.setdefault(ac, {"correct": 0, "total": 0})
+        s["total"] += 1
+        if d["is_correct"]:
+            s["correct"] += 1
+    return {
+        ac: {
+            "correct_count": s["correct"],
+            "total_count": s["total"],
+            "accuracy": round(s["correct"] / s["total"] * 100, 1)
+            if s["total"] else 0,
+        }
+        for ac, s in stats.items()
+    }
+
+
+def _dimension_stats(details: list[dict]) -> dict[str, dict[str, float]]:
+    """按能力维度聚合答题情况。
+
+    优先取 detail 的 skill_dimensions；题目未打标时回退用 category。
+    一道题命中多个维度时按 1/n 均摊，避免重复计数。
+    """
+    stats: dict[str, dict[str, float]] = {}
+    for d in details:
+        dims = d.get("skill_dimensions") or [d["category"]]
+        share = 1.0 / len(dims)
+        for dim in dims:
+            s = stats.setdefault(dim, {"correct": 0.0, "total": 0.0})
+            s["total"] += share
+            if d["is_correct"]:
+                s["correct"] += share
+    return stats
+
+
+def build_skill_stats(details: list[dict]) -> dict:
+    """能力维度正确率统计（供雷达图使用）。"""
+    return {
+        dim: {
+            "correct_count": round(s["correct"], 2),
+            "total_count": round(s["total"], 2),
+            "accuracy": round(s["correct"] / s["total"] * 100, 1)
+            if s["total"] > 0 else 0,
+        }
+        for dim, s in _dimension_stats(details).items()
+    }
+
+
+async def generate_ai_summary(
+    final_score: float,
+    passed: bool,
+    details: list[dict],
+    subjective_tasks: list[tuple],
+    use_ai: bool = True,
+) -> str:
+    """调用 AI 生成能力评估总结，失败时返回降级文本。"""
+    if not DEEPSEEK_API_KEY or not use_ai:
+        return _fallback_summary(final_score, passed, details)
+
+    # 统计各能力维度正确率（无 skill_dimension 时回退到 category）
+    dim_lines = []
+    for dim, s in _dimension_stats(details).items():
+        acc = round(s["correct"] / s["total"] * 100, 1) if s["total"] else 0
+        dim_lines.append(f"- {dim}: {acc}%")
+    dim_text = "\n".join(dim_lines) or "无"
+
+    # 主观题简述
+    subj_lines = []
+    for item, question, _w in subjective_tasks:
+        subj_lines.append(f"- 《{question['question'][:40]}...》考生答: {str(item.user_answer)[:60]}")
+    subj_text = "\n".join(subj_lines) if subj_lines else "无主观题"
+
+    prompt = f"""你是一位技术面试官。请根据考生的考核数据，用一段话（2-3句，80字以内）给出能力评估总结。
+
+总分：{final_score} 分（及格线 60 分，{'通过' if passed else '未通过'}）
+
+各能力维度正确率：
+{dim_text}
+
+主观题作答摘要：
+{subj_text}
+
+要求：
+- 第一句说整体结论，第二句说优势方向，第三句说薄弱方向
+- 语言自然，像面试官的真实点评，不要出现"雷达图""维度"这类报告话术
+- 用中文，80字以内"""
+
+    try:
+        async with httpx.AsyncClient(timeout=15) as client:
+            response = await client.post(
+                DEEPSEEK_BASE_URL,
+                headers={
+                    "Authorization": f"Bearer {DEEPSEEK_API_KEY}",
+                    "Content-Type": "application/json",
+                },
+                json={
+                    "model": DEEPSEEK_MODEL,
+                    "messages": [
+                        {"role": "system", "content": "你是一位资深技术面试官，擅长简洁精准地点评候选人。"},
+                        {"role": "user", "content": prompt},
+                    ],
+                    "temperature": 0.7,
+                    "max_tokens": 200,
+                },
+            )
+            data = response.json()
+            summary = data["choices"][0]["message"]["content"].strip()
+            # 去掉可能的引号包裹
+            summary = summary.strip('"').strip("'").strip()
+            return summary
+    except Exception:
+        return _fallback_summary(final_score, passed, details)
+
+
+def _fallback_summary(final_score: float, passed: bool, details: list[dict]) -> str:
+    """AI 不可用时的降级总结。"""
+    dims = _dimension_stats(details)
+    ranked = sorted(
+        dims.items(),
+        key=lambda kv: kv[1]["correct"] / kv[1]["total"] if kv[1]["total"] else 0,
+    )
+    strong = ranked[-1][0] if ranked else "综合"
+    weak = ranked[0][0] if ranked else "综合"
+
+    verdict = "整体表现良好" if passed else "整体表现有待提升"
+    return f"该考生{verdict}，最终得分 {final_score} 分。在{strong}方面表现较好，{weak}方面仍有提升空间。"
