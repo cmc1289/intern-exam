@@ -1,5 +1,8 @@
 import json
 import random
+import tempfile
+import os
+import shutil
 
 from app.config import BANK_PATH
 
@@ -15,12 +18,129 @@ exam_config = bank["exam_config"]
 specialties = bank["specialties"]
 
 
-def get_specialties() -> dict:
-    return specialties
+def reload_bank() -> None:
+    """重新加载题库文件到内存（AI 导入新题后热生效，无需重启）。"""
+    global bank, all_questions, exam_config, specialties
+    bank = load_question_bank()
+    all_questions = bank["questions"]
+    exam_config = bank["exam_config"]
+    specialties = bank["specialties"]
+
+
+def save_question_bank(data: dict) -> None:
+    """原子写回题库文件；写前生成 .bak 备份，写坏不覆盖原文件。"""
+    backup = str(BANK_PATH) + ".bak"
+    try:
+        shutil.copyfile(BANK_PATH, backup)
+    except OSError:
+        pass
+    fd, tmp = tempfile.mkstemp(dir=str(BANK_PATH.parent), suffix=".json")
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        os.replace(tmp, BANK_PATH)
+    except BaseException:
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
+        raise
+
+
+def append_questions(new_questions: list[dict]) -> list[dict]:
+    """校验后追加题目到题库并热重载。返回带真实 id 的题目。"""
+    data = load_question_bank()
+    questions = data["questions"]
+    used_ids = {q["id"] for q in questions}
+    next_id = max(used_ids) + 1 if used_ids else 1001
+    added = []
+    for q in new_questions:
+        q = dict(q)
+        while next_id in used_ids:
+            next_id += 1
+        q["id"] = next_id
+        next_id += 1
+        used_ids.add(q["id"])
+        questions.append(q)
+        added.append(q)
+    save_question_bank(data)
+    reload_bank()
+    return added
+
+
+# ---- 题库目录 / 统计（供 AI 扩充与健康分析使用） ----
+def bank_catalog() -> dict[str, dict]:
+    """按 module 汇总可用 assessment_category 及 skill_dimension 白名单。"""
+    catalog: dict[str, dict] = {}
+    for q in all_questions:
+        m = q["module"]
+        entry = catalog.setdefault(m, {"categories": {}, "dims": set(), "total": 0})
+        entry["total"] += 1
+        cat = q.get("assessment_category") or q["category"] or "未分类"
+        entry["categories"].setdefault(cat, 0)
+        entry["categories"][cat] += 1
+        for s in q.get("skill_dimension") or []:
+            entry["dims"].add(s)
+    out = {}
+    for m, e in catalog.items():
+        out[m] = {
+            "total": e["total"],
+            "categories": dict(sorted(e["categories"].items(), key=lambda kv: -kv[1])),
+            "dims": sorted(e["dims"]),
+            "ratios": exam_config.get("assessment_ratios", {}).get(m, {}),
+        }
+    return out
+
+
+def bank_health() -> dict:
+    """能力覆盖健康度：
+    - 各 module 的 assessment_category 题量分布（对比 assessment_ratios 目标占比）
+    - 难度分布
+    - 命中配置比例但题量明显不足的维度 → 给出建议补题量
+    """
+    catalog = bank_catalog()
+    modules = []
+    for m, e in catalog.items():
+        ratios = e["ratios"]
+        diffs = {}
+        for q in all_questions:
+            if q["module"] != m:
+                continue
+            d = q["difficulty"]
+            diffs[d] = diffs.get(d, 0) + 1
+        warnings = []
+        suggestions = []
+        for cat, target_w in ratios.items():
+            cur = e["categories"].get(cat, 0)
+            # 建议补题 = 目标占比下该维度相对池子总量的合理覆盖，至少与其它维度同量级
+            total_pool = e["total"]
+            ideal = max(6, round(total_pool * target_w / 100))
+            if cur < max(4, ideal // 3):
+                need = max(4, ideal - cur)
+                warnings.append(cat)
+                suggestions.append(f"{cat} 当前 {cur} 题，建议补充约 {need} 道")
+        modules.append({
+            "module": m,
+            "total": e["total"],
+            "categories": e["categories"],
+            "difficulty": diffs,
+            "has_ratios": bool(ratios),
+            "warnings": warnings,
+            "suggestions": suggestions,
+        })
+    overall = {}
+    for q in all_questions:
+        d = q["difficulty"]
+        overall[d] = overall.get(d, 0) + 1
+    return {"modules": modules, "overall_difficulty": overall, "total_questions": len(all_questions)}
 
 
 def get_exam_config() -> dict:
     return exam_config
+
+
+def get_specialties() -> dict:
+    return specialties
 
 
 def get_questions() -> list[dict]:

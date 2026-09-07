@@ -27,3 +27,12 @@ class CreateExamRequest(BaseModel):
 class JoinExamRequest(BaseModel):
     invite_code: str
     candidate_name: str
+
+
+class BankExpandRequest(BaseModel):
+    module: str
+    topics: list[str] = []
+    urls: list[str] = []
+    instruction: str = ""
+    mode: str = "brainstorm"  # brainstorm=快速脑暴 / url=URL 定向清洗出题
+    dry_run: bool = False

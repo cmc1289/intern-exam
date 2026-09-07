@@ -6,6 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from app.api.admin import router as admin_router
 from app.api.exam import router as exam_router
 from app.api.records import router as records_router
+from app.api.report import router as report_router
 from app.config import STATIC_DIR
 
 
@@ -21,6 +22,7 @@ app.add_middleware(
 
 app.include_router(exam_router, prefix="/api")
 app.include_router(records_router, prefix="/api")
+app.include_router(report_router, prefix="/api")
 app.include_router(admin_router, prefix="/api/admin")
 
 

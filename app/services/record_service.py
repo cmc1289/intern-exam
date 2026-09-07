@@ -200,6 +200,40 @@ def get_record(record_id: str) -> dict[str, Any] | None:
     return record_detail_from_row(row)
 
 
+def get_record_by_session(session_id: str) -> dict[str, Any] | None:
+    """按 CandidateSession 找到该候选人最近的作答记录（报告导出用）。"""
+    with get_connection() as conn:
+        _mark_timed_out_records(conn)
+        row = conn.execute(
+            """
+            SELECT *
+            FROM exam_records
+            WHERE candidate_session_id = ? AND deleted = 0
+            ORDER BY started_at DESC LIMIT 1
+            """,
+            (session_id,),
+        ).fetchone()
+
+    if row is None:
+        return None
+    return record_detail_from_row(row)
+
+
+def next_report_no() -> int:
+    """报告编号序号段：当日（UTC）已提交且未删除的记录数 + 1。"""
+    day = utc_now_iso()[:10]
+    with get_connection() as conn:
+        row = conn.execute(
+            """
+            SELECT COUNT(*) AS c FROM exam_records
+            WHERE status = 'submitted' AND deleted = 0
+              AND substr(submitted_at, 1, 10) = ?
+            """,
+            (day,),
+        ).fetchone()
+    return int(row["c"]) + 1
+
+
 def record_summary_from_row(row) -> dict[str, Any]:
     summary = {
         "id": row["id"],

@@ -7,6 +7,8 @@ services:
     environment:
       # SQLite 数据库落盘到挂载卷，容器重启不丢数据
       - DB_PATH=/app/data/exam_records.sqlite3
+      # 题库 JSON 落盘到挂载卷：AI 智能扩充入库后可持久、可跨重建
+      - QUESTION_BANK_PATH=/app/data/question_bank.json
     volumes:
       - ./data:/app/data
     expose:

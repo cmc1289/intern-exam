@@ -59,7 +59,181 @@ function enterApp() {
 
 // ---------------- 初始化 ----------------
 async function init() {
-  await Promise.all([loadSpecialties(), loadDashboard(), loadExams()]);
+  await Promise.all([loadSpecialties(), loadDashboard(), loadExams(), initBankCenter()]);
+}
+
+// ---------------- 题库中心 ----------------
+let bankModules = [];
+
+async function initBankCenter() {
+  await Promise.all([refreshBankHealth(), loadBankCatalog()]);
+}
+
+async function loadBankCatalog() {
+  try {
+    const data = await api('/api/admin/bank/catalog');
+    bankModules = Object.keys(data.modules || {});
+    const sel = $('bx-module');
+    sel.innerHTML = '';
+    for (const m of bankModules) {
+      const opt = document.createElement('option');
+      opt.value = m;
+      opt.textContent = m;
+      sel.appendChild(opt);
+    }
+  } catch (e) { /* 提示已在 api 层处理 */ }
+}
+
+async function refreshBankHealth() {
+  const box = $('bank-health');
+  box.innerHTML = '<div class="empty">加载中...</div>';
+  try {
+    const data = await api('/api/admin/bank/health');
+    const total = data.total_questions || 0;
+    let html = `<div class="kv"><span>题库总量：<b style="color:#a5b4fc">${total}</b></span></div>`;
+    for (const m of data.modules || []) {
+      const hasRatios = !!m.has_ratios;
+      html += `<div class="result-box"><h3>${esc(m.module)} · ${m.total} 题` +
+        (hasRatios ? '' : ' <span class="small">（模块题量少，按子方向随机抽题即可）</span>') + '</h3>';
+      const cats = Object.entries(m.categories || {});
+      const chips = cats.map(([c, n]) =>
+        `<span class="tag ${(m.warnings || []).includes(c) ? 'warn-badge' : ''}">${esc(c)} ${n}</span>`).join(' ');
+      html += `<div>${chips || '<span class="small">无</span>'}</div>`;
+      const diff = Object.entries(m.difficulty || {}).map(([d, n]) =>
+        `<span class="q-meta diff-${esc(d)}">${esc(d)} ${n}</span>`).join(' ');
+      if (diff) html += `<div style="margin-top:6px;">难度：${diff}</div>`;
+      // 仅对配置了 assessment_ratios 的模块做“覆盖均衡”判断；未配置的模块随机抽题即合理
+      if (hasRatios) {
+        if (m.suggestions && m.suggestions.length) {
+          html += `<div style="margin-top:6px;">` + m.suggestions.map(s =>
+            `<span class="warn-badge" style="margin-right:6px;">⚠ ${esc(s)}</span>`).join('') + '</div>';
+        } else {
+          html += `<div style="margin-top:6px;"><span class="ok-badge">✓ 覆盖均衡</span></div>`;
+        }
+      }
+      html += '</div>';
+    }
+    box.innerHTML = html;
+  } catch (e) {
+    box.innerHTML = `<div class="empty">健康分析加载失败：${esc(e.message)}</div>`;
+  }
+}
+
+function typeLabel(t) {
+  return ({ single_choice: '单选', multi_choice: '多选', true_false: '判断', subjective: '主观' })[t] || t;
+}
+
+// ---------------- 出题模式切换 ----------------
+let bxMode = 'brainstorm';  // brainstorm=快速脑暴 / url=URL 定向
+
+function switchMode(mode) {
+  bxMode = mode;
+  $('mode-chip-brainstorm').classList.toggle('active', mode === 'brainstorm');
+  $('mode-chip-url').classList.toggle('active', mode === 'url');
+  $('mode-brainstorm-tip').classList.toggle('hidden', mode !== 'brainstorm');
+  $('mode-url-tip').classList.toggle('hidden', mode !== 'url');
+  $('bx-url-field').classList.toggle('hidden', mode !== 'url');
+}
+
+function renderQuestions(questions) {
+  const typeName = (d) => `[${typeLabel(d.type)}]`;
+  return (questions || []).map(q =>
+    `<div class="question-row">
+      <div class="q-txt">${esc(q.question)}</div>
+      <div class="q-meta">
+        ${typeName(q)} <span class="tag">${esc(q.assessment_category)}</span>
+        ${(q.skill_dimension || []).map(s => `<span class="tag">${esc(s)}</span>`).join('')}
+        <span class="diff-${esc(q.difficulty)}">难度：${esc(q.difficulty)}</span>
+        <span class="mono">id ${q.id != null ? q.id : '待分配'}</span>
+      </div>
+    </div>`).join('') || '<div class="small">（无）</div>';
+}
+
+async function runBankExpand() {
+  const btn = $('bx-btn');
+  const status = $('bx-status');
+  const box = $('bx-result');
+  const module = $('bx-module').value;
+  const topics = $('bx-topics').value.split('\n').map(s => s.trim()).filter(Boolean);
+  const urls = $('bx-urls').value.split('\n').map(s => s.trim()).filter(Boolean);
+  const instruction = $('bx-instruction').value.trim();
+  const dryRun = $('bx-dryrun').checked;
+  const mode = bxMode;
+  if (!module) { toast('请选择专业方向'); return; }
+  if (mode === 'url' && !urls.length) { toast('URL 模式需要至少填一个参考 URL'); return; }
+  if (mode === 'brainstorm' && !topics.length) { toast('脑暴模式需要至少填一个话题'); return; }
+  btn.disabled = true;
+  btn.textContent = '任务已提交…';
+  status.textContent = '';
+  box.innerHTML = '';
+  try {
+    const started = await api('/api/admin/bank/expand', {
+      method: 'POST',
+      body: JSON.stringify({ module, topics, urls, instruction, mode, dry_run: dryRun }),
+    });
+    const jobId = started.job_id;
+    // 轮询进度
+    const poll = async () => {
+      const job = await api('/api/admin/bank/expand/' + jobId);
+      if (job.status === 'running' || job.status === 'pending') {
+        status.textContent = 'AI 处理中：' + (job.stage || '') + (mode === 'url' ? '（约 3~6 分钟，可稍等）' : '（约 1~3 分钟，可稍等）');
+        setTimeout(poll, 5000);
+        return;
+      }
+      btn.disabled = false;
+      btn.textContent = '开始 AI 扩充';
+      status.textContent = '';
+      if (job.status === 'error') {
+        box.innerHTML = `<div class="result-box"><div class="q-txt" style="color:#ff8a8a;">${esc(job.error || '任务失败')}</div></div>`;
+        toast(job.error || '任务失败');
+        return;
+      }
+      renderExpandResult(job.result, dryRun);
+      if (!dryRun && job.result && job.result.inserted_count > 0) {
+        toast(`已入库 ${job.result.inserted_count} 道题`);
+        refreshBankHealth();
+      } else {
+        toast(dryRun ? '预览完成（未入库）' : '未生成有效题目');
+      }
+    };
+    poll();
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = '开始 AI 扩充';
+    box.innerHTML = `<div class="result-box"><div class="q-txt" style="color:#ff8a8a;">${esc(e.message)}</div></div>`;
+    toast(e.message);
+  }
+}
+
+function renderExpandResult(data, dryRun) {
+  const box = $('bx-result');
+  const kps = data.knowledge_points || [];
+  let html = `<div class="result-box">
+    <h3>${dryRun ? '【预览】' : '✓ 已入库'} · ${esc(data.module || '')} · AI 扩充结果</h3>
+    <div class="kv">
+      <span>候选：${data.collected_count} 条</span>
+      <span>筛选：${esc(data.screen || '')}</span>
+      <span>知识点：${kps.length} 个</span>
+      <span>${dryRun ? '预览题' : '入库题'}：${data.inserted_count} 道</span>
+      ${data.new_ids && data.new_ids.length ? `<span class="mono">新ID：${data.new_ids.join(',')}</span>` : ''}
+    </div>`;
+  if (data.sources && data.sources.length) {
+    html += '<div class="q-meta">来源：' + data.sources.map(s =>
+      s.error ? `${esc(s.url)}（抓取失败：${esc(s.error)}）` : `${esc(s.url)}（${s.chars}字）`).join('<br>') + '</div>';
+  }
+  if (kps.length) {
+    html += `<div style="margin-top:8px;"><b class="small">知识点 → 维度映射：</b> ` +
+      kps.map(k => `<span class="tag">${esc(k.name)} → ${esc(k.assessment_category)} ×${k.question_count}</span>`).join('') + '</div>';
+  }
+  html += '</div>';
+  if (data.questions && data.questions.length) {
+    html += `<div class="result-box"><h3>生成题目预览（${data.questions.length} 道）</h3>${renderQuestions(data.questions)}</div>`;
+  }
+  if (data.errors && data.errors.length) {
+    html += `<div class="result-box"><h3>被过滤/校验未过（${data.errors.length} 条）</h3>` +
+      data.errors.map(e => `<div class="q-meta">${esc(e)}</div>`).join('') + '</div>';
+  }
+  box.innerHTML = html;
 }
 
 async function loadSpecialties() {
@@ -236,7 +410,8 @@ async function viewCandidates(examId) {
       <td>${sb}</td>
       <td>${fmtTime(c.started_at)}</td>
       <td>${canView
-        ? `<button class="act-btn" onclick="openReport('${c.id}')">查看报告</button>`
+        ? `<button class="act-btn" onclick="openReport('${c.id}')">查看报告</button>
+           <button class="act-btn" style="border-color:rgba(165,180,252,0.6);color:#a5b4fc;" onclick="exportPdf('${c.id}')">导出PDF</button>`
         : '<span style="color:#64748b">—</span>'}</td>
     </tr>`;
   }
@@ -246,6 +421,44 @@ async function viewCandidates(examId) {
 
 function openReport(recordId) {
   window.open(location.origin + '/#r/' + recordId, '_blank');
+}
+
+// ---------------- 导出 PDF 报告 ----------------
+async function exportPdf(recordId) {
+  try {
+    const resp = await fetch(API + '/api/report/' + recordId + '/pdf', {
+      headers: { 'X-Admin-Token': token() },
+    });
+    if (resp.status === 403) {
+      doLogout();
+      toast('登录已失效，请重新登录');
+      return;
+    }
+    if (!resp.ok) {
+      const data = await resp.json().catch(() => ({}));
+      throw new Error(data.detail || ('导出失败 ' + resp.status));
+    }
+    const blob = await resp.blob();
+    // 优先取服务端 Content-Disposition 里的文件名
+    let filename = '评估报告.pdf';
+    const cd = resp.headers.get('Content-Disposition') || '';
+    const m = cd.match(/filename\*=UTF-8''([^;]+)/i) || cd.match(/filename="?([^";]+)"?/i);
+    if (m && m[1]) {
+      try { filename = decodeURIComponent(m[1]); }
+      catch (e) { filename = m[1]; }
+    }
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    toast('PDF 已开始下载');
+  } catch (e) {
+    toast(e.message);
+  }
 }
 
 // ---------------- 工具 ----------------
