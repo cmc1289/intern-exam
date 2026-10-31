@@ -10,7 +10,7 @@ from app.api.report import router as report_router
 from app.config import STATIC_DIR
 
 
-app = FastAPI(title="入职考核系统")
+app = FastAPI(title="智能技术能力评估平台")
 
 app.add_middleware(
     CORSMiddleware,

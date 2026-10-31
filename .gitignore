@@ -19,3 +19,6 @@ venv/
 
 # 临时 AI 工具目录
 temp_ai_handbook/
+
+# 本地数据备份（含考试记录与密钥，禁止提交）
+backups/
